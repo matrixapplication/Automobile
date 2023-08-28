@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
+import 'package:automobile_project/data/models/car_model/car_model.dart';
 import 'package:automobile_project/domain/entities/add_car_entity/add_car_entity.dart';
 import 'package:automobile_project/domain/use_case/drop_down/fuel_type_use_case.dart';
 import 'package:automobile_project/domain/use_case/drop_down/fuel_type_use_case.dart';
@@ -11,7 +12,7 @@ import '../../../../../data/models/base_response/response_model.dart';
 import '../../../../../domain/logger.dart';
 import '../../../../../domain/use_case/drop_down/brands_use_case.dart';
 
-class ShowRoomSellCarViewModel extends ChangeNotifier {
+  class ShowRoomSellCarViewModel extends ChangeNotifier {
   final ShowRoomsSellCarUseCase _showRoomsSellUseCase;
 
   ShowRoomSellCarViewModel({
@@ -88,6 +89,25 @@ class ShowRoomSellCarViewModel extends ChangeNotifier {
 
     final response =
     await _showRoomsSellUseCase.hide(context: context, id: id);
+
+    if (response.isSuccess) {
+    } else {
+      if (kDebugMode) {
+        print("Fail edit branch ${response.message}");
+      }
+    }
+    _isLoading = false;
+    notifyListeners();
+    return response;
+  }
+
+  Future<ResponseModel<CarModel>> showCarDetails(
+      {required BuildContext context,required int id}) async {
+    _isLoading = true;
+    notifyListeners();
+
+    final response =
+    await _showRoomsSellUseCase.showCar(context: context, id: id);
 
     if (response.isSuccess) {
     } else {

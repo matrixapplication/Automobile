@@ -61,5 +61,12 @@ mixin BaseShowRoomsRepository {
     required int id
   });
 
+  Future<ApiResponse> showCarDetails({
+    required int id
+  });
+
+
+
+
 
 }

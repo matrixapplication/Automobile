@@ -25,9 +25,11 @@ class AuthRepository implements BaseAuthenticationRepository {
     try {
       final response = await dioClient?.post(
         EndPoints.showRoomLoginApi,
+
         body: {
           'code': code,
           'password': password,
+          "fcm_token" : sharedPreferences!.getString("fcm")
         },
       );
 
@@ -69,6 +71,7 @@ class AuthRepository implements BaseAuthenticationRepository {
         body: {
           'email': email,
           'password': password,
+          "fcm_token" : sharedPreferences!.getString('fcm')
         },
       );
 
@@ -100,7 +103,8 @@ class AuthRepository implements BaseAuthenticationRepository {
           'name': name,
           'phone': phone,
           'password': password,
-          'password_confirmation': confirmPassword
+          'password_confirmation': confirmPassword , 
+          'fcm_token' : sharedPreferences!.getString("fcm")
         },
       );
 

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Automobile</string>
+    <string name="title_activity_main">MyApp</string>
+    <string name="package_name">com.automobile.app</string>
+    <string name="custom_url_scheme">com.automobile.app</string>
+    <string name="default_notification_channel_id">auto_mobile_channel</string>
+</resources>

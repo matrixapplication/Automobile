@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:automobile_project/data/models/car_model/admin_car_model.dart';
+import 'package:automobile_project/data/models/car_model/car_model.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../../core/exceptions/api_checker.dart';
@@ -106,6 +108,44 @@ class ShowRoomsSellCarUseCase {
 
         responseModel = ResponseModel(
           true, baseModel.message,
+        );
+      }
+      //200
+      else {
+        responseModel =
+            ApiChecker.checkApi(context, message: baseModel.message);
+      }
+    } else {
+      ErrorResponse baseModel =
+      ErrorResponse.fromJson(apiResponse.response?.data);
+      final message = baseModel.message;
+      responseModel = ApiChecker.checkApi(context, message: message);
+    }
+    return responseModel;
+  }
+
+
+  Future<ResponseModel<CarModel>> showCar({
+    required context,
+    required int id ,
+  }) async {
+    ApiResponse apiResponse = await _baseShowRoomsRepository
+        .showCarDetails( id: id);
+
+    ResponseModel<CarModel> responseModel;
+
+
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      BaseModel baseModel = BaseModel.fromJson(apiResponse.response!.data);
+      if (kDebugMode) {
+        print(baseModel.data);
+      }
+      if (baseModel.status == true) {
+        CarModel model = baseModel.data ;
+        responseModel = ResponseModel(
+          true, baseModel.message,
+          data: model
         );
       }
       //200

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "39629782188",
+    "project_id": "automobile-e0ec0",
+    "storage_bucket": "automobile-e0ec0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39629782188:android:e13adb00e9b5e412feb309",
+        "android_client_info": {
+          "package_name": "com.automobile.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39629782188-2nphhp41mad8k6der8bml140fdtcbqmq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.automobile.app",
+            "certificate_hash": "7c68f8eacbe5699a72e013e473ece919d8723fd7"
+          }
+        },
+        {
+          "client_id": "39629782188-t0p7d5jf3vt9m712t5vr4b485srb7rqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Kc3vbt16d_ikEfv8rt2Hx0mA3XUoXTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39629782188-t0p7d5jf3vt9m712t5vr4b485srb7rqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

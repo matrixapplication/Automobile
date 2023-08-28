@@ -401,4 +401,24 @@ class ShowRoomsRepository implements BaseShowRoomsRepository {
       return ApiResponse.withError(error);
     }
   }
+
+  @override
+  Future<ApiResponse> showCarDetails({required int id}) async  {
+    try {
+
+
+      final response = await dioClient?.get(
+
+        "${EndPoints.showCarDetails}/$id",
+      );
+      return ApiResponse.withSuccess(response!);
+    } on DioError catch (error) {
+      if (error.response == null) {
+        return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+      }
+      return ApiResponse.withSuccess(error.response!);
+    } catch (error) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+    }
+  }
 }
