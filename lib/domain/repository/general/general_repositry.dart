@@ -8,6 +8,8 @@ import '../../entities/add_car_entity/add_car_entity.dart';
 mixin GeneralRepository {
   Future<ApiResponse> showSliders();
   Future<ApiResponse> getCarReturnPolicy();
+  Future<ApiResponse> privacy();
+  Future<ApiResponse> terms();
   Future<ApiResponse> sellChangeCar({
   required Map<String , dynamic> formData
 });

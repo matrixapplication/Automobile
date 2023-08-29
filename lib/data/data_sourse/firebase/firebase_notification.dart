@@ -24,8 +24,24 @@ void handleMessage(RemoteMessage message) async {
             ?.pushNamed(Routes.bottomNavigationBar);
       }
       if (message.data['type'] == "approved_showroom_car") {
-        NavigationService.navigationKey.currentState
-            ?.pushNamed(Routes.privacy);
+        final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(appContext , listen: false);
+        final result  = await showCarViewModel.showCarDetails(context: appContext,   id: message.data['id']) ;
+        if(result.isSuccess){
+          if(result.data?.status?.name =='new'){
+            if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom" ){
+              NavigationService.navigationKey.currentState?.pushNamed(
+                  Routes.latestNewCarsDetails,
+                  arguments: {"carModel": result.data, "isShowRoom": true});
+            }else{
+              if(result.data?.modelRole == "user" || result.data?.modelRole == "showroom"){
+                NavigationService.navigationKey.currentState?.pushNamed(
+                    Routes.usedCarDetailsPage,
+                    arguments: {"carModel": result.data, "isShowRoom": true});
+              }
+            }
+          }
+        }
+
 
       } else {
         NavigationService.navigationKey.currentState?.pushNamed(Routes.bottomNavigationBar);

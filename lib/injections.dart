@@ -83,6 +83,7 @@ import 'presentation/latest_new_cars/view_model/show_room_new_cars_view_model.da
 import 'presentation/my_cars_to_sell/view model/get_my_cars_model_view.dart';
 import 'presentation/sell_car_form_page/view_model/sell_change_car_view_model.dart';
 import 'presentation/sort_by/view_model/sort_by_model_view.dart';
+import 'presentation/static_pages/view_model.dart';
 import 'presentation/track_ur_request/view_model/track_ur_request_view_model.dart';
 import 'presentation/used_cars/view_model/showroom_used_cars_view_model.dart';
 import 'presentation/used_cars/view_model/user_used_cars_view_model.dart';
@@ -158,6 +159,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AdminViewModel(adminUseCase: sl()));
   sl.registerLazySingleton(() => TrackYourRequestViewModel(showSlidersUseCase: sl()));
   sl.registerLazySingleton(() => SortPageViewModel(showRoomsBranchesUseCase: sl()));
+  sl.registerLazySingleton(() => StaticPagViewModel(showSlidersUseCase: sl()));
   sl.registerLazySingleton(() => FavViewModel(
     favUseCase: sl()
   ));

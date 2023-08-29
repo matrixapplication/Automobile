@@ -872,8 +872,8 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                           width: 2))),
                             ),
                             dropdownBuilder: (_, value) {
-                              return bodyShapeModel != null
-                                  ? Row(
+                              if (bodyShapeModel != null) {
+                                return Row(
                                 children: [
                                   CustomText(
                                     text: value?.name ?? '',
@@ -881,12 +881,14 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                     Theme.of(context).textTheme.titleLarge,
                                   )
                                 ],
-                              )
-                                  : Row(
+                              );
+                              } else {
+                                return Row(
                                 children: [
-                                   CustomSvgImage(
+                                   const CustomSvgImage(
                                     image: AssetsManager.hatchbackIcon,
-                                    height: 22,
+                                    height: 30
+                                     ,
                                      color: ColorManager.primaryColor,
                                   ),
                                   SizedBox(
@@ -898,6 +900,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                   )
                                 ],
                               );
+                              }
                             },
                             popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
                               return Padding(
@@ -906,7 +909,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
 
-                                    CustomShimmerImage(image: "${value.icon}"  , height: 20.h) ,
+                                    CustomShimmerImage(image: "${value.icon}"  , height: 36.h) ,
                                     CustomText(
                                       text: value.name ?? '',
                                       textStyle: Theme.of(context).textTheme.titleLarge,

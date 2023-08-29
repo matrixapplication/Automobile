@@ -56,7 +56,7 @@ class SlidersUseCase {
 
   }) async {
     ApiResponse apiResponse = await _generalRepository
-        .showSliders();
+        .getCarReturnPolicy();
     ResponseModel<DiscriptionModel> responseModel;
 
     if (apiResponse.response != null &&
@@ -64,7 +64,75 @@ class SlidersUseCase {
       BaseModel baseModel = BaseModel.fromJson(apiResponse.response!.data);
 
       if (baseModel.status == true) {
-        DiscriptionModel  model  =baseModel.data ;
+        DiscriptionModel  model  = DiscriptionModel.fromJson(baseModel.data );
+
+        responseModel = ResponseModel(
+            true, baseModel.message,
+            data: model);
+      }
+      //200
+      else {
+        responseModel =
+            ApiChecker.checkApi(context, message: baseModel.message);
+      }
+    } else {
+      ErrorResponse baseModel =
+      ErrorResponse.fromJson(apiResponse.response?.data);
+      final message = baseModel.message;
+      responseModel = ApiChecker.checkApi(context, message: message);
+    }
+    return responseModel;
+  }
+
+  Future<ResponseModel<DiscriptionModel>> terms({
+    required context,
+
+  }) async {
+    ApiResponse apiResponse = await _generalRepository
+        .terms();
+    ResponseModel<DiscriptionModel> responseModel;
+
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      BaseModel baseModel = BaseModel.fromJson(apiResponse.response!.data);
+
+      if (baseModel.status == true) {
+        DiscriptionModel  model  = DiscriptionModel.fromJson(baseModel.data) ;
+
+        responseModel = ResponseModel(
+            true, baseModel.message,
+            data: model);
+      }
+      //200
+      else {
+        responseModel =
+            ApiChecker.checkApi(context, message: baseModel.message);
+      }
+    } else {
+      ErrorResponse baseModel =
+      ErrorResponse.fromJson(apiResponse.response?.data);
+      final message = baseModel.message;
+      responseModel = ApiChecker.checkApi(context, message: message);
+    }
+    return responseModel;
+  }
+
+
+  Future<ResponseModel<DiscriptionModel>> privacy({
+    required context,
+
+  }) async {
+    ApiResponse apiResponse = await _generalRepository
+        .privacy();
+    ResponseModel<DiscriptionModel> responseModel;
+
+    if (apiResponse.response != null &&
+        apiResponse.response!.statusCode == 200) {
+      BaseModel baseModel = BaseModel.fromJson(apiResponse.response!.data);
+
+      if (baseModel.status == true) {
+        print("Data ==> ${baseModel.data}");
+        DiscriptionModel  model  = DiscriptionModel.fromJson(baseModel.data) ;
 
         responseModel = ResponseModel(
             true, baseModel.message,

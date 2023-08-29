@@ -4,12 +4,17 @@ import 'package:automobile_project/core/services/responsive/num_extensions.dart'
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
 import 'package:automobile_project/presentation/component/tap_effect.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'view_model.dart';
 
 class Privacy extends StatelessWidget {
   const Privacy({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final staticPageProvider = Provider.of<StaticPagViewModel>(context , listen: false) ;
+    staticPageProvider.privacy(context: context) ;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.h),
@@ -29,8 +34,17 @@ class Privacy extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: const [
-          Text("privacy Description")
+        children:  [
+          Consumer<StaticPagViewModel>(builder: (_ , data , __){
+            if(data.isLoading){
+              return const Center(
+                child: CircularProgressIndicator(),
+              ) ;
+            }else{
+
+              return Text("${data.showPrivicyResponse?.data?.description}");
+            }
+          })
         ],
       ),
     );

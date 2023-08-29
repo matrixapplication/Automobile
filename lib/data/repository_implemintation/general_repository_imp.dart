@@ -87,5 +87,39 @@ class ImpGeneralRepository implements GeneralRepository{
       return ApiResponse.withError(ApiErrorHandler.getMessage(error));
     }
   }
+
+  @override
+  Future<ApiResponse> privacy() async {
+    try {
+      final response = await dioClient?.get(
+        EndPoints.privacy,
+      );
+      return ApiResponse.withSuccess(response!);
+    } on DioError catch (error) {
+      if (error.response == null) {
+        return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+      }
+      return ApiResponse.withSuccess(error.response!);
+    } catch (error) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+    }
+  }
+
+  @override
+  Future<ApiResponse> terms() async{
+    try {
+      final response = await dioClient?.get(
+        EndPoints.termsConditionApi,
+      );
+      return ApiResponse.withSuccess(response!);
+    } on DioError catch (error) {
+      if (error.response == null) {
+        return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+      }
+      return ApiResponse.withSuccess(error.response!);
+    } catch (error) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+    }
+  }
   }
 

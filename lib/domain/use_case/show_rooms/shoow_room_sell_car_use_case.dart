@@ -142,7 +142,7 @@ class ShowRoomsSellCarUseCase {
         print(baseModel.data);
       }
       if (baseModel.status == true) {
-        CarModel model = baseModel.data ;
+        CarModel model = CarModel.fromJson(baseModel.data) ;
         responseModel = ResponseModel(
           true, baseModel.message,
           data: model

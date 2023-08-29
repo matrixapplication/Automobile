@@ -33,8 +33,11 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
   }
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 310.h,
+      decoration: BoxDecoration(
+        color: ColorManager.black
+      ),
       child: Consumer<NewCarsShowRoomViewModel>(
         builder: (_ , data , __){
           return ListView.separated(
@@ -49,8 +52,10 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                     margin: EdgeInsets.symmetric(horizontal: 4.w),
                     width: deviceWidth * 0.60,
                     decoration: BoxDecoration(
+                      color: ColorManager.white,
                       borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: ColorManager.greyColorCBCBCB)
+
+                      border: Border.all(color: ColorManager.primaryColor)
                     ),
                     child: ClipRRect(
 

@@ -20,8 +20,9 @@ class HomeComponentTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+      color: ColorManager.black,
       child: Row(
         children: [
           Container(

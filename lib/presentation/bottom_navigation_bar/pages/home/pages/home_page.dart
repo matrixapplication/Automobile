@@ -251,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   NavigationService.push(
                                       context, Routes.latestNewCarPage);
                                 }),
-                            const VerticalSpace(6),
+
                             const HomeLatestNewCarsComponent(),
                           ]),
                     ),

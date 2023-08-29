@@ -46,5 +46,7 @@ class EndPoints {
   static const String hideBranch = "/hide_branch";
   static const String isBayed = "/car/get/buyed";
   static const String carReturnPolicyApi = "/buying-and-selling-privacy";
+  static const String termsConditionApi = "/terms-and-conditions";
+  static const String privacy = "/privacy";
   static const String showCarDetails = "/show_car";
 }
