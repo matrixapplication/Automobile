@@ -1,6 +1,9 @@
+import 'package:automobile_project/core/resources/app_colors.dart';
+import 'package:automobile_project/core/utils/alerts.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
 
 import 'package:automobile_project/domain/repository/drop_down/drop_down_repository.dart';
+import 'package:automobile_project/presentation/component/custom_text.dart';
 
 import '../../../../core/exceptions/api_checker.dart';
 import '../../../../data/models/base_response/api_response.dart';
@@ -37,8 +40,17 @@ class MechanicalUseCase {
             ApiChecker.checkApi(context, message: baseModel.message);
       }
     } else {
+
+      Alerts.showAppDialog(context,
+          alertTitle: "Poor connection",
+          alertDescription: " please check your connection and restart the app",
+          onConfirm: () {},
+          confirmText: "ok",
+          withClose: false,
+          confirmTextColor: ColorManager.white);
+
       ErrorResponse baseModel =
-          ErrorResponse.fromJson(apiResponse.response?.data);
+          ErrorResponse.fromJson(apiResponse.response?.data ?? {});
       final message = baseModel.message;
       responseModel = ApiChecker.checkApi(context, message: message);
     }

@@ -1,9 +1,16 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:automobile_project/core/resources/app_assets.dart';
 import 'package:automobile_project/core/resources/app_colors.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/main.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_status_view_model.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
+import 'package:automobile_project/presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
+import 'package:automobile_project/presentation/my_cars_to_sell/view%20model/get_my_cars_model_view.dart';
+import 'package:automobile_project/presentation/used_cars/view_model/showroom_used_cars_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +60,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         children:  [
                           Icon(Icons.language),
                           HorizontalSpace(10),
-                          TapEffect(onClick: (){
+                          TapEffect(onClick: ()async{
                             if(shared!.getString("lang") == "ar" ){
                               shared!.setString("lang", "en") ;
                               context.setLocale(Locale("en")) ;
@@ -64,6 +71,17 @@ class _AppDrawerState extends State<AppDrawer> {
                               lang = Locale("ar");
 
                             }
+                            final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
+                            await userProider.getEndUserData();
+                            print("end user ==> ${userProider.endUser}");
+                            await userProider.getUserData();
+                            print(" user ==> ${userProider.user}");
+                            Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
+                            Provider.of<SlidersViewModel>(context, listen: false)
+                                .showSliders(context: context);
+                            Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
+                            getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
+                            Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
                           }, child: CustomText(
                             text: shared!.getString("lang") == "ar" ? "English" : "عربي",
                           )),

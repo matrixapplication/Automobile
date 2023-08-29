@@ -10,7 +10,11 @@ import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/auth/login/view_model/end_user_view_model.dart';
 import 'package:automobile_project/presentation/auth/show_room_login/view_model/show_room_login_view_model.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_status_view_model.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
+import 'package:automobile_project/presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
+import 'package:automobile_project/presentation/used_cars/view_model/showroom_used_cars_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
@@ -164,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                          child: Stack(
                            children: [
                              Container(
-                               margin: EdgeInsets.only(top: 100 , left: 20),
+                               margin: const EdgeInsets.only(top: 100 , left: 20),
                                width: deviceWidth * 0.25,
                                height: deviceWidth * 0.25,
                                decoration:  BoxDecoration(
@@ -241,7 +245,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                 ) ,
 
-               shared!.getString("role") =="showroom" || shared!.getString("role") == "agency"?SizedBox() : Column(
+               shared!.getString("role") =="showroom" || shared!.getString("role") == "agency"?const SizedBox() : Column(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
                    CustomText(
@@ -346,7 +350,6 @@ class _ProfilePageState extends State<ProfilePage> {
               CustomText(text: "${translate(LocaleKeys.language)}: " , textStyle: Theme.of(context).textTheme.titleLarge,) ,
               CustomButton(
                 buttonText: "Ar",
-
                 textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(color: shared!.getString("lang") == "ar"? ColorManager.white : ColorManager.black ),
                 height: 40.h,
                 padding: EdgeInsets.all(15.h) ,
@@ -354,8 +357,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 120.w,
                 onTap: ()async{
                   await shared!.setString("lang", "ar") ;
-                  context.setLocale(Locale("ar")) ;
-                  lang = Locale("ar");
+                  context.setLocale(const Locale("ar")) ;
+                  lang = const Locale("ar");
+                  final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
+                  await userProider.getEndUserData();
+                  print("end user ==> ${userProider.endUser}");
+                  await userProider.getUserData();
+                  print(" user ==> ${userProider.user}");
+                  Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
+                  Provider.of<SlidersViewModel>(context, listen: false)
+                      .showSliders(context: context);
+                  Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
+                  getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
+                  Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
                   setState(() {
 
                   });
@@ -373,8 +387,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 radius: 15.r,
                 onTap: ()async{
                   await shared!.setString("lang", "en") ;
-                  context.setLocale(Locale("en")) ;
-                  lang = Locale("en");
+                  context.setLocale(const Locale("en")) ;
+                  lang = const Locale("en");
+                  final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
+                  await userProider.getEndUserData();
+                  print("end user ==> ${userProider.endUser}");
+                  await userProider.getUserData();
+                  print(" user ==> ${userProider.user}");
+                  Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
+                  Provider.of<SlidersViewModel>(context, listen: false)
+                      .showSliders(context: context);
+                  Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
+                  getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
+                  Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
                   setState(() {
 
                   });
