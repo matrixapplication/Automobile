@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -13,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>automobile_project</string>
+	<string>Automobile</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -24,38 +26,31 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app need access to your media library</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app need access to your calendars</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app need access to your camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app need access to your contacts</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs your location to select shipping address on map.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location to select shipping address on map.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app need access to your motion usage</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Automobile would like to save photos from the app to your gallery</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app need access to your media library</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This app need access to your speech recognition</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-
-	<key>CFBundleLocalizations</key>
-    <array>
-    	<string>en</string>
-    	<string>nb</string>
-    </array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>whatsapp</string>
-    </array>
 </dict>
 </plist>
