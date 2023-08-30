@@ -1,8 +1,6 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
-import 'package:automobile_project/domain/use_case/drop_down/brand_model_extensions_use_case.dart';
-import 'package:automobile_project/presentation/auth/show_room_login/view_model/show_room_login_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/profile/pages/view_model/get_cities_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_brand_model_extension_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_brands_model_view_model.dart';
@@ -12,10 +10,8 @@ import 'package:automobile_project/presentation/component/cutom_shimmer_image.da
 import 'package:automobile_project/presentation/sell_car_form_page/view_model/sell_change_car_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import '../../config/navigation/navigation.dart';
 import '../../core/resources/resources.dart';
@@ -507,9 +503,9 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                 ? Row(
                               children: [
                                 CustomText(
-                                  text: value.toString() ?? '',
                                   textStyle:
                                   Theme.of(context).textTheme.titleLarge,
+                                  text: value.toString(),
                                 )
                               ],
                             )
@@ -533,7 +529,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomText(
-                                    text: value.toString() ?? '',
+                                    text: value.toString(),
                                     textStyle: Theme.of(context).textTheme.titleLarge,
                                   ),
                                 ],
@@ -672,7 +668,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                       key: _keyStep1,
                       child: CustomTextField(
                         height: 70.h,
-                        controller: _mileageController,
+                        controller: _mileageController,textInputType: TextInputType.number,
+
                         onChange: (String? value){
                           formData['mileage'] = value  ;
                         },
@@ -833,7 +830,9 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                             onChanged: (value) {
                               setState(() {
                                 isSwitched1 = value;
-                                print("switch ${isSwitched1}");
+                                if (kDebugMode) {
+                                  print("switch $isSwitched1");
+                                }
                               });
                             },
                             //activeTrackColor: isSwitched ?ColorManager.primary:ColorManager.iconColor,
@@ -951,6 +950,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
           preferredSize: Size.fromHeight(70.h),
           child: MyAppbar(
             title: translate(LocaleKeys.sellChangeCat),
+            titleColor: ColorManager.white,
+            backgroundColor: ColorManager.primaryColor,
             centerTitle: true,
             leading: TapEffect(
                 onClick: () {
@@ -958,7 +959,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                 },
                 child: const Icon(
                   Icons.arrow_back_ios_new,
-                  color: ColorManager.black,
+                  color: ColorManager.white,
                 )),
           )),
       body: Column(

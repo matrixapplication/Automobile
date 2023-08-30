@@ -104,6 +104,12 @@ abstract class  LocaleKeys {
   static const endYear = "endYear";
   static const showResults = "showResults";
   static const all = "All";
+  static const manual = "manual";
+  static const automatic = "automatic";
+  static const gas = "gas";
+  static const diesel = "diesel";
+  static const naturalGas = "naturalGas";
+
   static const asc = "asc";
   static const desc = "desc";
   static const trackUrRequestMessage = "trackMessage";
@@ -115,5 +121,9 @@ abstract class  LocaleKeys {
   static const edit = "edit";
   static const uploadCar = "updateCar";
   static const termsMessage = "termsMessage";
+  static const kNew = "kNew";
+  static const kUsed = "kUsed";
+  static const dataNotFound = "dataNotFound";
+
 
 }

@@ -176,32 +176,36 @@ class _ShowAgencyBranchesState extends State<ShowAgencyBranches> {
                              title: "${showRoomsProvider.showRoomsBranchesResponse!.data![index].name}",
                            ) ,
 
-                           TapEffect(onClick: ()async{
-                             await Provider.of<GetCitiesViewModel>(context , listen: false).getCities(context: context).then((value){
+                           Column(
+                             children: [
+                               TapEffect(onClick: ()async{
+                                 await Provider.of<GetCitiesViewModel>(context , listen: false).getCities(context: context).then((value){
 
 
-                             }) ;
-                             await Provider.of<GetDistrictsViewModel>(context , listen: false)
-                                 .getCities(context: context, id: int.parse(showRoomsProvider.showRoomsBranchesResponse!.data![index].cityId!)).then((value){
+                                 }) ;
+                                 await Provider.of<GetDistrictsViewModel>(context , listen: false)
+                                     .getCities(context: context, id: int.parse(showRoomsProvider.showRoomsBranchesResponse!.data![index].cityId!)).then((value){
 
 
-                             }) ;
-                             showModalBottomSheet(context: context,
-                               builder: (_)=>  EditBranchBottomSheet(model: showRoomsProvider.showRoomsBranchesResponse!.data![index]) ,
-                               isScrollControlled: true,
+                                 }) ;
+                                 showModalBottomSheet(context: context,
+                                   builder: (_)=>  EditBranchBottomSheet(model: showRoomsProvider.showRoomsBranchesResponse!.data![index]) ,
+                                   isScrollControlled: true,
 
 
-                               backgroundColor: Colors.white ,
-                               shape: RoundedRectangleBorder(
-                                   borderRadius: BorderRadius.only(
-                                     topRight: Radius.circular(15.w) ,
-                                     topLeft: Radius.circular(15.w) ,
-                                   )
-                               ) ,
+                                   backgroundColor: Colors.white ,
+                                   shape: RoundedRectangleBorder(
+                                       borderRadius: BorderRadius.only(
+                                         topRight: Radius.circular(15.w) ,
+                                         topLeft: Radius.circular(15.w) ,
+                                       )
+                                   ) ,
 
-                             ) ;
-                           },
-                               child: const Icon(Icons.edit_note_sharp , color: ColorManager.primaryColor,))
+                                 ) ;
+                               },
+                                   child: const Icon(Icons.edit_note_sharp , color: ColorManager.primaryColor,))
+                             ],
+                           )
                          ],
                        ),
                        SizedBox(
@@ -209,6 +213,7 @@ class _ShowAgencyBranchesState extends State<ShowAgencyBranches> {
                        ),
                        Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
                            TextIconWidget(
                              icon: Icons.home_filled,

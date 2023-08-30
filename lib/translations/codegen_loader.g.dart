@@ -131,6 +131,15 @@ class CodegenLoader extends AssetLoader{
     "updateCar" : "تعديل السيارة" ,
     "termsMessage" : "برجاء قبول الشروط و الاحكام" ,
     "carReturn" : "سياسة بيع و شراء السبارة" ,
+    "kNew": "جديد"  ,
+    "kUsed" : "مستعمل" ,
+    "dataNotFound" : "لا توجد بيانات متوفرة" ,
+    "manual" : "منول" ,
+    "automatic" : "اوتوماتك" ,
+    "gas" : "جاز" ,
+    "diesel" : "ديزيل" ,
+    "naturalGas" : "جاز طبيعي" ,
+    "showResults" : "اظهر النتائج"  ,
 
 
 
@@ -251,6 +260,15 @@ static const Map<String,dynamic> en = {
   "updateCar" : "Update Car" ,
   "termsMessage" : "Please accept terms and condition"   ,
   "carReturn" : "Car Selling and buying privacy" ,
+  "kNew": "New"  ,
+  "kUsed" : "User" ,
+  "dataNotFound" : "Data Not Found" ,
+  "manual" : "Manual" ,
+  "automatic" : "Automatic" ,
+  "gas" : "Gas" ,
+  "diesel" : "Diesel" ,
+  "naturalGas" : "Natural Gas" ,
+  "showResults" : "Show Results"  ,
 
 
 

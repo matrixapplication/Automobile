@@ -228,7 +228,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: mainImage != null
                           ? Image.file(
                           File(
-                            mainImage!.path ?? "",
+                            mainImage!.path,
                           ),
                           fit: BoxFit.cover)
                           : userProvider.user?.coverImage != null ?  

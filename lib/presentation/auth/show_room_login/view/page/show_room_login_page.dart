@@ -29,7 +29,7 @@ class _ShowRoomLoginPageState extends State<ShowRoomLoginPage> {
   final userProvider = Provider.of<LocalAuthProvider>(context ,listen: false) ;
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.login(
-          context: context, code: "1448", password: "123456789");
+          context: context, code: "1446", password: "123456789");
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
         await userProvider.isLogin()  ;
@@ -125,7 +125,7 @@ class _ShowRoomLoginPageState extends State<ShowRoomLoginPage> {
                       controller: _emailController,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return StringsManager.required;
+                          return translate(LocaleKeys.required);
                         }
                         return null;
                       },
@@ -145,7 +145,7 @@ class _ShowRoomLoginPageState extends State<ShowRoomLoginPage> {
                     CustomTextField(
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return "required";
+                          return translate(LocaleKeys.required);
                         }
                         return null;
                       },

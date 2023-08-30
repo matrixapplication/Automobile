@@ -42,6 +42,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     const HomeScreen(),
     const SellCarsPage(),
       const NotificationsPage(),
+      const NotificationsPage(),
     const ProfilePage(),
   ];
 
@@ -54,7 +55,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     if(shared?.getString("role") == "showroom" ||  shared?.getString("role") == "agency"){
       screens[2] = const MyCarsToSellPage() ;
     }else{
-      screens[2] = const FavouritesPage() ;
+      screens[2] =  const FavouritesPage() ;
 
     }
     return Scaffold(
@@ -105,11 +106,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
               unselectedFontSize: 12.sp,
               selectedLabelStyle: Theme.of(context)
                   .textTheme
-                  .labelMedium!
+                  .labelSmall!
                   .copyWith(fontWeight: FontWeightManager.semiBold),
               unselectedLabelStyle: Theme.of(context)
                   .textTheme
-                  .labelMedium!
+                  .labelSmall!
                   .copyWith(fontWeight: FontWeightManager.medium),
               selectedItemColor: ColorManager.black,
               unselectedItemColor: ColorManager.black,
@@ -156,9 +157,15 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                   label:  translate(LocaleKeys.favourites),
                 ),
                 BottomNavigationBarItem(
+                  icon: Icon(Icons.notifications_active , size: 28.h  , color: widget.selectedIndex == 3
+                      ? ColorManager.primaryColor
+                      : ColorManager.greyColorCBCBCB,),
+                  label:  translate(LocaleKeys.notifications),
+                ),
+                BottomNavigationBarItem(
                   icon: CustomSvgImage(
                     image: AssetsManager.profileIcon,
-                    color: widget.selectedIndex == 3
+                    color: widget.selectedIndex == 4
                         ? ColorManager.primaryColor
                         : null,
                   ),

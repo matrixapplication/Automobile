@@ -33,11 +33,21 @@ void handleMessage(RemoteMessage message) async {
                   Routes.latestNewCarsDetails,
                   arguments: {"carModel": result.data, "isShowRoom": true});
             }else{
-              if(result.data?.modelRole == "user" || result.data?.modelRole == "showroom"){
+              if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom"){
                 NavigationService.navigationKey.currentState?.pushNamed(
                     Routes.usedCarDetailsPage,
                     arguments: {"carModel": result.data, "isShowRoom": true});
               }
+            }
+          }else{
+            if(result.data?.modelRole == "user"){
+              NavigationService.navigationKey.currentState?.pushNamed(
+                  Routes.usedCarDetailsPage,
+                  arguments: {"carModel": result.data, "isShowRoom": false});
+            }else{
+              NavigationService.navigationKey.currentState?.pushNamed(
+                  Routes.usedCarDetailsPage,
+                  arguments: {"carModel": result.data, "isShowRoom": true});
             }
           }
         }
@@ -74,7 +84,7 @@ class FireBaseAPI {
     configLocalNotification();
     final fcmToken = await _firebaseMessaging.getToken();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance() ;
-    sharedPreferences.setString("fcm", fcmToken!) ;
+    await sharedPreferences.setString("fcm", fcmToken!) ;
     if (kDebugMode) {
       log("FCM", "Token ===> $fcmToken");
     }
@@ -128,25 +138,6 @@ class FireBaseAPI {
           payload: jsonEncode(event.toMap()));
     });
   }
-
-  // Future initialLocaleNotification() async {
-  //   const setting = InitializationSettings(
-  //       android: AndroidInitializationSettings('@mipmap/ic_launcher.png'),
-  //       iOS: DarwinInitializationSettings());
-  //
-  //   await _localNotification.initialize(setting,
-  //       onDidReceiveBackgroundNotificationResponse: (payload) {
-  //         final message = RemoteMessage.fromMap(jsonDecode(payload.toString())) ;
-  //         handleMessage(message) ;
-  //       } ,
-  //       onDidReceiveNotificationResponse: (payload){
-  //         final message = RemoteMessage.fromMap(jsonDecode(payload.toString())) ;
-  //         handleMessage(message) ;
-  //       });
-  //
-  //   final platform  = _localNotification.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>() ;
-  //   await platform?.createNotificationChannel(androidChannel) ;
-  // }
 
   void configLocalNotification() async {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

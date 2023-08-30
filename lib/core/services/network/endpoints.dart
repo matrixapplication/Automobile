@@ -48,5 +48,7 @@ class EndPoints {
   static const String carReturnPolicyApi = "/buying-and-selling-privacy";
   static const String termsConditionApi = "/terms-and-conditions";
   static const String privacy = "/privacy";
+  static const String aboutUs = "/about-us";
+  static const String allNotification = "/all_notification";
   static const String showCarDetails = "/show_car";
 }

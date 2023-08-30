@@ -82,15 +82,17 @@ class _FilterPageState extends State<FilterPage> {
 
   int fuelTabsIndex = 0;
   List<String> transmissionTypeTabs = [
-    "All",
-    "Manual",
-    "Automatic",
+    translate(LocaleKeys.all),
+    translate(LocaleKeys.manual),
+    translate(LocaleKeys.automatic),
+
   ];
   List<String> fuelTypeTabs = [
-    "all" ,
-    "Gas",
-    "Diesel",
-    "Natural Gas",
+    translate(LocaleKeys.all),
+    translate(LocaleKeys.gas),
+    translate(LocaleKeys.diesel),
+    translate(LocaleKeys.naturalGas),
+
   ];
 
   @override
@@ -153,7 +155,7 @@ class _FilterPageState extends State<FilterPage> {
                         Expanded(
                             child: CustomButton(
                               radius: 0.0,
-                              buttonText: "New",
+                              buttonText: translate(LocaleKeys.kNew),
                               textColor:data.statusIndex ==null ? ColorManager.black: data.statusIndex == "new" ? ColorManager.white : ColorManager.black ,
                               backgroundColor: data.statusIndex ==null ?  ColorManager.greyCanvasColor: data.statusIndex == "new" ? ColorManager.primaryColor : ColorManager.greyCanvasColor,
                               onTap: (){
@@ -168,7 +170,7 @@ class _FilterPageState extends State<FilterPage> {
                               textColor:data.statusIndex ==null ? ColorManager.black: data.statusIndex == "used" ? ColorManager.white : ColorManager.black  ,
                               backgroundColor: data.statusIndex ==null ? ColorManager.greyCanvasColor: data.statusIndex == "used" ? ColorManager.primaryColor : ColorManager.greyCanvasColor,
                               radius: 0.0,
-                              buttonText: "Used",
+                              buttonText: translate(LocaleKeys.kUsed),
                               onTap: (){
                                 data.changeStatusIndex("used")  ;
                                 condition = "used" ;
@@ -785,7 +787,8 @@ class _FilterPageState extends State<FilterPage> {
                     )
                   ],
                 ) ;
-              })
+              })  , 
+              VerticalSpace(20.h)
             ],
           ),
         ),

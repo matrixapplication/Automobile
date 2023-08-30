@@ -36,7 +36,7 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
     return Container(
       height: 310.h,
       decoration: BoxDecoration(
-        color: ColorManager.black
+        color: ColorManager.white
       ),
       child: Consumer<NewCarsShowRoomViewModel>(
         builder: (_ , data , __){

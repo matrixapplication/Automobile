@@ -11,10 +11,14 @@ class TextIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(icon)  ,
         SizedBox(width :  10.w),
-        Text("$title" , style: Theme.of(context).textTheme.titleMedium,)
+        SizedBox(
+          width: 200.w,
+          child: Text("$title" , style: Theme.of(context).textTheme.titleMedium,),
+        )
       ],
     );
   }

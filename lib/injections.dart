@@ -74,6 +74,7 @@ import 'domain/use_case/show_rooms/shoow_room_sell_car_use_case.dart';
 import 'domain/use_case/show_rooms/show_room_branches_use_case.dart';
 import 'presentation/auth/login/view_model/end_user_view_model.dart';
 import 'presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
+import 'presentation/bottom_navigation_bar/pages/notifications/view_model.dart';
 import 'presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_colors_view_model.dart';
 import 'presentation/favourites/view_model/fav_view_model.dart';
 import 'presentation/filter_page/view_model/brandModelChnageViewModel.dart';
@@ -146,6 +147,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ShowRoomsBranchesViewModel(showRoomsBranchesUseCase: sl()));
   sl.registerLazySingleton(() => ShowRoomSellCarViewModel(showRoomsSellUseCase: sl()));
   sl.registerLazySingleton(() => CarStatusViewModel(carStatusUseCase: sl()));
+  sl.registerLazySingleton(() => AllNotificationViewModel(showSlidersUseCase: sl()));
   sl.registerLazySingleton(() => CarFeaturesViewModel(carFeaturesUseCase: sl()));
   sl.registerLazySingleton(() => CarColorsViewModel(colorsUseCase: sl()));
   sl.registerLazySingleton(() => FilterPageViewModel(showRoomsBranchesUseCase: sl()));

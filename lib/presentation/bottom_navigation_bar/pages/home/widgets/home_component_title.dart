@@ -22,7 +22,7 @@ class HomeComponentTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-      color: ColorManager.black,
+      color: ColorManager.white,
       child: Row(
         children: [
           Container(

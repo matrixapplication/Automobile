@@ -44,8 +44,8 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     autoPlay: true,
                     reverse: true,
-                    autoPlayInterval: const Duration(seconds: 5),
-                    pageSnapping: false,
+
+                    pageSnapping: true,
                     //  enlargeCenterPage: true,
                     enlargeStrategy: CenterPageEnlargeStrategy.scale,
                     onPageChanged: (index, reason) {

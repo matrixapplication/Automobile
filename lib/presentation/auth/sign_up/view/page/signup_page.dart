@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
   Future<void> _submit(context, EndUserViewModel viewModel) async {
-    if (kDebugMode) {
+    if (!kDebugMode) {
       ResponseModel responseModel = await viewModel.register(
           context: context,
           email: "mahmoudsalah@test.com",
@@ -100,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _nameController,
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return "required";
+                        return translate(LocaleKeys.required);
                       }
                       return null;
                     },
@@ -120,7 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _emailController,
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return "required";
+                        return translate(LocaleKeys.required);
                       }
                       return null;
                     },
@@ -142,7 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _phoneController,
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return StringsManager.required;
+                        return translate(LocaleKeys.required);
                       }
                       return null;
                     },
@@ -165,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextField(
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return "required";
+                        return translate(LocaleKeys.required);
                       }
                       return null;
                     },
@@ -187,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextField(
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return "required";
+                        return translate(LocaleKeys.required);
                       }
                       return null;
                     },

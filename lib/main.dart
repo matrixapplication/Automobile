@@ -1,8 +1,10 @@
+import 'package:automobile_project/core/resources/app_colors.dart';
 import 'package:automobile_project/data/data_sourse/firebase/firebase_notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/navigation/navigation_services.dart';
@@ -43,15 +45,24 @@ void handleMessage(RemoteMessage message) async {
                   Routes.latestNewCarsDetails,
                   arguments: {"carModel": result.data, "isShowRoom": true});
             }else{
-              if(result.data?.modelRole == "user" || result.data?.modelRole == "showroom"){
+              if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom"){
                 NavigationService.navigationKey.currentState?.pushNamed(
                     Routes.usedCarDetailsPage,
                     arguments: {"carModel": result.data, "isShowRoom": true});
               }
             }
+          }else{
+            if(result.data?.modelRole == "user"){
+              NavigationService.navigationKey.currentState?.pushNamed(
+                  Routes.usedCarDetailsPage,
+                  arguments: {"carModel": result.data, "isShowRoom": false});
+            }else{
+              NavigationService.navigationKey.currentState?.pushNamed(
+                  Routes.usedCarDetailsPage,
+                  arguments: {"carModel": result.data, "isShowRoom": true});
+            }
           }
         }
-
 
 
       } else {
@@ -98,6 +109,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     appContext = context;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: ColorManager.primaryColor, //or set color with: Color(0xFF0000FF)
+    ));
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

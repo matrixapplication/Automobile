@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
     final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.login(
-          context: context, email: "mahmoudsalah@test.com", password: "12345678");
+          context: context, email: "testman@test.com", password: "123456789");
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
         await userProvider.isLogin() ;
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _emailController,
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return StringsManager.required;
+                              return translate(LocaleKeys.required);
                             }
                             return null;
                           },
@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                         CustomTextField(
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return "required";
+                              return translate(LocaleKeys.required);
                             }
                             return null;
                           },
@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                         const VerticalSpace(AppSize.s50),
                         TapEffect(
                           onClick: (){
-                            context.setLocale(Locale("ar")) ;
+
                           },
                           child: Center(
                             child: CustomText(

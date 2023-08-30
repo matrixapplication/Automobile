@@ -139,7 +139,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           decoration: InputDecoration(
             isDense: true,
             // important line
-            contentPadding: EdgeInsets.symmetric(vertical:widget.contentVerticalPadding?? 17.h, horizontal: 10.w),
+            contentPadding: EdgeInsets.symmetric(vertical:widget.contentVerticalPadding, horizontal: 10.w),
             hintText: widget.hintText ?? '',
             filled: true,
             fillColor: widget.fillColor ?? ColorManager.white,

@@ -6,6 +6,7 @@ import 'package:automobile_project/presentation/component/app_widgets/my_app_bar
 import 'package:automobile_project/presentation/filter_page/component/filter_cars_data.dart';
 import 'package:automobile_project/presentation/filter_page/view_model/filter_page_view_model.dart';
 import 'package:automobile_project/presentation/my_cars_to_sell/view%20model/get_my_cars_model_view.dart';
+import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -99,7 +100,7 @@ class _FiltersCarsDetailsState extends State<FiltersCarsDetails> {
               return  const Center(child: MyProgressIndicator()) ;
             }else if(data.carList.isEmpty){
               return Center(
-                child: CustomText(text: "No Data Found" , textStyle: Theme.of(context).textTheme.bodyLarge,),
+                child: CustomText(text: translate(LocaleKeys.dataNotFound) , textStyle: Theme.of(context).textTheme.bodyLarge,),
               ) ;
             }else{
               return SingleChildScrollView(

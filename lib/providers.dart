@@ -25,6 +25,7 @@ import 'package:provider/provider.dart';
 import '/data/provider/local_auth_provider.dart';
 import '/injections.dart';
 import 'presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
+import 'presentation/bottom_navigation_bar/pages/notifications/view_model.dart';
 import 'presentation/filter_page/view_model/brandModelChnageViewModel.dart';
 import 'presentation/latest_new_cars/view_model/agency_new_cars_view_Model.dart';
 import 'presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
@@ -80,6 +81,8 @@ import 'presentation/used_cars/view_model/user_used_cars_view_model.dart';
         ChangeNotifierProvider(create: (_) => sl<TrackYourRequestViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<SortPageViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<StaticPagViewModel>()),
+        ChangeNotifierProvider(create: (_) => sl<AllNotificationViewModel>()),
+
       ],
 
       child: child,

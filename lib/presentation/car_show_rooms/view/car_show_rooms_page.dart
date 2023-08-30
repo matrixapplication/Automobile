@@ -71,8 +71,8 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
           if (viewModel.isLoading) {
             return Center(child: MyProgressIndicator());
           } else if (viewModel.showRoomsList.isEmpty) {
-            return const CustomText(
-              text: "No Data",
+            return  CustomText(
+              text: translate(LocaleKeys.dataNotFound),
             );
           } else {
             return Padding(
@@ -141,7 +141,7 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                                               .copyWith(
                                             color:
                                             ColorManager.blackColor1C1C1C,
-                                            height: 1,
+
                                             fontWeight:
                                             FontWeightManager.semiBold,
                                           ))

@@ -121,5 +121,40 @@ class ImpGeneralRepository implements GeneralRepository{
       return ApiResponse.withError(ApiErrorHandler.getMessage(error));
     }
   }
+
+  @override
+  Future<ApiResponse> aboutUs() async{
+    try {
+      final response = await dioClient?.get(
+        EndPoints.aboutUs,
+      );
+      return ApiResponse.withSuccess(response!);
+    } on DioError catch (error) {
+      if (error.response == null) {
+        return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+      }
+      return ApiResponse.withSuccess(error.response!);
+    } catch (error) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+    }
+  }
+
+  @override
+  Future<ApiResponse> allNotification({required int page}) async{
+    try {
+      final response = await dioClient?.get(
+        EndPoints.allNotification,
+        queryParameters: {"page" : page}
+      );
+      return ApiResponse.withSuccess(response!);
+    } on DioError catch (error) {
+      if (error.response == null) {
+        return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+      }
+      return ApiResponse.withSuccess(error.response!);
+    } catch (error) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+    }
+  }
   }
 

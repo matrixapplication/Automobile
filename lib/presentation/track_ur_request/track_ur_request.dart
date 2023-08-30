@@ -105,13 +105,13 @@ class _TrackUrRequestState extends State<TrackUrRequest> {
                   Form(
                     key: _key,
                     child: CustomTextField(
-                      height: 60.h,
+
                       controller: controller,
                       borderRadius: 15.r,
                       prefixIcon: const Icon(Icons.message , color:  ColorManager.primaryColor,),
                       isValidator: true,
                       validate: (value){
-                        if(value == null &&value!.isEmpty){
+                        if(value == null || value.isEmpty){
                           return translate(LocaleKeys.required) ;
                         }
                         return"" ;

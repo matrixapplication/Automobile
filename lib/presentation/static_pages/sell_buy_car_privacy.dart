@@ -39,12 +39,18 @@ class SellBuyPrivacy extends StatelessWidget {
         children:  [
           Consumer<StaticPagViewModel>(builder: (_ , data , __){
             if(data.isLoading){
-              return const Center(
-                child: CircularProgressIndicator(),
-              ) ;
+              return SingleChildScrollView(
+                padding: EdgeInsets.all(16.h),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ) ,
+              );
             }else{
 
-              return Text("${data.showReturnCarResponse?.data?.description}");
+              return SingleChildScrollView(
+                padding: EdgeInsets.all(16.h),
+                child: Text("${data.showReturnCarResponse?.data?.description}"),
+              );
             }
           })
         ],

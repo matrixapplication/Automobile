@@ -1505,6 +1505,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                                   shrinkWrap: true,
                                                   physics:
                                                   const NeverScrollableScrollPhysics(),
+
                                                   gridDelegate:
                                                   SliverGridDelegateWithFixedCrossAxisCount(
                                                     childAspectRatio: 4 / 1,
@@ -1512,12 +1513,13 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                                     crossAxisSpacing: 10.w,
                                                     mainAxisSpacing: 5.h,
                                                   ),
+                                                  padding: EdgeInsets.only(bottom: 85.h),
                                                   itemCount: data
                                                       .getCarFeaturesResponse
                                                       ?.data?[index]
                                                       .options
                                                       ?.length,
-                                                  itemBuilder: (ctx, i) => Row(
+                                                  itemBuilder: (ctx, i) => TapEffect(onClick: (){}, child: Row(
                                                     children: [
                                                       Expanded(
                                                         child: CustomText(
@@ -1557,7 +1559,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                                         },
                                                       ),
                                                     ],
-                                                  ))
+                                                  )))
                                             ],
                                           );
                                         });
@@ -1572,7 +1574,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 10.h) ,
+                                  padding: EdgeInsets.only(bottom: 30.h) ,
                                   child: TapEffect(
                                     onClick: () {},
 

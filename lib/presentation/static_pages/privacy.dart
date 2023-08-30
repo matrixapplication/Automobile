@@ -1,5 +1,6 @@
 import 'package:automobile_project/config/navigation/navigation_services.dart';
 import 'package:automobile_project/core/resources/app_colors.dart';
+import 'package:automobile_project/core/resources/app_values.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
 import 'package:automobile_project/presentation/component/tap_effect.dart';
@@ -37,12 +38,18 @@ class Privacy extends StatelessWidget {
         children:  [
           Consumer<StaticPagViewModel>(builder: (_ , data , __){
             if(data.isLoading){
-              return const Center(
-                child: CircularProgressIndicator(),
+              return SizedBox(
+                height: deviceHeight,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
               ) ;
             }else{
 
-              return Text("${data.showPrivicyResponse?.data?.description}");
+              return SingleChildScrollView(
+                padding: EdgeInsets.all(16.h),
+                child: Text("${data.showPrivicyResponse?.data?.description}"),
+              );
             }
           })
         ],

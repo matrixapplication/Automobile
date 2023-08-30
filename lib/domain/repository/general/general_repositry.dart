@@ -10,6 +10,8 @@ mixin GeneralRepository {
   Future<ApiResponse> getCarReturnPolicy();
   Future<ApiResponse> privacy();
   Future<ApiResponse> terms();
+  Future<ApiResponse> aboutUs();
+  Future<ApiResponse> allNotification({required int page});
   Future<ApiResponse> sellChangeCar({
   required Map<String , dynamic> formData
 });

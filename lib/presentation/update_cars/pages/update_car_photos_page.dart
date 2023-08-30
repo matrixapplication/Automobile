@@ -104,7 +104,7 @@ class _UpdateCarPhotosPageState extends State<UpdateCarPhotosPage> {
                   child: mainImage != null
                       ? Image.file(
                           File(
-                            mainImage!.path ?? "",
+                            mainImage!.path,
                           ),
                           fit: BoxFit.cover)
                       : widget.oldMainImage != null ? Stack(

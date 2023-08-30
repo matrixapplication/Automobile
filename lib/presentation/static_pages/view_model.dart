@@ -34,6 +34,12 @@ class StaticPagViewModel extends ChangeNotifier{
     return _showReturnCarResponse;
   }
 
+  ResponseModel<DiscriptionModel>? _showAboutResponse;
+
+  ResponseModel<DiscriptionModel>? get showAboutResponse {
+    return _showAboutResponse;
+  }
+
   Future<ResponseModel<DiscriptionModel>> terms({
     required BuildContext context,
 
@@ -103,6 +109,33 @@ class StaticPagViewModel extends ChangeNotifier{
     if (responseModel.isSuccess) {
       ResponseModel<DiscriptionModel>? data = responseModel;
       _showReturnCarResponse = data ;
+      if (kDebugMode) {
+        print("success view Model data ${responseModel.data}");
+      }
+    } else {
+      if (kDebugMode) {
+        print("Fail view Model ${responseModel.message}");
+      }
+    }
+    _isLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+
+  Future<ResponseModel<DiscriptionModel>> aboutUs({
+    required BuildContext context,
+
+  }) async {
+    _isLoading = true;
+    final responseModel = await _showSlidersUseCase.aboutUs(
+      context: context,
+    );
+    if (kDebugMode) {
+      print(responseModel.data);
+    }
+    if (responseModel.isSuccess) {
+      ResponseModel<DiscriptionModel>? data = responseModel;
+      _showAboutResponse = data ;
       if (kDebugMode) {
         print("success view Model data ${responseModel.data}");
       }

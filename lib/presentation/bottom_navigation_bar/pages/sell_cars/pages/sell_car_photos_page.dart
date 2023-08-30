@@ -97,7 +97,7 @@ class _SellCarPhotosPageState extends State<SellCarPhotosPage> {
                   child: mainImage != null
                       ? Image.file(
                           File(
-                            mainImage!.path ?? "",
+                            mainImage!.path,
                           ),
                           fit: BoxFit.cover)
                       : Column(

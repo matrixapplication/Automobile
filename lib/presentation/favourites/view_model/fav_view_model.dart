@@ -52,11 +52,13 @@ class FavViewModel extends ChangeNotifier {
     );
 
     if (responseModel!.isSuccess) {
-      showCustomSnackBar(message: "Favourite state changed", context: context) ;
-      if(_showFavCarsResponse!.data!.any((element) => element.id == carId)){
-        _showFavCarsResponse?.data?.removeWhere((element) => carId == element.id,);
-      }else{
-        _showFavCarsResponse?.data?.add(car) ;
+      showCustomSnackBar(message: "${responseModel.message}", context: context) ;
+      if(_showFavCarsResponse != null){
+        if(_showFavCarsResponse!.data!.any((element) => element.id == carId)){
+          _showFavCarsResponse?.data?.removeWhere((element) => carId == element.id,);
+        }else{
+          _showFavCarsResponse?.data?.add(car) ;
+        }
       }
     } else {
       showCustomSnackBar(message: "${responseModel.message}", context: context) ;

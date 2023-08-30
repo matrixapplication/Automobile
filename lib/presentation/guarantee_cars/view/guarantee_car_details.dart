@@ -685,90 +685,90 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                       padding: EdgeInsets.symmetric(vertical: 20.h , horizontal: 8.w),
                       child: Column(
                         children: [
-                          TapEffect(
-                            onClick: () {
-
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 15.h, horizontal: 15.w),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.r),
-// border: Border.all(color: ColorManager.greyColorCBCBCB),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 50.h,
-                                      width: 50.h,
-                                      decoration: const BoxDecoration(
-                                          shape: BoxShape.circle),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                        BorderRadius.circular(50.r),
-                                        child: CustomShimmerImage(
-                                          image:
-                                          "${widget.adminCars.modelObject?.image}",
-                                          boxFit: BoxFit.fill,
-                                        ),
-                                      ),
-                                    ),
-                                    HorizontalSpace(20.w),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          CustomText(
-                                            text:
-                                            "${widget.adminCars.modelObject?.name}",
-                                            textStyle: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium!
-                                                .copyWith(
-                                                fontWeight:
-                                                FontWeightManager
-                                                    .semiBold,
-                                                height: 1,
-                                                color: ColorManager.black),
-                                            maxLines: 1,
-// overflow: TextOverflow.ellipsis,
-                                          ),
-                                          const VerticalSpace(10),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text: "${widget.adminCars.branch ?? "Cairo,Maadi"}",
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium!
-                                                    .copyWith(
-                                                    fontWeight:
-                                                    FontWeightManager
-                                                        .semiBold,
-                                                    height: 1,
-                                                    color: ColorManager
-                                                        .greyColorCBCBCB),
-                                                maxLines: 1,
-// overflow: TextOverflow.ellipsis,
-                                              ),
-                                              const Spacer(),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          const VerticalSpace(10),
+//                           TapEffect(
+//                             onClick: () {
+//
+//                             },
+//                             child: Card(
+//                               shape: RoundedRectangleBorder(
+//                                 borderRadius: BorderRadius.circular(12.r),
+//                               ),
+//                               child: Container(
+//                                 padding: EdgeInsets.symmetric(
+//                                     vertical: 15.h, horizontal: 15.w),
+//                                 width: double.infinity,
+//                                 decoration: BoxDecoration(
+//                                   borderRadius: BorderRadius.circular(12.r),
+// // border: Border.all(color: ColorManager.greyColorCBCBCB),
+//                                 ),
+//                                 child: Row(
+//                                   children: [
+//                                     Container(
+//                                       height: 50.h,
+//                                       width: 50.h,
+//                                       decoration: const BoxDecoration(
+//                                           shape: BoxShape.circle),
+//                                       child: ClipRRect(
+//                                         borderRadius:
+//                                         BorderRadius.circular(50.r),
+//                                         child: CustomShimmerImage(
+//                                           image:
+//                                           "${widget.adminCars.modelObject?.image}",
+//                                           boxFit: BoxFit.fill,
+//                                         ),
+//                                       ),
+//                                     ),
+//                                     HorizontalSpace(20.w),
+//                                     Expanded(
+//                                       child: Column(
+//                                         crossAxisAlignment:
+//                                         CrossAxisAlignment.start,
+//                                         children: [
+//                                           CustomText(
+//                                             text:
+//                                             "${widget.adminCars.modelObject?.name}",
+//                                             textStyle: Theme.of(context)
+//                                                 .textTheme
+//                                                 .titleMedium!
+//                                                 .copyWith(
+//                                                 fontWeight:
+//                                                 FontWeightManager
+//                                                     .semiBold,
+//                                                 height: 1,
+//                                                 color: ColorManager.black),
+//                                             maxLines: 1,
+// // overflow: TextOverflow.ellipsis,
+//                                           ),
+//                                           const VerticalSpace(10),
+//                                           Row(
+//                                             children: [
+//                                               CustomText(
+//                                                 text: "${widget.adminCars.branch ?? "Cairo,Maadi"}",
+//                                                 textStyle: Theme.of(context)
+//                                                     .textTheme
+//                                                     .titleMedium!
+//                                                     .copyWith(
+//                                                     fontWeight:
+//                                                     FontWeightManager
+//                                                         .semiBold,
+//                                                     height: 1,
+//                                                     color: ColorManager
+//                                                         .greyColorCBCBCB),
+//                                                 maxLines: 1,
+// // overflow: TextOverflow.ellipsis,
+//                                               ),
+//                                               const Spacer(),
+//                                             ],
+//                                           ),
+//                                         ],
+//                                       ),
+//                                     ),
+//                                   ],
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                           const VerticalSpace(10),
                           Row(
                             children: [
                               Expanded(
