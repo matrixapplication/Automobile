@@ -92,8 +92,10 @@ void main() async {
     String? cachedLnag = shared!.getString("lang") ;
     if(cachedLnag == "ar"){
       lang = const Locale("ar") ;
+      shared!.setString("lang", "ar") ;
     }else{
       lang = const Locale("en") ;
+      shared!.setString("lang", "en") ;
     }
     runApp(AppProviders(
         child: EasyLocalization(
@@ -109,7 +111,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     appContext = context;
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorManager.primaryColor, //or set color with: Color(0xFF0000FF)
     ));
     return MaterialApp(

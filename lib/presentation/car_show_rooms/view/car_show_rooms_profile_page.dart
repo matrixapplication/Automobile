@@ -1,6 +1,7 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/auth_model/auth_model.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/car_show_rooms/component/car_show_room_new_cars_component.dart';
 import 'package:automobile_project/presentation/car_show_rooms/component/car_show_room_used_cars_component.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
@@ -62,9 +63,10 @@ class _CarShowRoomProfilePageState extends State<CarShowRoomProfilePage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
+            child:  Icon(
+              Icons.arrow_forward_ios,
               color: ColorManager.white,
+              textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
             )),
       )),
       body: Column(

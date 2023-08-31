@@ -11,6 +11,8 @@ import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/auth/login/view_model/end_user_view_model.dart';
 import 'package:automobile_project/presentation/auth/show_room_login/view_model/show_room_login_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_features_view_model.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_mechanical_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_status_view_model.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
 import 'package:automobile_project/presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
@@ -370,6 +372,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
                   getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
                   Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
+                   Provider.of<CarMechanicalViewModel>(context, listen: false)
+                      .getMechanicalFun(context: context);
+
+                   Provider.of<CarFeaturesViewModel>(context, listen: false)
+                      .getCarFeatures(context: context);
                   setState(() {
 
                   });
@@ -400,6 +407,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
                   getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
                   Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
+                   Provider.of<CarMechanicalViewModel>(context, listen: false)
+                      .getMechanicalFun(context: context);
+
+                   Provider.of<CarFeaturesViewModel>(context, listen: false)
+                      .getCarFeatures(context: context);
                   setState(() {
 
                   });

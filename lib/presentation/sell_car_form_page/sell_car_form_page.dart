@@ -1,6 +1,7 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/profile/pages/view_model/get_cities_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_brand_model_extension_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_brands_model_view_model.dart';
@@ -74,6 +75,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
   BasicModel? brand ;
   BasicModel? brandModel ;
   BasicModel ? brandModelEx ;
+  BasicModel ? carYearModel ;
   List<Step> getSteps() => [
         Step(
           //for check true icon
@@ -499,7 +501,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                         width: 2))),
                           ),
                           dropdownBuilder: (_, value) {
-                            return brandModelEx != null
+                            return _selectedYear != null
                                 ? Row(
                               children: [
                                 CustomText(
@@ -636,12 +638,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                   text: value.name ?? '',
                                   textStyle: Theme.of(context).textTheme.titleLarge,
                                 ),
-                                CustomShimmerImage(
-                                  image: value.image ?? '',
-                                  height: 40.h,
-                                  width: 40.h,
-                                  boxFit: BoxFit.contain,
-                                ),
+
                               ],
                             ),
                           );
@@ -957,9 +954,10 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                 onClick: () {
                   NavigationService.goBack(context);
                 },
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
+                child:  Icon(
+                  Icons.arrow_forward_ios,
                   color: ColorManager.white,
+                  textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
                 )),
           )),
       body: Column(
@@ -972,6 +970,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
               data: ThemeData(
                 colorScheme: ColorScheme.fromSwatch().copyWith(
                   primary: ColorManager.primaryColor,
+
                 ),
               ),
               child: Stepper(

@@ -1,6 +1,5 @@
 
-import 'package:automobile_project/core/resources/app_colors.dart';
-import 'package:automobile_project/core/utils/alerts.dart';
+
 import 'package:automobile_project/data/models/show_room_branch_model/show_room_branch_model.dart';
 
 import 'package:automobile_project/domain/repository/show_rooms/show_rooms_repository.dart';
@@ -45,13 +44,7 @@ class ShowRoomsBranchesUseCase {
             ApiChecker.checkApi(context, message: baseModel.message);
       }
     } else {
-      Alerts.showAppDialog(context,
-          alertTitle: "Poor connection",
-          alertDescription: " please check your connection and restart the app",
-          onConfirm: () {},
-          confirmText: "ok",
-          withClose: false,
-          confirmTextColor: ColorManager.white);
+
       ErrorResponse baseModel =
           ErrorResponse.fromJson(apiResponse.response?.data);
       final message = baseModel.message;

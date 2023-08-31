@@ -272,7 +272,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Icon(Icons.image,
                                 color: ColorManager.blueColor, size: 100.h),
                             CustomText(
-                                text: "Add Cover Image Here",
+                                text: translate(LocaleKeys.addCover) ,
                                 textStyle: Theme.of(context)
                                     .textTheme
                                     .titleSmall!

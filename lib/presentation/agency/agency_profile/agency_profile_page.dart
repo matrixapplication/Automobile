@@ -1,6 +1,7 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/auth_model/auth_model.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,9 +60,10 @@ class _AgencyProfilePageState extends State<AgencyProfilePage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
+            child:  Icon(
+              Icons.arrow_forward_ios,
               color: ColorManager.white,
+              textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
             )),
       )),
       body: Column(
@@ -260,6 +262,7 @@ class _AgencyProfilePageState extends State<AgencyProfilePage> {
                         .titleSmall!
                         .copyWith(
                             fontWeight: FontWeightManager.semiBold,
+                            fontSize: 14.h,
                             letterSpacing: 0.1 // color: ColorManager.black
                             ),
                     tabs: <Widget>[

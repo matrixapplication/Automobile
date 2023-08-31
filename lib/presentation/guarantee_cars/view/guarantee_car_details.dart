@@ -311,7 +311,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                                     )
                                 ),
                                 child: Center(
-                                  child: CustomText(text: "${widget.adminCars.mileage} KM"),
+                                  child: CustomText(text: "${widget.adminCars.mileage} ${translate(LocaleKeys.km)}"),
                                 ),
                               ) ,
 
@@ -530,7 +530,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                               fontSize: 18
                           ),) ,
                           VerticalSpace(20.h) ,
-                          CustomText(text: "${ widget.adminCars.price.toString()} EGP" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          CustomText(text: "${ widget.adminCars.price.toString()} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: ColorManager.primaryColor ,
 
                               fontSize: 31
@@ -779,7 +779,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                                         telePhone(
                                             widget.adminCars.modelObject!.phone!);
                                       }else{
-                                        showCustomSnackBar(message: "please login first", context: context) ;
+                                        showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }
 
                                     },
@@ -800,7 +800,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                                               color: ColorManager.primaryColor),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Call Dealer",
+                                            text: translate(LocaleKeys.call),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!
@@ -823,7 +823,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                                         launchWhatsAppUri(
                                             "${widget.adminCars.modelObject?.whatsApp}");
                                       }else{
-                                        showCustomSnackBar(message: "please login first", context: context) ;
+                                        showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }
 
                                     },
@@ -844,7 +844,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                                               color: Colors.white),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Whatsapp",
+                                            text: translate(LocaleKeys.whatsApp),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!

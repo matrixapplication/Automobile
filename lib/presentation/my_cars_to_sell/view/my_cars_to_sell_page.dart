@@ -99,13 +99,13 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                     onClick: () {
                       NavigationService.goBack(context);
                     },
-                    child: const Icon(Icons.arrow_forward_ios , color: ColorManager.white,))
+                    child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
                 : TapEffect(
                     onClick: () {
                       NavigationService.push(
                           context, Routes.bottomNavigationBar);
                     },
-                    child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white,textDirection: shared!.getString("lang") == "en"? TextDirection.ltr : TextDirection.rtl,)),
+                    child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white,textDirection: shared!.getString("lang") == "ar"? TextDirection.ltr : TextDirection.rtl,)),
           )),
       body: Consumer<GetMyCarsViewModel>(
         builder: (_, data, __) {

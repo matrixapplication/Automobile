@@ -226,7 +226,7 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CustomText(
-                        text: "${double.parse("${data.showroomCarList[index].price}").toStringAsFixed(0)} EGP",
+                        text: "${double.parse("${data.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                         textStyle: Theme.of(context)
                             .textTheme
                             .titleLarge!

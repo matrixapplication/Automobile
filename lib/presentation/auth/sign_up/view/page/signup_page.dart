@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
   Future<void> _submit(context, EndUserViewModel viewModel) async {
-    if (!kDebugMode) {
+    if (kDebugMode) {
       ResponseModel responseModel = await viewModel.register(
           context: context,
           email: "mahmoudsalah@test.com",

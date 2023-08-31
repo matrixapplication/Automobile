@@ -8,7 +8,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/resources/resources.dart';
 import '../../../translations/local_keys.g.dart';
 import '../../component/components.dart';
@@ -102,16 +101,16 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
               type: BottomNavigationBarType.fixed,
               iconSize: 10,
               backgroundColor: Colors.white,
-              selectedFontSize: 12.sp,
-              unselectedFontSize: 12.sp,
+              selectedFontSize: 10.sp,
+              unselectedFontSize: 10.sp,
               selectedLabelStyle: Theme.of(context)
                   .textTheme
-                  .labelSmall!
-                  .copyWith(fontWeight: FontWeightManager.semiBold),
+                  .bodySmall!
+                  .copyWith(fontWeight: FontWeightManager.semiBold , fontSize: 10.h),
               unselectedLabelStyle: Theme.of(context)
                   .textTheme
-                  .labelSmall!
-                  .copyWith(fontWeight: FontWeightManager.medium),
+                  .bodySmall!
+                  .copyWith(fontWeight: FontWeightManager.medium , fontSize: 10.h),
               selectedItemColor: ColorManager.black,
               unselectedItemColor: ColorManager.black,
               // ignore: prefer_const_literals_to_create_immutables
@@ -119,6 +118,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 BottomNavigationBarItem(
                   icon: CustomSvgImage(
                     image: AssetsManager.homeIcon,
+                    height: 24.h,
                     color: widget.selectedIndex == 0
                         ? ColorManager.primaryColor
                         : null,
@@ -128,7 +128,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 BottomNavigationBarItem(
                   icon: CustomSvgImage(
                     image: AssetsManager.sellCarIcon,
-                    height: 28.h,
+                    height: 24.h,
                     color: widget.selectedIndex == 1
                         ? ColorManager.primaryColor
                         : null,
@@ -139,7 +139,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 BottomNavigationBarItem(
                   icon: CustomSvgImage(
                     image: AssetsManager.carDealersIcon,
-                    height: 30.h,
+                    height: 26.h,
                     color: widget.selectedIndex == 2
                         ? ColorManager.primaryColor
                         : null,
@@ -149,7 +149,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 BottomNavigationBarItem(
                   icon: CustomSvgImage(
                     image: AssetsManager.faveIcon,
-                    height: 28.h,
+                    height: 24.h,
                     color: widget.selectedIndex == 2
                         ? ColorManager.primaryColor
                         : null,

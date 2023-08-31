@@ -135,6 +135,11 @@ class _SellCarsPageState extends State<SellCarsPage> {
             titleColor: ColorManager.white,
             backgroundColor: ColorManager.primaryColor,
             centerTitle: true,
+            leading: TapEffect(onClick: (){}, child: Icon(
+              Icons.arrow_forward_ios ,
+              color: ColorManager.white,
+              textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
+            )),
           )),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -632,6 +637,8 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         _selectedYear = data!.toString();
                         yearError = false;
                       });
+                       Provider.of<BodyShapeViewModel>(context, listen: false)
+                          .getBodyShape(context: context);
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
@@ -836,6 +843,8 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                 bodyShapeModel = data ;
                                 _selectedBodyShape = data?.id.toString() ;
                               });
+                               Provider.of<FuelTypeViewModel>(context, listen: false)
+                                  .getFuelType(context: context);
                             },
                             dropdownDecoratorProps: DropDownDecoratorProps(
                               dropdownSearchDecoration: InputDecoration(
@@ -908,12 +917,12 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-
-                                    CustomShimmerImage(image: "${value.icon}"  , height: 36.h) ,
                                     CustomText(
                                       text: value.name ?? '',
                                       textStyle: Theme.of(context).textTheme.titleLarge,
                                     ),
+                                    CustomShimmerImage(image: "${value.icon}"  , height: 36.h) ,
+
                                   ],
                                 ),
                               );
@@ -949,6 +958,9 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         _selectedFuelType = data!.key.toString();
                         carStatusError = false;
                       });
+                       Provider.of<CarColorsViewModel>(context, listen: false)
+                          .getColors(context: context);
+
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
@@ -1096,7 +1108,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                     width: 10.w,
                   ) ,
                   CustomText(
-                      text: "${translate(LocaleKeys.mileage)} (KM)",
+                      text: "${translate(LocaleKeys.mileage)} (${translate(LocaleKeys.km)})",
                       textStyle: Theme.of(context)
                           .textTheme
                           .titleSmall!
@@ -1118,7 +1130,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         return null;
                       },
                       controller: _kiloMetersController,
-                      hintText: "${translate(LocaleKeys.mileage)} (KM)",
+                      hintText: "${translate(LocaleKeys.mileage)} (${translate(LocaleKeys.km)})",
                       textInputType: TextInputType.number,
                       maxLine: 1,
                       contentVerticalPadding: 17.h,
@@ -1147,6 +1159,12 @@ class _SellCarsPageState extends State<SellCarsPage> {
                             _selectedColor = data!.id.toString();
 
                           });
+                          if(localAuthProvider.role == "showroom" || localAuthProvider.role =="agency"){
+                            Provider.of<ShowRoomsBranchesViewModel>(context, listen: false).getBranches(
+                                context: context,
+                                id: localAuthProvider.user?.id);
+
+                          }
                         },
                         dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
@@ -1261,7 +1279,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
 
                   const VerticalSpace(20),
               CustomText(
-                  text: "${translate(LocaleKeys.price)} (EGP)",
+                  text: "${translate(LocaleKeys.price)} (${translate(LocaleKeys.egp)})",
                   textStyle: Theme.of(context)
                       .textTheme
                       .titleSmall!
@@ -1313,7 +1331,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
-                          labelText: "Select Branch",
+                          labelText: translate(LocaleKeys.branches),
                           enabled:
                           data.showRoomsBranchesResponse != null ? true : false,
                           labelStyle: Theme.of(context)

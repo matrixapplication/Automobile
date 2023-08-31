@@ -103,7 +103,7 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.r),
+                              borderRadius: BorderRadius.circular(15.r),
                             ),
                             child: TapEffect(
                               onClick: (){
@@ -129,7 +129,8 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                           ),
                           data.adminCarsList[index].isBayed! ?
                           Align(
-                            alignment: Alignment.topLeft,
+                            alignment: shared!.getString("lang") == "en" ? Alignment.topLeft : Alignment.topRight,
+
                             child: Container(
                               width: 90.w,
                               padding: EdgeInsets.all(8.h),
@@ -224,7 +225,7 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CustomText(
-                              text: "${data.adminCarsList[index].price} EGP",
+                              text: "${data.adminCarsList[index].price} ${translate(LocaleKeys.egp)}",
                               textStyle: Theme
                                   .of(context)
                                   .textTheme

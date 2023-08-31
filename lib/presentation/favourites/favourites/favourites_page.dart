@@ -7,7 +7,6 @@ import '../../../core/resources/resources.dart';
 import '../../../main.dart';
 import '../../component/app_widgets/my_app_bar.dart';
 import '../../component/components.dart';
-import '../../used_cars/components/users_used_cars_component.dart';
 import '../components/favourite_grid_component.dart';
 
 class FavouritesPage extends StatefulWidget {
@@ -36,8 +35,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                   Icons.arrow_forward_ios,
                   color: ColorManager.white,
                   textDirection: shared!.getString("lang") == "en"
-                      ? TextDirection.ltr
-                      : TextDirection.rtl,
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
                 )),
             actions: [],
 // leading: TapEffect,

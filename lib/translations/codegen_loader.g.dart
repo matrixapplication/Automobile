@@ -17,7 +17,7 @@ class CodegenLoader extends AssetLoader{
   static const Map<String,dynamic> ar = {
   "onBoarding1Title ": "title 1",
   "ShowRoomName": "اسم المعرض",
-  "whatsApp": "WhatsApp",
+  "whatsApp": "واتساب",
   "onBoarding1SubTitle": "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
   "onBoarding2Title": "title 2",
   "onBoarding2SubTitle": "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
@@ -118,7 +118,7 @@ class CodegenLoader extends AssetLoader{
     "startYear" : "من سنة" ,
     "endYear" : "الي سنة" ,
     "showResult" : "اظهر النتائج" ,
-    "all" : "الكل" ,
+    "All" : "الكل" ,
     "asc" : "تصاعدي" ,
     "desc" : "تنازلي" ,
     "trackMessage":"الرجاء إدخال رقم هاتفك لتتبع طلبك" ,
@@ -140,6 +140,17 @@ class CodegenLoader extends AssetLoader{
     "diesel" : "ديزيل" ,
     "naturalGas" : "جاز طبيعي" ,
     "showResults" : "اظهر النتائج"  ,
+    "egp" : "جم"  ,
+    "km" : "كم"  ,
+    "more" : "المزيد"  ,
+    "less" : "تقليل"  ,
+    "call":"اتصل" ,
+    "addressEn" : "العنوان بأنجليزية",
+    "addressAr" : "العنوان بالعربي",
+    "nameEn" : "الاسم بالانجليزية",
+    "nameAr" : "الاسم بالعربي",
+    "selectDistrict" : "اختر المنطقة",
+    "addCover" : "اضف صورة العرض" ,
 
 
 
@@ -247,7 +258,7 @@ static const Map<String,dynamic> en = {
   "startYear" : "Start Year" ,
   "endYear" : "EndYear" ,
   "showResult" : "Show Result" ,
-  "all" : "All" ,
+  "All" : "All" ,
   "asc" : "Asc" ,
   "desc" : "Desc" ,
   "trackMessage":"Please enter Your phone number to track your request" ,
@@ -268,10 +279,18 @@ static const Map<String,dynamic> en = {
   "gas" : "Gas" ,
   "diesel" : "Diesel" ,
   "naturalGas" : "Natural Gas" ,
-  "showResults" : "Show Results"  ,
-
-
-
+  "showResults" : "Show Results" ,
+  "egp" : "EGP",
+  "km" : "KM",
+  "more" : "More",
+  "less" : "Less",
+  "call" : "Call",
+  "addressEn" : "Address-En",
+  "addressAr" : "Address-ar",
+  "nameEn" : "name-en",
+  "nameAr" : "name-ar",
+  "selectDistrict" : "Select District",
+  "addCover" : "Add Cover Image Here" ,
 
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

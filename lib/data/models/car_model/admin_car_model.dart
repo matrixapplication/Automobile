@@ -76,7 +76,7 @@ class AdminCars {
     branch = json['branch'];
     year = json['year'];
     color = json['color'] != null
-        ? ColorCar.fromJson(json['drive_Type'])
+        ? ColorCar.fromJson(json['color'])
         : null;
     driveType = json['drive_Type'] != null
         ? DriveType.fromJson(json['drive_Type'])

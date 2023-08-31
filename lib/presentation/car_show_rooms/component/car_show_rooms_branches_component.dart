@@ -1,6 +1,7 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/show_rooms_branches_view_model.dart';
+import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -231,7 +232,7 @@ class _CarShowRoomsBranchesComponentState extends State<CarShowRoomsBranchesComp
                                               .primaryColor),
                                       HorizontalSpace(10.w),
                                       CustomText(
-                                        text: "Call",
+                                        text: translate(LocaleKeys.call),
                                         textStyle: Theme.of(
                                             context)
                                             .textTheme
@@ -273,7 +274,7 @@ class _CarShowRoomsBranchesComponentState extends State<CarShowRoomsBranchesComp
                                               .primaryColor),
                                       HorizontalSpace(10.w),
                                       CustomText(
-                                        text: "What's app",
+                                        text:translate(LocaleKeys.whatsApp),
                                         textStyle: Theme.of(
                                             context)
                                             .textTheme

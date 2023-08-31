@@ -1,7 +1,9 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
 import 'package:automobile_project/presentation/component/cutom_shimmer_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -44,14 +46,15 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     autoPlay: true,
                     reverse: true,
-
                     pageSnapping: true,
                     //  enlargeCenterPage: true,
                     enlargeStrategy: CenterPageEnlargeStrategy.scale,
                     onPageChanged: (index, reason) {
                       setState(() {
                         sliderIndex = index;
-                        print(index);
+                        if (kDebugMode) {
+                          print(index);
+                        }
                       });
                     }),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
@@ -63,10 +66,6 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
                           boxFit:  BoxFit.cover,
                           height: deviceHeight * 0.45,
                           width: double.infinity,) ,
-
-
-
-
                       ],
                     );
 
@@ -75,7 +74,7 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
               ),
             ),
             Align(
-              alignment: Alignment.bottomLeft,
+              alignment: shared!.getString("lang") == "en" ? Alignment.bottomLeft : Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 100.h, horizontal: 20.w),
                 child: CustomText(
@@ -83,7 +82,7 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
                   textStyle: Theme
                       .of(context)
                       .textTheme
-                      .headline5!
+                      .headlineSmall!
                       .copyWith(
                       height: 1,
                       color: ColorManager.white,
@@ -92,7 +91,7 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
               ),
             ),
             Align(
-              alignment: Alignment.bottomLeft,
+              alignment:shared!.getString("lang") == "en" ? Alignment.bottomLeft : Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 80.h, horizontal: 20.w),
                 child: AnimatedSmoothIndicator(

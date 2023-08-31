@@ -104,6 +104,8 @@ abstract class  LocaleKeys {
   static const endYear = "endYear";
   static const showResults = "showResults";
   static const all = "All";
+  static const egp = "egp";
+  static const km = "km";
   static const manual = "manual";
   static const automatic = "automatic";
   static const gas = "gas";
@@ -114,6 +116,7 @@ abstract class  LocaleKeys {
   static const desc = "desc";
   static const trackUrRequestMessage = "trackMessage";
   static const selectCity = "selectCity";
+  static const selectDistrict = "selectDistrict";
   static const personalInfo = "personalInfo";
   static const language = "language";
   static const soldOut = "soldOut";
@@ -124,6 +127,15 @@ abstract class  LocaleKeys {
   static const kNew = "kNew";
   static const kUsed = "kUsed";
   static const dataNotFound = "dataNotFound";
+  static const more = "more";
+  static const less = "less";
+  static const call = "call";
+  static const nameAr = "nameAr";
+  static const nameEn = "nameEn";
+  static const addressAr = "addressAr";
+  static const addressEn = "addressEn";
+  static const addCover = "addCover";
+
 
 
 }

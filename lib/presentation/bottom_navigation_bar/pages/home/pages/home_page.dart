@@ -341,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             width: deviceWidth * 0.60,
                                             decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(12.r),
-                                                border: Border.all(color: ColorManager.greyColorCBCBCB)
+                                                border: Border.all(color: ColorManager.primaryColor)
                                             ),
                                             child: ClipRRect(
 
@@ -401,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                     height: 14.h,
                                                                     width: 50.w,
                                                                     decoration:  BoxDecoration(
-                                                                        color: ColorManager.greyColorCBCBCB,
+                                                                        color: ColorManager.primaryColor,
                                                                         borderRadius: BorderRadius.circular(15.h)
                                                                       // shape: BoxShape.circle
                                                                     ),
@@ -463,6 +463,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           margin: EdgeInsets.zero,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.zero),
+
                           ),
                           elevation: 0,
                           child: Padding(
@@ -507,7 +508,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             width: deviceWidth * 0.60,
                                             decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(12.r),
-                                                border: Border.all(color: ColorManager.greyColorCBCBCB)
+                                                border: Border.all(color: ColorManager.primaryColor)
                                             ),
                                             child: ClipRRect(
 

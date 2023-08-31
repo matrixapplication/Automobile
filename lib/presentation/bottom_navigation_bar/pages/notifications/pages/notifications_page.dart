@@ -1,5 +1,4 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
-import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/notifications/view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
@@ -88,13 +87,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   return TapEffect(
                     onClick: () async{
                       if (data.notificationList[index].type == 'general') {
-                        NavigationService.navigationKey.currentState
-                            ?.pushNamedAndRemoveUntil(Routes.bottomNavigationBar , (route) => false,);
+
                       }
                       if (data.notificationList[index].type == "approved_showroom_car") {
                         final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(context , listen: false);
                         final result  = await showCarViewModel.showCarDetails(context: context,   id: data.notificationList[index].carId!) ;
-                        print(result.isSuccess);
+                        if (kDebugMode) {
+                          print(result.isSuccess);
+                        }
                         try{
                           if(result.isSuccess){
                             if(result.data?.status?.name =='new'){
@@ -118,13 +118,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 arguments: {"carModel": result.data, "isShowRoom": false});
                           }
                         }catch(e){
-                          print(e);
+                          if (kDebugMode) {
+                            print(e);
+                          }
                         }
 
 
 
                       } else {
-                        NavigationService.navigationKey.currentState?.pushNamedAndRemoveUntil(Routes.bottomNavigationBar , (route) => false,);
+
                       }
                     },
                     child: Card(

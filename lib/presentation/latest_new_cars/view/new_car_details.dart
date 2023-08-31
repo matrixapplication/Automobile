@@ -531,7 +531,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                               fontSize: 18
                           ),) ,
                           VerticalSpace(20.h) ,
-                          CustomText(text: "${ widget.carModel.price.toString()} EGP" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          CustomText(text: "${ widget.carModel.price.toString()} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: ColorManager.primaryColor ,
 
                               fontSize: 31
@@ -764,7 +764,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                         telePhone(
                                             widget.carModel.modelObject!.phone!);
                                       }else{
-                                        showCustomSnackBar(message: "please login first", context: context) ;
+                                        showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }
 
                                     },
@@ -785,7 +785,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                               color: ColorManager.primaryColor),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Call Dealer",
+                                            text: translate(LocaleKeys.call),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!
@@ -808,7 +808,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                         launchWhatsAppUri(
                                             "${widget.carModel.modelObject?.whatsApp}");
                                       }else{
-                                        showCustomSnackBar(message: "please login first", context: context) ;
+                                        showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }
 
                                     },
@@ -829,7 +829,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                               color: Colors.white),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Whatsapp",
+                                            text: translate(LocaleKeys.whatsApp),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!

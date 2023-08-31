@@ -47,16 +47,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
      await Provider.of<CarMechanicalViewModel>(context, listen: false)
          .getMechanicalFun(context: context);
-     await Provider.of<BodyShapeViewModel>(context, listen: false)
-         .getBodyShape(context: context);
-     await Provider.of<FuelTypeViewModel>(context, listen: false)
-         .getFuelType(context: context);
+
+
      await Provider.of<CarFeaturesViewModel>(context, listen: false)
          .getCarFeatures(context: context);
      await Provider.of<YearsViewModel>(context, listen: false)
          .getYears(context: context);
-     await Provider.of<CarColorsViewModel>(context, listen: false)
-         .getColors(context: context);
      await Provider.of<GetCitiesViewModel>(context, listen: false)
          .getCities(context: context);
      Provider.of<ShowRoomsViewModel>(context, listen: false).getShowRooms(context: context, isClear: true);
@@ -106,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
       await localAuthProvider.getEndUserData();
 
         if(localAuthProvider.user != null){
-          Provider.of<FavViewModel>(context, listen: false).getMyCars(context: context) ;
+
           Future.delayed(const Duration(seconds: 3), () async {
             NavigationService.pushReplacement(
               context,
@@ -137,9 +133,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: ColorManager.black,
       body: Center(
         child: CustomAssetsImage(
-          image: AssetsManager.appLogo,
+          image: "assets/images/app_logo2.png",
           boxFit: BoxFit.cover,
         ),
       ),

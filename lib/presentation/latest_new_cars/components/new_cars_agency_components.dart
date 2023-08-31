@@ -101,7 +101,7 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
                             arguments: {"isShowRoom": true , "carModel" : data.agencyCarList[index]});
                       }, child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
+                          borderRadius: BorderRadius.circular(15.r),
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12.r),
@@ -161,7 +161,8 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
                       ) ,
                       data.agencyCarList[index].isBayed! ?
                       Align(
-                        alignment: Alignment.topLeft,
+                        alignment: shared!.getString("lang") == "en" ? Alignment.topLeft : Alignment.topRight,
+
                         child: Container(
                           width: 90.w,
                           padding: EdgeInsets.all(8.h),
@@ -225,7 +226,7 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CustomText(
-                          text: "${double.parse("${data.agencyCarList[index].price}").toStringAsFixed(0)} EGP",
+                          text: "${double.parse("${data.agencyCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                           textStyle: Theme.of(context)
                               .textTheme
                               .titleLarge!

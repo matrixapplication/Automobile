@@ -86,7 +86,7 @@ class _HomeBrandsComponentState extends State<HomeBrandsComponent> {
                       image: "${data.getBrandsResponse?.data?[index].image}",
                       height: 40.h,
                       width: 40.h,
-                      boxFit: BoxFit.cover,
+                      boxFit: BoxFit.contain,
                     ),
                   ),
                 ),

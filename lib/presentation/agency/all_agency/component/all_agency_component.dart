@@ -1,4 +1,5 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/resources/resources.dart';
@@ -175,7 +176,7 @@ class _CarShowRoomsBranchesComponentState
                                           color: ColorManager.primaryColor),
                                       HorizontalSpace(10.w),
                                       CustomText(
-                                        text: "Call",
+                                        text: translate(LocaleKeys.call),
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .titleLarge!
@@ -202,7 +203,7 @@ class _CarShowRoomsBranchesComponentState
                                           color: ColorManager.primaryColor),
                                       HorizontalSpace(10.w),
                                       CustomText(
-                                        text: "Branches",
+                                        text: translate(LocaleKeys.branches),
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .titleLarge!

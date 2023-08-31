@@ -1,13 +1,11 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/auth_model/auth_model.dart';
 import 'package:automobile_project/data/models/car_model/car_model.dart';
-import 'package:automobile_project/data/models/show_room_branch_model/show_room_branch_model.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/favourites/view_model/fav_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -70,17 +68,14 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
     return AnimatedBuilder(
       animation: animation,
       builder: (context, widget) {
-        print(pagePosition);
+
         return SizedBox(
           width: 200,
           height: 200,
           child: widget,
         );
       },
-      child: Container(
-        // margin: const EdgeInsets.all(10),
-        child: Image.network(images[pagePosition]),
-      ),
+      child: Image.network(images[pagePosition]),
     );
   }
 
@@ -315,7 +310,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                     )
                                 ),
                                 child: Center(
-                                  child: CustomText(text: "${widget.carModel.mileage} KM"),
+                                  child: CustomText(text: "${widget.carModel.mileage} ${translate(LocaleKeys.km)}"),
                                 ),
                               ) ,
 
@@ -534,7 +529,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                               fontSize: 18
                           ),) ,
                           VerticalSpace(20.h) ,
-                          CustomText(text: "${ widget.carModel.price.toString()} EGP" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          CustomText(text: "${ widget.carModel.price.toString()} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: ColorManager.primaryColor ,
 
                               fontSize: 31
@@ -624,11 +619,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                         children: [
                           TapEffect(
                             onClick: () {
-
-
-                              print("coverImage =====> ${widget.carModel.modelObject?.coverImage} ");
                               if (widget.isShowRoom) {
-
                                 if(widget.carModel.modelRole == "agency"){
                                   NavigationService.push(
                                       context, Routes.agencyProfilePage,
@@ -728,6 +719,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
 // overflow: TextOverflow.ellipsis,
                                           ),
                                           const VerticalSpace(10),
+                                          widget.carModel.branch != null ?
                                           Row(
                                             children: [
                                               CustomText(
@@ -747,7 +739,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                               ),
                                               const Spacer(),
                                             ],
-                                          ),
+                                          ) : const SizedBox(),
                                         ],
                                       ),
                                     ),
@@ -767,7 +759,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                         telePhone(
                                             widget.carModel.modelObject!.phone!);
                                       }else{
-                                        showCustomSnackBar(message: "please login first", context: context) ;
+                                        showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }
 
                                     },
@@ -788,7 +780,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                               color: ColorManager.primaryColor),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Call Dealer",
+                                            text: translate(LocaleKeys.call),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!
@@ -811,7 +803,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                         launchWhatsAppUri(
                                             "${widget.carModel.modelObject?.whatsApp}");
                                       }else{
-                                        showCustomSnackBar(message: "please login first", context: context) ;
+                                        showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }
 
                                     },
@@ -832,7 +824,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                               color: Colors.white),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Whatsapp",
+                                            text: translate(LocaleKeys.whatsApp),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!

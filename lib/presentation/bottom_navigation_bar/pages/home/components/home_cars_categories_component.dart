@@ -85,6 +85,7 @@ class CarTypesTap extends StatelessWidget {
                       text: carStatus[index],
                       textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: ColorManager.white,
+                          fontSize: 16.h,
                           fontWeight: FontWeightManager.semiBold),
                     )
                   ]),

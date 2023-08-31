@@ -1,4 +1,5 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -83,7 +84,7 @@ class AppDialog extends BasePlatformWidget<AlertDialog, CupertinoAlertDialog> {
           icon != null ? const VerticalSpace(AppSize.s16) : const SizedBox(),
           alertTitle != null
               ? Align(
-            alignment: Alignment.centerRight,
+            alignment: shared!.getString("lang") == "ar" ? Alignment.centerRight  : Alignment.centerLeft,
             child: CustomText(
                 text: alertTitle,
                 textStyle: Theme.of(context)

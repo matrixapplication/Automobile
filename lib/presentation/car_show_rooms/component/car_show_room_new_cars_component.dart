@@ -226,7 +226,7 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomText(
-                      text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} EGP",
+                      text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                       textStyle: Theme.of(context)
                           .textTheme
                           .titleLarge!

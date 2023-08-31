@@ -1,20 +1,16 @@
 import 'package:automobile_project/config/navigation/navigation.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
-import 'package:automobile_project/domain/use_case/show_rooms/get_my_cars_use_case.dart';
 import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
 import 'package:automobile_project/presentation/favourites/view_model/fav_view_model.dart';
 import 'package:automobile_project/presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
-import 'package:automobile_project/presentation/my_cars_to_sell/view%20model/get_my_cars_model_view.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-
 import '../../../../../core/resources/resources.dart';
 import '../../../../component/components.dart';
 import '../../../../component/cutom_shimmer_image.dart';
-
 class HomeLatestNewCarsComponent extends StatefulWidget {
   const HomeLatestNewCarsComponent({
     Key? key,
@@ -35,7 +31,7 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
   Widget build(BuildContext context) {
     return Container(
       height: 310.h,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: ColorManager.white
       ),
       child: Consumer<NewCarsShowRoomViewModel>(
@@ -53,7 +49,7 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                     width: deviceWidth * 0.60,
                     decoration: BoxDecoration(
                       color: ColorManager.white,
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(15.r),
 
                       border: Border.all(color: ColorManager.primaryColor)
                     ),
@@ -84,21 +80,25 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                              )),
                               data.carList[index].isBayed! ?
                               Align(
-                                alignment: Alignment.topLeft,
-                                child: Container(
-                                  width: 90.w,
-                                  height: 40.h,
-                                  padding: EdgeInsets.all(8.h),
-                                  decoration: BoxDecoration(
-                                    color: ColorManager.primaryColor ,
-                                    borderRadius: BorderRadius.circular(15.r) ,
-                                  ),
-                                  child: Center(
-                                    child: CustomText(text: translate(LocaleKeys.soldOut) , textStyle: Theme.of(context)
-                                        .textTheme.bodySmall!.copyWith(
-                                        color: ColorManager.white
-                                    ),) ,
-                                  ),
+                                alignment: shared!.getString("lang") == "en" ? Alignment.topLeft : Alignment.topRight,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 90.w,
+                                      height: 40.h,
+                                      padding: EdgeInsets.all(8.h),
+                                      decoration: BoxDecoration(
+                                        color: ColorManager.primaryColor ,
+                                        borderRadius: BorderRadius.circular(0.r) ,
+                                      ),
+                                      child: Center(
+                                        child: CustomText(text: translate(LocaleKeys.soldOut) , textStyle: Theme.of(context)
+                                            .textTheme.bodySmall!.copyWith(
+                                            color: ColorManager.white
+                                        ),) ,
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ) : const SizedBox()
 
@@ -158,7 +158,7 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         CustomText(
-                                            text: "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} EGP",
+                                            text: "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .labelLarge!

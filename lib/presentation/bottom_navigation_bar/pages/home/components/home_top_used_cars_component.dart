@@ -45,7 +45,7 @@ class _HomeTopUsedCarsComponentState extends State<HomeTopUsedCarsComponent> {
                 margin: EdgeInsets.symmetric(horizontal: 4.w),
                 width: deviceWidth * 0.60,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
+                  borderRadius: BorderRadius.circular(15.r),
                   border: Border.all(color: ColorManager.greyColorCBCBCB)
                 ),
                 child: ClipRRect(
@@ -81,7 +81,7 @@ class _HomeTopUsedCarsComponentState extends State<HomeTopUsedCarsComponent> {
                       )),
                       data.carList[index].isBayed! ?
                       Align(
-                        alignment: Alignment.topLeft,
+                        alignment: shared!.getString("lang") == "en" ? Alignment.topLeft : Alignment.topRight,
                         child: Container(
                           width: 90.w,
                           height: 40.h,
@@ -152,7 +152,7 @@ class _HomeTopUsedCarsComponentState extends State<HomeTopUsedCarsComponent> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     CustomText(
-                                        text: "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} EGP",
+                                        text: "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                                         textStyle: Theme.of(context)
                                             .textTheme
                                             .labelLarge!

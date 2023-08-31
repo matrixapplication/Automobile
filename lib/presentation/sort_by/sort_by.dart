@@ -264,7 +264,7 @@ class _SortPageState extends State<SortPage> {
                                           ),
                                           CustomText(
                                               text:
-                                              "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} EGP",
+                                              "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                                               textStyle: Theme.of(
                                                   context)
                                                   .textTheme
@@ -295,7 +295,7 @@ class _SortPageState extends State<SortPage> {
                                         if(userProvider.isAuth){
                                           telePhone(data.carList[index].modelObject!.phone!) ;
                                         }else{
-                                          showCustomSnackBar(message: "please login first", context: context);
+                                          showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context);
                                         }
                                       },
                                       child: Container(
@@ -321,7 +321,7 @@ class _SortPageState extends State<SortPage> {
                                                 10.w),
                                             CustomText(
                                               text:
-                                              "Call",
+                                              translate(LocaleKeys.call),
                                               textStyle: Theme.of(
                                                   context)
                                                   .textTheme
@@ -344,7 +344,7 @@ class _SortPageState extends State<SortPage> {
                                         if(userProvider.isAuth){
                                           launchWhatsAppUri(data.carList[index].modelObject!.whatsApp!);
                                         }else{
-                                          showCustomSnackBar(message: "please login first", context: context );
+                                          showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context );
                                         }
                                       },
                                       child: Container(
@@ -368,7 +368,7 @@ class _SortPageState extends State<SortPage> {
                                                 10.w),
                                             CustomText(
                                               text:
-                                              "Whatsapp",
+                                              translate(LocaleKeys.whatsApp),
                                               textStyle: Theme.of(
                                                   context)
                                                   .textTheme

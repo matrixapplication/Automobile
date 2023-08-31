@@ -1,5 +1,6 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_brands_model_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_brands_view_model.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
@@ -115,7 +116,7 @@ class _FilterPageState extends State<FilterPage> {
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size.fromHeight(70.h), child:
       MyAppbar(
-        title: translate(LocaleKeys.carStatus),
+        title: translate(LocaleKeys.filter),
         titleColor: ColorManager.white,
         backgroundColor: ColorManager.primaryColor,
         centerTitle: true,
@@ -123,8 +124,14 @@ class _FilterPageState extends State<FilterPage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
+            child: shared!.getString("lang") == 'ar' ?
+            const Icon(
+              Icons.arrow_forward_ios,
+              textDirection: TextDirection.ltr,
+              color: ColorManager.white,
+            ) : const Icon(
+              Icons.arrow_forward_ios,
+              textDirection: TextDirection.rtl,
               color: ColorManager.white,
             )),
       )),
@@ -232,7 +239,7 @@ class _FilterPageState extends State<FilterPage> {
                                  });
                                 },
                                     child: Container(
-                                      height: 30.h,
+                                      height: 40.h,
                                       padding: EdgeInsets.all(3.w),
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -242,11 +249,13 @@ class _FilterPageState extends State<FilterPage> {
                                         ),
                                       ),
                                       child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(80.r),
+                                        borderRadius: BorderRadius.circular(100.r),
                                         child:  CustomShimmerImage(
                                           image:
                                           "${data.getBrandsResponse?.data?[index].image}",
-                                          boxFit: BoxFit.cover,
+                                          boxFit: BoxFit.contain,
+                                          height: 40.h,
+                                          width: 40.w,
                                         ),
                                       ),
                                     )) ;

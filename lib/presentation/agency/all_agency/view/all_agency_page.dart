@@ -1,5 +1,6 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,15 +48,17 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
   }
   telePhone(String phone) async {
     // The "launch" method is part of "url_launcher".
-    await launchUrl(Uri.parse('tel://+20$phone'),
+    await launchUrl(Uri.parse('tel://+2$phone'),
         mode: LaunchMode.externalApplication);
   }
+
+  bool reveal = false;
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<LocalAuthProvider>(context , listen: false) ;
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size.fromHeight(70.h), child: MyAppbar(
-        title: "AllAgencies",
+        title: translate(LocaleKeys.agencies),
         titleColor: ColorManager.white,
         backgroundColor: ColorManager.primaryColor,
         centerTitle: true,
@@ -63,9 +66,10 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
+            child:  Icon(
+              Icons.arrow_forward_ios,
               color: ColorManager.white,
+              textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
             )),
       )),
       body: Consumer<AgencyViewModel>(
@@ -134,18 +138,8 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                                                     FontWeightManager.semiBold,
                                               )),
                                       const VerticalSpace(15),
-                                      CustomText(
-                                          text: item.description,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge!
-                                              .copyWith(
-                                                color: ColorManager
-                                                    .blackColor1C1C1C,
+                                      DescriptionText(text: item.description!, reveal: reveal)
 
-                                                fontWeight:
-                                                    FontWeightManager.semiBold,
-                                              ))
                                     ],
                                   ),
                                 )
@@ -164,7 +158,7 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                                           if(userProvider.isAuth){
                                             telePhone(viewModel.allAgencyList[index].phone!);
                                           }else{
-                                            showCustomSnackBar(message: "please login first", context: context);
+                                            showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context);
                                           }
 
                                         },
@@ -177,7 +171,7 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                                                     ColorManager.primaryColor),
                                             HorizontalSpace(10.w),
                                             CustomText(
-                                              text: "Call",
+                                              text: translate(LocaleKeys.call),
                                               textStyle: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge!
@@ -216,7 +210,7 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                                                     ColorManager.primaryColor),
                                             HorizontalSpace(10.w),
                                             CustomText(
-                                              text: "Branches",
+                                              text: translate(LocaleKeys.branches),
                                               textStyle: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge!
@@ -246,7 +240,7 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                         child: viewModel.hasMore
                             ? const MyProgressIndicator()
                             : CustomText(
-                            text: "no more agency...",
+                            text: translate(LocaleKeys.dataNotFound),
                             textStyle: Theme.of(context).textTheme.bodySmall),
                       ),
                     );
@@ -259,6 +253,56 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
             );
           }
         },
+      ),
+    );
+  }
+}
+
+
+
+
+class DescriptionText extends StatefulWidget {
+  final String text ;
+  final bool reveal ;
+  const DescriptionText({Key? key, required this.text, required this.reveal}) : super(key: key);
+
+  @override
+  State<DescriptionText> createState() => _DescriptionTextState();
+}
+
+class _DescriptionTextState extends State<DescriptionText> {
+
+  bool view  = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    view = widget.reveal ;
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 260.w,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: [
+          Text(
+            widget.text,
+            maxLines: !view ? 1 : null,
+            overflow: !view ? TextOverflow.ellipsis : null,
+          ),
+
+          TapEffect(onClick: (){
+            setState(() {
+              view = !view;
+            });
+          }, child: Text(view  ?  translate(LocaleKeys.less): translate(LocaleKeys.more) , style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Colors.blueAccent ,
+              fontSize: 14.h
+          ),))
+        ],
       ),
     );
   }

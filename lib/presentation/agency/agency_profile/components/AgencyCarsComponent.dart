@@ -172,7 +172,7 @@ class _AgencyCarsComponentState extends State<AgencyCarsComponent> {
                       padding: EdgeInsets.all(8.h),
                       decoration: BoxDecoration(
                         color: ColorManager.greyColor515151 ,
-                        borderRadius: BorderRadius.circular(15.r) ,
+                        borderRadius: BorderRadius.circular(12.r) ,
                       ),
                       child: Center(
                         child: CustomText(text: translate(LocaleKeys.soldOut)   , textStyle: Theme.of(context)
@@ -230,7 +230,7 @@ class _AgencyCarsComponentState extends State<AgencyCarsComponent> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomText(
-                      text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} EGP",
+                      text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                       textStyle: Theme.of(context)
                           .textTheme
                           .titleLarge!

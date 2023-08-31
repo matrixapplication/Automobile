@@ -1,6 +1,8 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +23,7 @@ class CarShowRoomPage extends StatefulWidget {
 
 class _CarShowRoomPageState extends State<CarShowRoomPage> {
   final _controller = ScrollController();
-
+  bool reveal = false ; 
   @override
   void initState() {
     Provider.of<ShowRoomsViewModel>(context, listen: false)
@@ -31,9 +33,13 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
       if (_controller.position.maxScrollExtent == _controller.offset) {
         // fetch();
         Provider.of<ShowRoomsViewModel>(context, listen: false).getShowRooms(context: context , isClear: false);
-        print("Fetch");
+        if (kDebugMode) {
+          print("Fetch");
+        }
       } else {
-        print("Not Fetch");
+        if (kDebugMode) {
+          print("Not Fetch");
+        }
       }
     });
     super.initState();
@@ -53,7 +59,7 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
     final userProvider = Provider.of<LocalAuthProvider>(context,listen: false) ;
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size.fromHeight(70.h), child: MyAppbar(
-        title: "Dealers Car Showrooms",
+        title: translate(LocaleKeys.showRooms),
         titleColor: ColorManager.white,
         centerTitle: true,
         backgroundColor: ColorManager.primaryColor,
@@ -61,15 +67,16 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
+            child:  Icon(
+              Icons.arrow_forward_ios,
               color: ColorManager.white,
+              textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
             )),
       )),
       body: Consumer<ShowRoomsViewModel>(
         builder: (context, viewModel, child) {
           if (viewModel.isLoading) {
-            return Center(child: MyProgressIndicator());
+            return const Center(child: MyProgressIndicator());
           } else if (viewModel.showRoomsList.isEmpty) {
             return  CustomText(
               text: translate(LocaleKeys.dataNotFound),
@@ -133,18 +140,7 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                                             FontWeightManager.semiBold,
                                           )),
                                       const VerticalSpace(15),
-                                      CustomText(
-                                          text: item.description,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge!
-                                              .copyWith(
-                                            color:
-                                            ColorManager.blackColor1C1C1C,
-
-                                            fontWeight:
-                                            FontWeightManager.semiBold,
-                                          ))
+                                      DescriptionText(text: item.description!, reveal: reveal)
                                     ],
                                   ),
                                 )
@@ -236,8 +232,8 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                       ),
                       child: Center(
                         child: viewModel.hasMore
-                            ?  MyProgressIndicator()
-                            : SizedBox(),
+                            ?  const MyProgressIndicator()
+                            : const SizedBox(),
                       ),
                     );
                   }
@@ -254,6 +250,52 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
             );
           }
         },
+      ),
+    );
+  }
+}
+class DescriptionText extends StatefulWidget {
+  final String text ;
+  final bool reveal ;
+  const DescriptionText({Key? key, required this.text, required this.reveal}) : super(key: key);
+
+  @override
+  State<DescriptionText> createState() => _DescriptionTextState();
+}
+
+class _DescriptionTextState extends State<DescriptionText> {
+
+  bool view  = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    view = widget.reveal ;
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 260.w,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: [
+          Text(
+            widget.text,
+            maxLines: !view ? 1 : null,
+            overflow: !view ? TextOverflow.ellipsis : null,
+          ),
+
+          TapEffect(onClick: (){
+            setState(() {
+              view = !view;
+            });
+          }, child: Text(view  ?  translate(LocaleKeys.less): translate(LocaleKeys.more) , style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Colors.blueAccent ,
+              fontSize: 14.h
+          ),))
+        ],
       ),
     );
   }
