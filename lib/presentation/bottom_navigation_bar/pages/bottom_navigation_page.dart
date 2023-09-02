@@ -24,7 +24,7 @@ class BottomNavigationPage extends StatefulWidget {
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
-
+  int currentIndex = 0;
   @override
   void initState() {
 
@@ -35,8 +35,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       await userProvider.getUserData();
 
     });
+
+    currentIndex = widget.selectedIndex ;
   }
- int currentIndex = 0;
+
   final screens = [
     const HomeScreen(),
     const SellCarsPage(),

@@ -21,40 +21,48 @@ void handleMessage(RemoteMessage message) async {
     if (message.data.isNotEmpty) {
       if (message.data['type'] == 'general') {
         NavigationService.navigationKey.currentState
-            ?.pushNamed(Routes.bottomNavigationBar);
+            ?.pushNamed(Routes.bottomNavigationBar  ,arguments: {
+          "selectedIndex" : 3
+        });
       }
       if (message.data['type'] == "approved_showroom_car") {
-        final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(appContext , listen: false);
-        final result  = await showCarViewModel.showCarDetails(context: appContext,   id: message.data['id']) ;
-        if(result.isSuccess){
-          if(result.data?.status?.name =='new'){
-            if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom" ){
-              NavigationService.navigationKey.currentState?.pushNamed(
-                  Routes.latestNewCarsDetails,
-                  arguments: {"carModel": result.data, "isShowRoom": true});
-            }else{
-              if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom"){
-                NavigationService.navigationKey.currentState?.pushNamed(
-                    Routes.usedCarDetailsPage,
-                    arguments: {"carModel": result.data, "isShowRoom": true});
-              }
-            }
-          }else{
-            if(result.data?.modelRole == "user"){
-              NavigationService.navigationKey.currentState?.pushNamed(
-                  Routes.usedCarDetailsPage,
-                  arguments: {"carModel": result.data, "isShowRoom": false});
-            }else{
-              NavigationService.navigationKey.currentState?.pushNamed(
-                  Routes.usedCarDetailsPage,
-                  arguments: {"carModel": result.data, "isShowRoom": true});
-            }
-          }
-        }
-
+        // final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(appContext , listen: false);
+        // final result  = await showCarViewModel.showCarDetails(context: appContext,   id: message.data['id']) ;
+        // if(result.isSuccess){
+        //   if(result.data?.status?.name =='new'){
+        //     if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom" ){
+        //       NavigationService.navigationKey.currentState?.pushNamed(
+        //           Routes.latestNewCarsDetails,
+        //           arguments: {"carModel": result.data, "isShowRoom": true});
+        //     }else{
+        //       if(result.data?.modelRole == "agency" || result.data?.modelRole == "showroom"){
+        //         NavigationService.navigationKey.currentState?.pushNamed(
+        //             Routes.usedCarDetailsPage,
+        //             arguments: {"carModel": result.data, "isShowRoom": true});
+        //       }
+        //     }
+        //   }else{
+        //     if(result.data?.modelRole == "user"){
+        //       NavigationService.navigationKey.currentState?.pushNamed(
+        //           Routes.usedCarDetailsPage,
+        //           arguments: {"carModel": result.data, "isShowRoom": false});
+        //     }else{
+        //       NavigationService.navigationKey.currentState?.pushNamed(
+        //           Routes.usedCarDetailsPage,
+        //           arguments: {"carModel": result.data, "isShowRoom": true});
+        //     }
+        //   }
+        // }
+        NavigationService.navigationKey.currentState
+            ?.pushNamed(Routes.bottomNavigationBar  ,arguments: {
+          "selectedIndex" : 3
+        });
 
       } else {
-        NavigationService.navigationKey.currentState?.pushNamed(Routes.bottomNavigationBar);
+        NavigationService.navigationKey.currentState
+            ?.pushNamed(Routes.bottomNavigationBar  ,arguments: {
+          "selectedIndex" : 3
+        });
       }
     }
   } catch (e) {

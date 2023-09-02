@@ -135,7 +135,9 @@ class _SellCarsPageState extends State<SellCarsPage> {
             titleColor: ColorManager.white,
             backgroundColor: ColorManager.primaryColor,
             centerTitle: true,
-            leading: TapEffect(onClick: (){}, child: Icon(
+            leading: TapEffect(onClick: (){
+              NavigationService.push(context, Routes.bottomNavigationBar);
+            }, child: Icon(
               Icons.arrow_forward_ios ,
               color: ColorManager.white,
               textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
@@ -410,6 +412,8 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         _selectedBrandModelExtension = data!.id.toString();
                         brandModelExtensionError = false;
                       });
+                      Provider.of<BodyShapeViewModel>(context, listen: false)
+                          .getBodyShape(context: context);
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
@@ -637,8 +641,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         _selectedYear = data!.toString();
                         yearError = false;
                       });
-                       Provider.of<BodyShapeViewModel>(context, listen: false)
-                          .getBodyShape(context: context);
+
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(

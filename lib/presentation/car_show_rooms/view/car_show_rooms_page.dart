@@ -95,7 +95,8 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                   if (index < viewModel.showRoomsList.length) {
                     final item = viewModel.showRoomsList[index];
 
-                    return TapEffect(
+                    return !item.isBlocked!  ?
+                    TapEffect(
                       onClick: () {
                         NavigationService.push(context,
                             Routes.carShowRoomProfilePage , arguments: {
@@ -224,7 +225,7 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                           ]),
                         ),
                       ),
-                    );
+                    ) : const SizedBox();
                   } else {
                     return Padding(
                       padding: const EdgeInsets.symmetric(

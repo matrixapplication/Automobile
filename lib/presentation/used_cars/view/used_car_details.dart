@@ -47,13 +47,15 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
 
   launchWhatsAppUri(String phone) async {
     // The "launch" method is part of "url_launcher".
+    print(phone);
     await launchUrl(
-        Uri.parse('https://wa.me/phone=+2$phone?text=is your car available?'),
+        Uri.parse('https://wa.me/phone=+20$phone?text=is your car available?'),
         mode: LaunchMode.externalApplication);
   }
 
   telePhone(String phone) async {
     // The "launch" method is part of "url_launcher".
+    print(phone);
     await launchUrl(Uri.parse('tel://+20$phone'),
         mode: LaunchMode.externalApplication);
   }

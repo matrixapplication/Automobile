@@ -205,12 +205,21 @@ class _FavouriteGridComponentState extends State<FavouriteGridComponent> {
                       backgroundColor: ColorManager.primaryColor,
                       height: 40.h,
                       onTap: () {
-                        NavigationService.push(
-                            context, Routes.usedCarDetailsPage , arguments: {
-                          "carModel" : data.showFavCarsResponse?.data?[index] ,
-                          "isShowRoom" : data.showFavCarsResponse?.data?[index].modelObject!.name == "showroom" ||
-                              data.showFavCarsResponse?.data?[index].modelObject!.name =="agency"? true : false
-                        });
+                        if(data.showFavCarsResponse?.data?[index].status?.key == "new"){
+                          NavigationService.push(
+                              context, Routes.latestNewCarsDetails , arguments: {
+                            "carModel" : data.showFavCarsResponse?.data?[index] ,
+                            "isShowRoom" : data.showFavCarsResponse?.data?[index].modelObject!.name == "showroom" ||
+                                data.showFavCarsResponse?.data?[index].modelObject!.name =="agency"? true : false
+                          });
+                        }else{
+                          NavigationService.push(
+                              context, Routes.usedCarDetailsPage , arguments: {
+                            "carModel" : data.showFavCarsResponse?.data?[index] ,
+                            "isShowRoom" : data.showFavCarsResponse?.data?[index].modelObject!.name == "showroom" ||
+                                data.showFavCarsResponse?.data?[index].modelObject!.name =="agency"? true : false
+                          });
+                        }
                       },
                     )
                   ],

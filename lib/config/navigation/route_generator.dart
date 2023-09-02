@@ -57,7 +57,8 @@ class RouteGenerator {
       case Routes.otpPage:
         return platformPageRoute(const OtpPage());
       case Routes.bottomNavigationBar:
-        return platformPageRoute(BottomNavigationPage());
+        Map<String , dynamic>? args = settings.arguments as Map<String, dynamic>?;
+        return platformPageRoute(BottomNavigationPage(selectedIndex: args == null ? 0 :args['selectedIndex']??0,));
       case Routes.homeScreen:
         return platformPageRoute(const HomeScreen());
       case Routes.latestNewCarPage:

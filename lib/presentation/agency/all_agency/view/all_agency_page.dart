@@ -90,7 +90,8 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                 itemBuilder: (context, index) {
                   if (index < viewModel.allAgencyList.length) {
                     final item = viewModel.allAgencyList[index];
-                    return TapEffect(
+                    return ! item.isBlocked! ?
+                    TapEffect(
                       onClick: () {
                         NavigationService.push(
                             context, Routes.agencyProfilePage ,
@@ -230,7 +231,7 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                           ]),
                         ),
                       ),
-                    );
+                    ) : const SizedBox();
                   } else {
                     return Padding(
                       padding: const EdgeInsets.symmetric(

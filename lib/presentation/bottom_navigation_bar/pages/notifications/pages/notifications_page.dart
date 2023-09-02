@@ -83,6 +83,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             } else {
               return ListView.separated(
                 itemCount: data.notificationList.length,
+                controller: controller,
                 itemBuilder: (context, index) {
                   return TapEffect(
                     onClick: () async{
