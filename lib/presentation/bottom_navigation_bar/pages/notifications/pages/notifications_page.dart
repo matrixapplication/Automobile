@@ -1,4 +1,5 @@
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/notifications/view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
@@ -57,10 +58,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 onClick: () {
                   NavigationService.push(context, Routes.bottomNavigationBar);
                 },
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: ColorManager.white,
-                )),
+                child: Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,)),
           )),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),

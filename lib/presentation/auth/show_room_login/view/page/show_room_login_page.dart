@@ -29,7 +29,7 @@ class _ShowRoomLoginPageState extends State<ShowRoomLoginPage> {
   final userProvider = Provider.of<LocalAuthProvider>(context ,listen: false) ;
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.login(
-          context: context, code: "1446", password: "123456789");
+          context: context, code: "1438", password: "123456789");
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
         await userProvider.isLogin()  ;

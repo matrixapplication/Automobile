@@ -42,13 +42,7 @@ class GetCitiesUseCase {
             ApiChecker.checkApi(context, message: baseModel.message);
       }
     } else {
-      Alerts.showAppDialog(context,
-          alertTitle: "Poor connection",
-          alertDescription: " please check your connection and restart the app",
-          onConfirm: () {},
-          confirmText: "ok",
-          withClose: false,
-          confirmTextColor: ColorManager.white);
+
       ErrorResponse baseModel =
       ErrorResponse.fromJson(apiResponse.response?.data);
       final message = baseModel.message;

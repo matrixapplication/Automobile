@@ -46,12 +46,12 @@ class FavUseCase {
       }
     } else {
 
-      ErrorResponse.fromJson(apiResponse.response?.data);
-      final message = baseModel.message;
-      responseModel = ApiChecker.checkApi(context, message: message);
+      // ErrorResponse.fromJson(apiResponse.response?.data);
+      // final message = baseModel.message;
+      // responseModel = ApiChecker.checkApi(context, message: message);
     }
 
-    print(responseModel.data);
+
     return responseModel;
   }
 

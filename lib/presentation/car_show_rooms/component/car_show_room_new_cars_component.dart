@@ -87,9 +87,9 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
         itemCount: newCarsAgencyProvider.showroomCarList.isNotEmpty?
         newCarsAgencyProvider.showroomCarList.length  : 0 ,
         itemBuilder: (ctx, index) => Container(
-          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+          padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 0.w),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.r),
+              borderRadius: BorderRadius.circular(15.r),
               border: Border.all(color: ColorManager.greyColorCBCBCB)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

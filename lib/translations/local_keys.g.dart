@@ -42,7 +42,7 @@ abstract class  LocaleKeys {
   static const users = 'users' ;
   static const contactUs = 'contact_us' ;
   static const whoAreWe = 'who_are_we' ;
-  static const termsConditions = 'terms_conditions' ;
+    static const termsConditions = 'terms_conditions' ;
   static const privacy = 'privacy' ;
   static const carReturn = 'carReturn' ;
   static const filter = 'filter' ;
@@ -135,6 +135,7 @@ abstract class  LocaleKeys {
   static const addressAr = "addressAr";
   static const addressEn = "addressEn";
   static const addCover = "addCover";
+  static const checkNumber = "checkNumber" ;
 
 
 

@@ -219,13 +219,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   },
                 ),
                 const Divider(color: ColorManager.greyColorCBCBCB),
-                DrawerTile(
-                  icon: Icons.call,
-                  title: translate(LocaleKeys.contactUs),
-                  onTap: () {
-                    //NavigationService.push(context, Routes.ordersScreen);
-                  },
-                ),
+
                 DrawerTile(
                   icon: Icons.location_city_rounded,
                   title: translate(LocaleKeys.whoAreWe),

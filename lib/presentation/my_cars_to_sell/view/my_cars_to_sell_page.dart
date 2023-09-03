@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/data/models/car_model/car_model.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/body_shape_view_model.dart';
@@ -36,7 +37,7 @@ class MyCarsToSellPage extends StatefulWidget {
 
 class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
   final _controller = ScrollController();
-  bool _isLoading = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -141,285 +142,305 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                   mainAxisSpacing: 10.h,
                 ),
                 itemCount: data.carList.length,
-                itemBuilder: (ctx, index) => Container(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.h, horizontal: 10.w),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          border:
-                              Border.all(color: ColorManager.greyColorCBCBCB)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stack(
-                            children: [
-                              TapEffect(
-                                  onClick: () async {
-                                    setState(() {
-                                      _isLoading = true;
-                                    });
-                                    await Provider.of<CarBrandsViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBrands(context: context);
-                                    await Provider.of<CarBrandsModelViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBrandsModels(
-                                            context: context,
-                                            brandId:
-                                                data.carList[index].brand!.id!);
-                                    await Provider.of<
-                                                CarBrandsModelExtensionViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBrandsModels(
-                                            context: context,
-                                            id: data.carList[index].brandModel!
-                                                .id!);
-                                    await Provider.of<CarFeaturesViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getCarFeatures(context: context);
-                                    await Provider.of<YearsViewModel>(context,
-                                            listen: false)
-                                        .getYears(context: context);
-                                    await Provider.of<CarColorsViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getColors(context: context);
-                                    await Provider.of<
-                                                ShowRoomsBranchesViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBranches(context: context, id: 1);
-                                    print(data.carList[index].toJson());
-                                    NavigationService.push(
-                                        context, Routes.updateCarPage,
-                                        arguments: {
-                                          "carModel": data.carList[index]
-                                        });
-                                    setState(() {
-                                      _isLoading = false;
-                                    });
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12.r),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12.r),
-                                      child: CustomShimmerImage(
-                                        image:
-                                            "${data.carList[index].mainImage}",
-                                        boxFit: BoxFit.cover,
-                                        height: 150.h,
-                                        width: double.infinity,
-                                      ),
-                                    ),
-                                  )),
-                              data.carList[index].isBayed!
-                                  ? Container(
-                                      width: 100.w,
-                                      padding: EdgeInsets.all(8.h),
-                                      decoration: BoxDecoration(
-                                        color: ColorManager.primaryColor,
-                                        borderRadius:
-                                            BorderRadius.circular(15.r),
-                                      ),
-                                      child: Center(
-                                        child: CustomText(
-                                          text: translate(LocaleKeys.soldOut),
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium!
-                                              .copyWith(
-                                                  color: ColorManager.white),
-                                        ),
-                                      ),
-                                    )
-                                  : const SizedBox()
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: data.carList[index].brand?.name != null
-                                    ? CustomText(
-                                        text:
-                                            "${data.carList[index].brand?.name} ${data.carList[index].brandModel?.name} ${data.carList[index].brandModelExtension?.name}",
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                                height: 1.2,
-                                                color: ColorManager
-                                                    .blackColor1C1C1C,
-                                                fontWeight:
-                                                    FontWeightManager.semiBold))
-                                    : Shimmer.fromColors(
-                                        baseColor: Colors.grey[200]!,
-                                        highlightColor: Colors.grey[600]!,
-                                        child: Container(
-                                          height: 14.h,
-                                          width: 20.w,
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  ColorManager.greyColorCBCBCB,
-                                              borderRadius:
-                                                  BorderRadius.circular(15.h)
-
-                                              // shape: BoxShape.circle
-                                              ),
-                                        ),
-                                      ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          data.carList[index].price != null
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    CustomText(
-                                        text:
-                                            "${double.parse("${data.carList[index].price}").toStringAsFixed(0)} EGP",
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .titleLarge!
-                                            .copyWith(
-                                                color:
-                                                    ColorManager.primaryColor,
-                                                fontSize: 28.h,
-                                                fontWeight:
-                                                    FontWeightManager.bold,
-                                                height: 1))
-                                  ],
-                                )
-                              : Shimmer.fromColors(
-                                  baseColor: Colors.grey[200]!,
-                                  highlightColor: Colors.grey[600]!,
-                                  child: Container(
-                                    height: 14.h,
-                                    width: 50.w,
-                                    decoration: BoxDecoration(
-                                        color: ColorManager.greyColorCBCBCB,
-                                        borderRadius:
-                                            BorderRadius.circular(15.h)
-                                        // shape: BoxShape.circle
-                                        ),
-                                  ),
-                                ),
-                          VerticalSpace(10.h),
-                          !_isLoading
-                              ? CustomButton(
-                                  buttonText: translate(LocaleKeys.edit),
-                                  backgroundColor: ColorManager.primaryColor,
-                                  height: 40.h,
-                                  onTap: () async {
-                                    setState(() {
-                                      _isLoading = true;
-                                    });
-                                    await Provider.of<CarBrandsViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBrands(context: context);
-                                    await Provider.of<CarBrandsModelViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBrandsModels(
-                                            context: context,
-                                            brandId:
-                                                data.carList[index].brand!.id!);
-                                    await Provider.of<
-                                                CarBrandsModelExtensionViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBrandsModels(
-                                            context: context,
-                                            id: data.carList[index].brandModel!
-                                                .id!);
-                                    await Provider.of<CarFeaturesViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getCarFeatures(context: context);
-                                    await Provider.of<YearsViewModel>(context,
-                                            listen: false)
-                                        .getYears(context: context);
-                                    await Provider.of<CarColorsViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getColors(context: context);
-                                    await Provider.of<
-                                                ShowRoomsBranchesViewModel>(
-                                            context,
-                                            listen: false)
-                                        .getBranches(context: context, id: 1);
-
-                                    NavigationService.push(
-                                        context, Routes.updateCarPage,
-                                        arguments: {
-                                          "carModel": data.carList[index]
-                                        });
-                                    setState(() {
-                                      _isLoading = false;
-                                    });
-                                  },
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    MyProgressIndicator(
-                                      color: ColorManager.primaryColor,
-                                      size: 60.h,
-                                    )
-                                  ],
-                                ),
-                          VerticalSpace(10.h),
-                          CustomButton(
-                            buttonText: translate(LocaleKeys.soldOut),
-                            backgroundColor: data.carList[index].isBayed!
-                                ? ColorManager.greyColor515151
-                                : ColorManager.orange,
-                            height: 40.h,
-                            onTap: !data.carList[index].isBayed!
-                                ? () async {
-                                    await sellCarProvider.hideBranch(
-                                        context: context,
-                                        id: data.carList[index].id!);
-                                    Provider.of<GetMyCarsViewModel>(context,
-                                            listen: false)
-                                        .getMyCars(
-                                            context: context,
-                                            id: shared?.getString("role") ==
-                                                        "showroom" ||
-                                                    shared?.getString("role") ==
-                                                        "agency"
-                                                ? userProvider.user!.id!
-                                                : userProvider.endUser!.id!,
-                                            modelRole: shared?.getString(
-                                                            "role") ==
-                                                        "showroom" ||
-                                                    shared?.getString("role") ==
-                                                        "agency"
-                                                ? userProvider.user!.role!
-                                                : "user",
-                                            states: null,
-                                            isAll: true);
-                                  }
-                                : () {},
-                          )
-                        ],
-                      ),
-                    ));
+                itemBuilder: (ctx, index) => CarCard(index: index , carList: data.carList[index],));
           }
         },
+      ),
+    );
+  }
+}
+
+
+
+
+class CarCard extends StatefulWidget {
+  final int index ;
+  final CarModel carList ;
+  const CarCard({Key? key, required this.index, required this.carList}) : super(key: key);
+
+  @override
+  State<CarCard> createState() => _CarCardState();
+}
+
+class _CarCardState extends State<CarCard> {
+  bool _isLoading = false;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+          vertical: 0.h, horizontal: 0.w),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.r),
+          border:
+          Border.all(color: ColorManager.greyColorCBCBCB)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              TapEffect(
+                  onClick: () async {
+                    setState(() {
+                      _isLoading = true;
+                    });
+                    await Provider.of<CarBrandsViewModel>(
+                        context,
+                        listen: false)
+                        .getBrands(context: context);
+                    await Provider.of<CarBrandsModelViewModel>(
+                        context,
+                        listen: false)
+                        .getBrandsModels(
+                        context: context,
+                        brandId:
+                        widget.carList.brand!.id!);
+                    await Provider.of<
+                        CarBrandsModelExtensionViewModel>(
+                        context,
+                        listen: false)
+                        .getBrandsModels(
+                        context: context,
+                        id: widget.carList.brandModel!
+                            .id!);
+                    await Provider.of<CarFeaturesViewModel>(
+                        context,
+                        listen: false)
+                        .getCarFeatures(context: context);
+                    await Provider.of<YearsViewModel>(context,
+                        listen: false)
+                        .getYears(context: context);
+                    await Provider.of<CarColorsViewModel>(
+                        context,
+                        listen: false)
+                        .getColors(context: context);
+                    await Provider.of<
+                        ShowRoomsBranchesViewModel>(
+                        context,
+                        listen: false)
+                        .getBranches(context: context, id: 1);
+                    print(widget.carList.toJson());
+                    NavigationService.push(
+                        context, Routes.updateCarPage,
+                        arguments: {
+                          "carModel": widget.carList
+                        });
+                    setState(() {
+                      _isLoading = false;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: CustomShimmerImage(
+                        image:
+                        "${widget.carList.mainImage}",
+                        boxFit: BoxFit.cover,
+                        height: 150.h,
+                        width: double.infinity,
+                      ),
+                    ),
+                  )),
+              widget.carList.isBayed!
+                  ? Container(
+                width: 100.w,
+                padding: EdgeInsets.all(8.h),
+                decoration: BoxDecoration(
+                  color: ColorManager.primaryColor,
+                  borderRadius:
+                  BorderRadius.circular(15.r),
+                ),
+                child: Center(
+                  child: CustomText(
+                    text: translate(LocaleKeys.soldOut),
+                    textStyle: Theme.of(context)
+                        .textTheme
+                        .labelMedium!
+                        .copyWith(
+                        color: ColorManager.white),
+                  ),
+                ),
+              )
+                  : const SizedBox()
+            ],
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: widget.carList.brand?.name != null
+                    ? CustomText(
+                    text:
+                    "${widget.carList.brand?.name} ${widget.carList.brandModel?.name} ${widget.carList.brandModelExtension?.name}",
+                    textStyle: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(
+                        height: 1.2,
+                        color: ColorManager
+                            .blackColor1C1C1C,
+                        fontWeight:
+                        FontWeightManager.semiBold))
+                    : Shimmer.fromColors(
+                  baseColor: Colors.grey[200]!,
+                  highlightColor: Colors.grey[600]!,
+                  child: Container(
+                    height: 14.h,
+                    width: 20.w,
+                    decoration: BoxDecoration(
+                        color:
+                        ColorManager.greyColorCBCBCB,
+                        borderRadius:
+                        BorderRadius.circular(15.h)
+
+                      // shape: BoxShape.circle
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          widget.carList.price != null
+              ? Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CustomText(
+                  text:
+                  "${double.parse("${widget.carList.price}").toStringAsFixed(0)} EGP",
+                  textStyle: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(
+                      color:
+                      ColorManager.primaryColor,
+                      fontSize: 28.h,
+                      fontWeight:
+                      FontWeightManager.bold,
+                      height: 1))
+            ],
+          )
+              : Shimmer.fromColors(
+            baseColor: Colors.grey[200]!,
+            highlightColor: Colors.grey[600]!,
+            child: Container(
+              height: 14.h,
+              width: 50.w,
+              decoration: BoxDecoration(
+                  color: ColorManager.greyColorCBCBCB,
+                  borderRadius:
+                  BorderRadius.circular(15.h)
+                // shape: BoxShape.circle
+              ),
+            ),
+          ),
+          VerticalSpace(10.h),
+          !_isLoading
+              ? CustomButton(
+            buttonText: translate(LocaleKeys.edit),
+            backgroundColor: ColorManager.primaryColor,
+            height: 40.h,
+            onTap: () async {
+              setState(() {
+                _isLoading = true;
+              });
+              await Provider.of<CarBrandsViewModel>(
+                  context,
+                  listen: false)
+                  .getBrands(context: context);
+              await Provider.of<CarBrandsModelViewModel>(
+                  context,
+                  listen: false)
+                  .getBrandsModels(
+                  context: context,
+                  brandId:
+                  widget.carList.brand!.id!);
+              await Provider.of<
+                  CarBrandsModelExtensionViewModel>(
+                  context,
+                  listen: false)
+                  .getBrandsModels(
+                  context: context,
+                  id: widget.carList.brandModel!
+                      .id!);
+              await Provider.of<CarFeaturesViewModel>(
+                  context,
+                  listen: false)
+                  .getCarFeatures(context: context);
+              await Provider.of<YearsViewModel>(context,
+                  listen: false)
+                  .getYears(context: context);
+              await Provider.of<CarColorsViewModel>(
+                  context,
+                  listen: false)
+                  .getColors(context: context);
+              await Provider.of<
+                  ShowRoomsBranchesViewModel>(
+                  context,
+                  listen: false)
+                  .getBranches(context: context, id: 1);
+
+              NavigationService.push(
+                  context, Routes.updateCarPage,
+                  arguments: {
+                    "carModel": widget.carList
+                  });
+              setState(() {
+                _isLoading = false;
+              });
+            },
+          )
+              : Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MyProgressIndicator(
+                color: ColorManager.primaryColor,
+                size: 60.h,
+              )
+            ],
+          ),
+          VerticalSpace(10.h),
+          CustomButton(
+            buttonText: translate(LocaleKeys.soldOut),
+            backgroundColor: widget.carList.isBayed!
+                ? ColorManager.greyColor515151
+                : ColorManager.orange,
+            height: 40.h,
+            onTap: !widget.carList.isBayed!
+                ? () async {
+              // await sellCarProvider.hideBranch(
+              //     context: context,
+              //     id: widget.carList.id!);
+              // Provider.of<GetMyCarsViewModel>(context,
+              //     listen: false)
+              //     .getMyCars(
+              //     context: context,
+              //     id: shared?.getString("role") ==
+              //         "showroom" ||
+              //         shared?.getString("role") ==
+              //             "agency"
+              //         ? userProvider.user!.id!
+              //         : userProvider.endUser!.id!,
+              //     modelRole: shared?.getString(
+              //         "role") ==
+              //         "showroom" ||
+              //         shared?.getString("role") ==
+              //             "agency"
+              //         ? userProvider.user!.role!
+              //         : "user",
+              //     states: null,
+              //     isAll: true);
+            }
+                : () {},
+          )
+        ],
       ),
     );
   }

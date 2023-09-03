@@ -2,9 +2,12 @@ import 'package:automobile_project/config/navigation/navigation_services.dart';
 import 'package:automobile_project/core/resources/app_colors.dart';
 import 'package:automobile_project/core/resources/app_values.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
+import 'package:automobile_project/presentation/component/components.dart';
 import 'package:automobile_project/presentation/component/tap_effect.dart';
 import 'package:automobile_project/presentation/static_pages/view_model.dart';
+import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +22,7 @@ class WhoWeAre extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.h),
         child:  MyAppbar(
-          title: "Who we are",
+          title: translate(LocaleKeys.whoAreWe),
           centerTitle: true,
           titleColor: ColorManager.white,
           backgroundColor: ColorManager.primaryColor,
@@ -27,10 +30,7 @@ class WhoWeAre extends StatelessWidget {
               onClick: () {
                 NavigationService.goBack(context);
               },
-              child: const Icon(
-                Icons.arrow_back_ios_new,
-                color: ColorManager.white,
-              )),
+              child: Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,)),
         ),
       ),
       body: Consumer<StaticPagViewModel>(builder: (_ , data , __){

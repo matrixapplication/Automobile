@@ -124,16 +124,7 @@ class _FilterPageState extends State<FilterPage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: shared!.getString("lang") == 'ar' ?
-            const Icon(
-              Icons.arrow_forward_ios,
-              textDirection: TextDirection.ltr,
-              color: ColorManager.white,
-            ) : const Icon(
-              Icons.arrow_forward_ios,
-              textDirection: TextDirection.rtl,
-              color: ColorManager.white,
-            )),
+            child:Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,)),
       )),
       body:   SizedBox(
         height: deviceHeight * 0.87,

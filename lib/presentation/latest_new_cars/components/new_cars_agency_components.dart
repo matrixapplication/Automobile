@@ -85,9 +85,9 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
             ),
             itemCount: data.agencyCarList.length,
             itemBuilder: (ctx, index) => Container(
-              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+              padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 0.w),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
+                  borderRadius: BorderRadius.circular(15.r),
                   border: Border.all(color: ColorManager.greyColorCBCBCB)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
