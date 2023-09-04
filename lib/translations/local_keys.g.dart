@@ -136,7 +136,7 @@ abstract class  LocaleKeys {
   static const addressEn = "addressEn";
   static const addCover = "addCover";
   static const checkNumber = "checkNumber" ;
-
+  static const editBranch = 'editBranch'  ;
 
 
 }

@@ -106,7 +106,7 @@ class _SellCarPhotosPageState extends State<SellCarPhotosPage> {
                               Icon(Icons.image,
                                   color: ColorManager.blueColor, size: 100.h),
                               CustomText(
-                                  text: "Image Here",
+                                  text: translate(LocaleKeys.addMainImage),
                                   textStyle: Theme.of(context)
                                       .textTheme
                                       .titleSmall!
@@ -216,7 +216,7 @@ class _SellCarPhotosPageState extends State<SellCarPhotosPage> {
               const VerticalSpace(10),
               Center(
                   child: CustomButton(
-                      buttonText:"Post Ad",
+                      buttonText:translate(LocaleKeys.postAd),
                       onTap: () {
                         if (images.isEmpty || mainImage ==null) {
                           Alerts.showAppDialog(context,

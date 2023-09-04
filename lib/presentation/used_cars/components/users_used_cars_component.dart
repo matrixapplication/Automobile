@@ -88,7 +88,7 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
           ),
           itemCount: data.carList.length,
           itemBuilder: (ctx, index) => Container(
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+            // padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
                 border: Border.all(color: ColorManager.greyColorCBCBCB)),
@@ -170,7 +170,9 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
                         padding: EdgeInsets.all(8.h),
                         decoration: BoxDecoration(
                           color: ColorManager.primaryColor ,
-                          borderRadius: BorderRadius.circular(15.r) ,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(12.r)
+                          ) ,
                         ),
                         child: Center(
                           child: CustomText(text: translate(LocaleKeys.soldOut)   , textStyle: Theme.of(context)

@@ -168,7 +168,9 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
                           padding: EdgeInsets.all(8.h),
                           decoration: BoxDecoration(
                             color: ColorManager.primaryColor ,
-                            borderRadius: BorderRadius.circular(15.r) ,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(8.h)
+                            ) ,
                           ),
                           child: Center(
                             child: CustomText(text:translate(LocaleKeys.soldOut)  , textStyle: Theme.of(context)
@@ -249,7 +251,7 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
                     ),
                   ),
                   const Spacer(),
-                  CustomButton(
+                  Padding(padding: EdgeInsets.all(8.h) , child: CustomButton(
                     buttonText: translate(LocaleKeys.details),
                     backgroundColor: ColorManager.primaryColor,
                     height: 40.h,
@@ -258,7 +260,7 @@ class _NewCarsAgencyComponentState extends State<NewCarsAgencyComponent> {
                           context, Routes.latestNewCarsDetails,
                           arguments: {"isShowRoom": true , "carModel" : data.agencyCarList[index]});
                     },
-                  )
+                  ),)
                 ],
               ),
             )) ;

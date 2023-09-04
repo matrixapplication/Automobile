@@ -151,6 +151,8 @@ class CodegenLoader extends AssetLoader{
     "nameAr" : "الاسم بالعربي",
     "selectDistrict" : "اختر المنطقة",
     "addCover" : "اضف صورة العرض" ,
+    "editBranch" : "تعديل الفرع"
+
 
 
 
@@ -291,6 +293,7 @@ static const Map<String,dynamic> en = {
   "nameAr" : "name-ar",
   "selectDistrict" : "Select District",
   "addCover" : "Add Cover Image Here" ,
+  "editBranch" : "Edit Branch"
 
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};

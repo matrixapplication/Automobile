@@ -89,7 +89,7 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
           itemBuilder: (ctx, index) =>  Container(
             padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 0.w),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.r),
+                borderRadius: BorderRadius.circular(12.r),
                 border: Border.all(color: ColorManager.greyColorCBCBCB)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,13 +162,15 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
                     ) ,
                     data.showroomCarList[index].isBayed! ?
                     Align(
-                      alignment: Alignment.topLeft,
+                      alignment: shared!.getString("lang") == "en" ?  Alignment.topLeft : Alignment.topRight,
                       child: Container(
                         width: 90.w,
                         padding: EdgeInsets.all(8.h),
                         decoration: BoxDecoration(
                           color: ColorManager.greyColor515151 ,
-                          borderRadius: BorderRadius.circular(15.r) ,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(12.h)
+                          ) ,
                         ),
                         child: Center(
                           child: CustomText(text: translate(LocaleKeys.soldOut)   , textStyle: Theme.of(context)
@@ -249,15 +251,18 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
                   ),
                 ),
                 const Spacer(),
-                CustomButton(
-                  buttonText: translate(LocaleKeys.details) ,
-                  backgroundColor: ColorManager.primaryColor,
-                  height: 40.h,
-                  onTap: () {
-                    NavigationService.push(
-                        context, Routes.usedCarDetailsPage,
-                        arguments: {"isShowRoom": true , "carModel" : data.showroomCarList[index]});
-                  },
+                Padding(
+                  padding: EdgeInsets.all(8.h),
+                  child:  CustomButton(
+                    buttonText: translate(LocaleKeys.details) ,
+                    backgroundColor: ColorManager.primaryColor,
+                    height: 40.h,
+                    onTap: () {
+                      NavigationService.push(
+                          context, Routes.usedCarDetailsPage,
+                          arguments: {"isShowRoom": true , "carModel" : data.showroomCarList[index]});
+                    },
+                  ),
                 )
               ],
             ),

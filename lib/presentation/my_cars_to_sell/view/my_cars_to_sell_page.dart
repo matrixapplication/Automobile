@@ -136,7 +136,7 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: (1 / 1.55).w,
+                  childAspectRatio: (1 / 1.50).w,
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.w,
                   mainAxisSpacing: 10.h,
@@ -402,7 +402,7 @@ class _CarCardState extends State<CarCard> {
             children: [
               MyProgressIndicator(
                 color: ColorManager.primaryColor,
-                size: 60.h,
+                size: 40.h,
               )
             ],
           ),

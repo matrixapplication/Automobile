@@ -161,20 +161,23 @@ class CarModel {
 }
 
 class BodyType {
-  String? key;
+  int? id;
   String? name;
+  String? icon;
 
-  BodyType({this.key, this.name});
+  BodyType({this.id, this.name  , this.icon});
 
   BodyType.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
+    id = json['id'];
     name = json['name'];
+    icon = json['icon'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['key'] = key;
+    data['id'] = id;
     data['name'] = name;
+    data['icon'] = icon;
     return data;
   }
 }

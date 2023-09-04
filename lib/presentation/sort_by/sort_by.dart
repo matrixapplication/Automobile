@@ -3,6 +3,7 @@
 
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
 import 'package:automobile_project/presentation/component/components.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
@@ -90,10 +91,8 @@ class _SortPageState extends State<SortPage> {
               NavigationService.goBack(context);
             },
 
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: ColorManager.white,
-            )),
+            child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
+
       )),
       body:  Container(
         color: Colors.white,

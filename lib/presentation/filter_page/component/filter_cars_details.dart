@@ -2,6 +2,7 @@
 
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
 import 'package:automobile_project/presentation/filter_page/component/filter_cars_data.dart';
 import 'package:automobile_project/presentation/filter_page/view_model/filter_page_view_model.dart';
@@ -86,10 +87,8 @@ class _FiltersCarsDetailsState extends State<FiltersCarsDetails> {
               NavigationService.goBack(context);
             },
 
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: ColorManager.white,
-            )),
+            child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
+
       )),
       body:  Container(
         color: Colors.white,

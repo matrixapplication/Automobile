@@ -89,7 +89,9 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                                       padding: EdgeInsets.all(8.h),
                                       decoration: BoxDecoration(
                                         color: ColorManager.primaryColor ,
-                                        borderRadius: BorderRadius.circular(0.r) ,
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(12.r)
+                                        ) ,
                                       ),
                                       child: Center(
                                         child: CustomText(text: translate(LocaleKeys.soldOut) , textStyle: Theme.of(context)
@@ -180,11 +182,9 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                                           // shape: BoxShape.circle
                                         ),
                                       ),),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ) ,
+
                                     const Spacer(),
-                                    CustomButton(
+                                     CustomButton(
                                       onTap: () {
                                         NavigationService.push(
                                             context, Routes.latestNewCarsDetails  ,
@@ -197,7 +197,7 @@ class _HomeLatestNewCarsComponentState extends State<HomeLatestNewCarsComponent>
                                       buttonText:  translate(LocaleKeys.details),
                                       backgroundColor: ColorManager.primaryColor,
                                       height: 40.h,
-                                    )
+                                    ),
                                   ]),
                             ),
                           ) ,

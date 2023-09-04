@@ -14,6 +14,7 @@ import 'package:automobile_project/data/models/base_response/base_model.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
 import 'package:automobile_project/data/models/show_room_branch_model/show_room_branch_model.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/profile/pages/view_model/get_cities_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/profile/pages/view_model/get_districts_veiw_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/show_rooms_branches_view_model.dart';
@@ -80,10 +81,8 @@ class _ShowAgencyBranchesState extends State<ShowAgencyBranches> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: ColorManager.black,
-            )),
+            child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
+        ,
       )) ,
 
       body: SafeArea(

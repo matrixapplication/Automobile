@@ -89,7 +89,7 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
         itemBuilder: (ctx, index) => Container(
           padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 0.w),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.r),
+              borderRadius: BorderRadius.circular(12.r),
               border: Border.all(color: ColorManager.greyColorCBCBCB)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,13 +162,15 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                   ) ,
                   newCarsAgencyProvider.showroomCarList[index].isBayed! ?
                   Align(
-                    alignment: Alignment.topLeft,
+                    alignment: shared!.getString("lang") ==  "en" ? Alignment.topLeft : Alignment.topRight,
                     child: Container(
                       width: 90.w,
                       padding: EdgeInsets.all(8.h),
                       decoration: BoxDecoration(
-                        color: ColorManager.greyColor515151 ,
-                        borderRadius: BorderRadius.circular(15.r) ,
+                        color: ColorManager.primaryColor ,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(12.r)
+                        ) ,
                       ),
                       child: Center(
                         child: CustomText(text:translate(LocaleKeys.soldOut)  , textStyle: Theme.of(context)
@@ -249,7 +251,7 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                 ),
               ),
               const Spacer(),
-              CustomButton(
+              Padding(padding: EdgeInsets.all(8.h) , child: CustomButton(
                 buttonText: translate(LocaleKeys.details) ,
                 backgroundColor: ColorManager.primaryColor,
                 height: 40.h,
@@ -259,7 +261,7 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                       arguments: {"isShowRoom": true , "carModel" : newCarsAgencyProvider.showroomCarList[index]});
 
                 },
-              )
+              ),)
             ],
           ),
         ));

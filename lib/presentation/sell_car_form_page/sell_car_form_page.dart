@@ -779,6 +779,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                       //Phone
                       CustomTextField(
                         controller: _phoneController,
+                        isPhoneNumber: true,
+
                         validate: (String? value) {
                           if (value!.isEmpty) {
                             return StringsManager.required;
@@ -790,7 +792,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                           // size: 30.h,
                         ),
                         hintText: translate(LocaleKeys.phone),
-                        textInputType: TextInputType.emailAddress,
+                        textInputType: TextInputType.number,
                         maxLine: 1,
                         isValidator: true,
                       ),

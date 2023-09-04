@@ -115,6 +115,7 @@ class _UpdateCarsPageState extends State<UpdateCarsPage> {
     brandModelEx =
         BasicModel.fromJson(widget.carModel.brandModelExtension!.toJson());
     bodyShapeModel  = BasicModel.fromJson(widget.carModel.bodyType!.toJson()) ;
+    print("BodyShapID${widget.carModel.bodyType!.toJson()}");
     carBranches = ShowRoomBranchModel(
         id: widget.carModel.branch?.id,
         name:  widget.carModel.branch?.address,
@@ -158,7 +159,7 @@ class _UpdateCarsPageState extends State<UpdateCarsPage> {
     Provider.of<CarMechanicalViewModel>(context, listen: false)
         .changeTransmissionIndex(widget.carModel.driveType?.key);
     Provider.of<BodyShapeViewModel>(context, listen: false)
-        .changeBodyShapeIndex(widget.carModel.bodyType?.key);
+        .changeBodyShapeIndex(widget.carModel.bodyType?.id.toString());
 
     super.initState();
   }

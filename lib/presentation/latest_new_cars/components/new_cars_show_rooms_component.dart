@@ -88,7 +88,7 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
         ),
         itemCount: newCarsAgencyProvider.showroomCarList.length,
         itemBuilder: (ctx, index) => Container(
-          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+          // padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.r),
               border: Border.all(color: ColorManager.greyColorCBCBCB)),
@@ -170,7 +170,7 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                       padding: EdgeInsets.all(8.h),
                       decoration: BoxDecoration(
                         color: ColorManager.primaryColor ,
-                        borderRadius: BorderRadius.circular(15.r) ,
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(12.r)) ,
                       ),
                       child: Center(
                         child: CustomText(text: translate(LocaleKeys.soldOut)  , textStyle: Theme.of(context)
@@ -251,16 +251,19 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                 ),
               ),
               const Spacer(),
-              CustomButton(
+              Padding(padding: EdgeInsets.all(8.h) ,
+              child: CustomButton(
                 buttonText: translate(LocaleKeys.details),
                 backgroundColor: ColorManager.primaryColor,
                 height: 40.h,
+                padding: EdgeInsets.all(8.h),
                 onTap: () {
                   NavigationService.push(
                       context, Routes.latestNewCarsDetails,
                       arguments: {"isShowRoom": true , "carModel" : newCarsAgencyProvider.showroomCarList[index]});
 
-                  },
+                },
+              ),
               )
             ],
           ),

@@ -368,6 +368,8 @@ class ShowRoomsRepository implements BaseShowRoomsRepository {
       'images[]': uploadList,
       'features[]': carData.selectedOptions,
     });
+
+    print("Fields ===>${data.fields.toList()}");
     try {
       final response = await dioClient?.post(
         "${EndPoints.editCarApi}/$id",

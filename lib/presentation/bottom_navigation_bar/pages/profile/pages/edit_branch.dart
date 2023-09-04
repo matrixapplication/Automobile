@@ -118,7 +118,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
             SizedBox(
               height: 20.h,
             ),
-            Text("Edit branch" , style: Theme.of(context).textTheme.titleLarge,) ,
+            Text(translate(LocaleKeys.editBranch) , style: Theme.of(context).textTheme.titleLarge,) ,
             SizedBox(
               height: 10.h,
             ),
@@ -525,7 +525,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                         _submit(context) ;
                       },
                       backgroundColor: Theme.of(context).primaryColor,
-                      buttonText: "Edit",
+                      buttonText: translate(LocaleKeys.edit),
                       radius: 10.h,
 
                     );
