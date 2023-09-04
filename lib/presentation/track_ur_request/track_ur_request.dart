@@ -3,6 +3,7 @@ import 'package:automobile_project/core/resources/app_colors.dart';
 import 'package:automobile_project/core/resources/app_values.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
 import 'package:automobile_project/presentation/component/components.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
@@ -77,13 +78,14 @@ class _TrackUrRequestState extends State<TrackUrRequest> {
           titleColor: ColorManager.white,
           backgroundColor: ColorManager.primaryColor,
           leading: TapEffect(
+
+
               onClick: () {
+                //code
                 NavigationService.goBack(context);
               },
-              child: const Icon(
-                Icons.arrow_back_ios_new,
-                color: ColorManager.white,
-              )),
+              child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
+
         ),
       ),
       body: SizedBox(
