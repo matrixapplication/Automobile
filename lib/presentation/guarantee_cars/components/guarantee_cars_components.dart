@@ -225,7 +225,7 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CustomText(
-                              text: "${data.adminCarsList[index].price} ${translate(LocaleKeys.egp)}",
+                              text: "${double.parse(data.adminCarsList[index].price!).toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
                               textStyle: Theme
                                   .of(context)
                                   .textTheme

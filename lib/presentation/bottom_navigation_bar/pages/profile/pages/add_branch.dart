@@ -374,6 +374,7 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
               return DropdownSearch<BasicModel>(
                 asyncItems: (filter) async => data.getCitiesRespose!.data!,
                 itemAsString: (BasicModel u) => u.name!,
+
                 onChanged: (BasicModel? data) {
                   setState(() {
                     _selectedDistrict = data!.id.toString() ;
@@ -412,13 +413,7 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                   return _selectedDistrict != null ?
                   Row(
                     children: [
-                      CustomShimmerImage(
-                        image: value?.image ?? '',
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
+
                       CustomText(
                         text: value?.name ?? '',
                         textStyle: Theme.of(context).textTheme.titleLarge,
@@ -444,17 +439,13 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                           text: value.name ?? '',
                           textStyle: Theme.of(context).textTheme.titleLarge,
                         ),
-                        CustomShimmerImage(
-                          image: value.image ?? '',
-                          height: 40.h,
-                          width: 40.h,
-                          boxFit: BoxFit.contain,
-                        ),
+
                       ],
                     ),
                   );
                 } ,
-                    fit: FlexFit.loose
+                    fit: FlexFit.loose ,
+
                 ),
                 dropdownButtonProps: DropdownButtonProps(
                     icon: !data.isLoading
@@ -464,6 +455,7 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                       height: 30,
                       size: 30,
                     )),
+
               );
             }),
 

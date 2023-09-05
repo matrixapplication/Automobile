@@ -129,7 +129,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomTextField(
-                    hintText: "name-ar",
+                    hintText:translate(LocaleKeys.nameAr),
                     enabled: true,
                     contentVerticalPadding: 8.h,
                     fillColor: Colors.white,
@@ -153,7 +153,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     height: 10.h,
                   ),
                   CustomTextField(
-                    hintText: "name-en",
+                    hintText: translate(LocaleKeys.nameEn),
                     enabled: true,
                     contentVerticalPadding: 8.h,
                     fillColor: Colors.white,
@@ -177,7 +177,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     height: 10.h,
                   ),
                   CustomTextField(
-                    hintText: "address-ar",
+                    hintText: translate(LocaleKeys.addressAr),
                     enabled: true,
                     contentVerticalPadding: 8.h,
                     fillColor: Colors.white,
@@ -201,7 +201,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     height: 10.h,
                   ),
                   CustomTextField(
-                    hintText: "address-en",
+                    hintText: translate(LocaleKeys.addressEn),
                     enabled: true,
                     contentVerticalPadding: 8.h,
                     fillColor: Colors.white,
@@ -226,7 +226,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     height: 10.h,
                   ),
                   CustomTextField(
-                    hintText: "phone number",
+                    hintText: translate(LocaleKeys.phone),
                     enabled: true,
                     contentVerticalPadding: 8.h,
                     fillColor: Colors.white,
@@ -255,7 +255,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     height: 10.h,
                   ),
                   CustomTextField(
-                    hintText: "whatsapp",
+                    hintText: translate(LocaleKeys.whatsApp),
                     enabled: true,
                     contentVerticalPadding: 8.h,
                     fillColor: Colors.white,
@@ -311,7 +311,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                 },
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   dropdownSearchDecoration: InputDecoration(
-                      labelText: "Select City",
+                      labelText: translate(LocaleKeys.selectCity),
                       labelStyle: Theme.of(context)
                           .textTheme
                           .titleLarge!
@@ -340,13 +340,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                   return _selectedCity != null ?
                   Row(
                     children: [
-                      CustomShimmerImage(
-                        image: value?.image ?? '',
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
+
                       CustomText(
                         text: value?.name ?? '',
                         textStyle: Theme.of(context).textTheme.titleLarge,
@@ -356,7 +350,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     children: [
 
                       CustomText(
-                        text: 'Select city',
+                        text: translate(LocaleKeys.selectCity),
                         textStyle: Theme.of(context).textTheme.titleMedium,
                       )
                     ],
@@ -372,12 +366,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                           text: value.name ?? '',
                           textStyle: Theme.of(context).textTheme.titleLarge,
                         ),
-                        CustomShimmerImage(
-                          image: value.image ?? '',
-                          height: 40.h,
-                          width: 40.h,
-                          boxFit: BoxFit.contain,
-                        ),
+
                       ],
                     ),
                   );
@@ -413,7 +402,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                 },
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   dropdownSearchDecoration: InputDecoration(
-                      labelText: "Select District",
+                      labelText: translate(LocaleKeys.selectDistrict),
                       labelStyle: Theme.of(context)
                           .textTheme
                           .titleLarge!
@@ -442,13 +431,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                   return _selectedDistrict != null ?
                   Row(
                     children: [
-                      CustomShimmerImage(
-                        image: value?.image ?? '',
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
+
                       CustomText(
                         text: value?.name ?? '',
                         textStyle: Theme.of(context).textTheme.titleLarge,
@@ -458,7 +441,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     children: [
 
                       CustomText(
-                        text: 'Select District',
+                        text: translate(LocaleKeys.selectDistrict),
                         textStyle: Theme.of(context).textTheme.titleMedium,
                       )
                     ],
@@ -474,12 +457,7 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                           text: value.name ?? '',
                           textStyle: Theme.of(context).textTheme.titleLarge,
                         ),
-                        CustomShimmerImage(
-                          image: value.image ?? '',
-                          height: 40.h,
-                          width: 40.h,
-                          boxFit: BoxFit.contain,
-                        ),
+
                       ],
                     ),
                   );

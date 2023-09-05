@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -48,9 +49,10 @@ class _SellCarPhotosPageState extends State<SellCarPhotosPage> {
             onClick: () {
               NavigationService.goBack(context);
             },
-            child: const Icon(
-              Icons.arrow_back_ios_new,
+            child: Icon(
+              Icons.arrow_forward_ios ,
               color: ColorManager.white,
+              textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
             )),
       )),
       body: SafeArea(

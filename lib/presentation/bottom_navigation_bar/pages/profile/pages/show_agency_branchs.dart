@@ -76,6 +76,8 @@ class _ShowAgencyBranchesState extends State<ShowAgencyBranches> {
       appBar:PreferredSize(
           preferredSize: Size.fromHeight(70.h), child: MyAppbar(
         title: translate(LocaleKeys.myBranches),
+        titleColor: ColorManager.white,
+        backgroundColor: ColorManager.primaryColor,
         centerTitle: true,
         leading: TapEffect(
             onClick: () {

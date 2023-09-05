@@ -13,7 +13,7 @@ class CarModel {
   BodyType? bodyType;
   FuelType? fuelType;
   Status? status;
-  int? price;
+  String? price;
   String? doors;
   String? engine;
   String? cylinders;
@@ -83,7 +83,7 @@ class CarModel {
         : null;
     status =
     json['status'] != null ? Status.fromJson(json['status']) : null;
-    price = json['price'];
+    price = double.parse(json['price'].toString()).toStringAsFixed(0);
     doors = json['doors'];
     engine = json['engine'];
     cylinders = json['cylinders'];

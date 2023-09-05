@@ -163,7 +163,7 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
                     ) ,
                     data.carList[index].isBayed! ?
                     Align(
-                      alignment: shared!.getString("lang") == "en" ? Alignment.topLeft : Alignment.topRight,
+                      alignment:  Alignment.topRight,
 
                       child: Container(
                         width: 90.w,
@@ -171,7 +171,7 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
                         decoration: BoxDecoration(
                           color: ColorManager.primaryColor ,
                           borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(12.r)
+                            topRight: Radius.circular(15.r)
                           ) ,
                         ),
                         child: Center(

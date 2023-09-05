@@ -144,9 +144,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                     height: 26.h,
                     color: widget.selectedIndex == 2
                         ? ColorManager.primaryColor
-                        : null,
+                        : ColorManager.greyColorCBCBCB,
                   ),
-                  label:  "My Cars",
+                  label:  translate(LocaleKeys.myCars),
                 ) :
                 BottomNavigationBarItem(
                   icon: CustomSvgImage(

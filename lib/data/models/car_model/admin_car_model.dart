@@ -11,7 +11,7 @@ class AdminCars {
   DriveType? bodyType;
   DriveType? fuelType;
   DriveType? status;
-  int? price;
+  String? price;
   int? doors;
   bool? isBayed;
   String? engine;
@@ -59,6 +59,9 @@ class AdminCars {
         this.features,
         this.reports});
 
+
+
+
   AdminCars.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
@@ -89,7 +92,7 @@ class AdminCars {
         : null;
     status =
     json['status'] != null ? DriveType.fromJson(json['status']) : null;
-    price = json['price'];
+    price = json['price'].toString();
     doors = json['doors'];
     engine = json['engine'];
     cylinders = json['cylinders'];

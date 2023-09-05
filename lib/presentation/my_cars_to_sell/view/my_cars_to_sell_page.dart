@@ -100,13 +100,13 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                     onClick: () {
                       NavigationService.goBack(context);
                     },
-                    child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
+                    child:  Icon(Icons.arrow_back_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
                 : TapEffect(
                     onClick: () {
                       NavigationService.push(
                           context, Routes.bottomNavigationBar);
                     },
-                    child:  Icon(Icons.arrow_forward_ios , color: ColorManager.white,textDirection: shared!.getString("lang") == "ar"? TextDirection.ltr : TextDirection.rtl,)),
+                    child:  Icon(Icons.arrow_back_ios , color: ColorManager.white,textDirection: shared!.getString("lang") == "en"? TextDirection.rtl : TextDirection.ltr,)),
           )),
       body: Consumer<GetMyCarsViewModel>(
         builder: (_, data, __) {
@@ -381,11 +381,17 @@ class _CarCardState extends State<CarCard> {
                   context,
                   listen: false)
                   .getColors(context: context);
-              await Provider.of<
-                  ShowRoomsBranchesViewModel>(
-                  context,
-                  listen: false)
-                  .getBranches(context: context, id: 1);
+
+
+              await Provider.of<BodyShapeViewModel>(context , listen: false).getBodyShape(context: context) ;
+              await Provider.of<FuelTypeViewModel>(context , listen: false).getFuelType(context: context) ;
+              if(shared!.getString("role")!= 'user'){
+                await Provider.of<
+                    ShowRoomsBranchesViewModel>(
+                    context,
+                    listen: false)
+                    .getBranches(context: context, id: 1);
+              }
 
               NavigationService.push(
                   context, Routes.updateCarPage,

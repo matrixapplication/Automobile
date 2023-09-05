@@ -953,11 +953,12 @@ class _UpdateCarsPageState extends State<UpdateCarsPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
 
-                                    CustomShimmerImage(image: "${value.icon}"  , height: 20.h) ,
+
                                     CustomText(
                                       text: value.name ?? '',
                                       textStyle: Theme.of(context).textTheme.titleLarge,
                                     ),
+                                    CustomShimmerImage(image: "${value.icon}"  , height: 20.h) ,
                                   ],
                                 ),
                               );

@@ -88,7 +88,9 @@ class _HomeTopUsedCarsComponentState extends State<HomeTopUsedCarsComponent> {
                           padding: EdgeInsets.all(8.h),
                           decoration: BoxDecoration(
                             color: ColorManager.primaryColor ,
-                            borderRadius: BorderRadius.circular(15.r) ,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15.r)
+                            ) ,
                           ),
                           child: Center(
                             child: CustomText(text: translate(LocaleKeys.soldOut)  , textStyle: Theme.of(context)

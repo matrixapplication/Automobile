@@ -1,5 +1,6 @@
 import 'package:automobile_project/config/navigation/navigation_services.dart';
 import 'package:automobile_project/core/resources/app_colors.dart';
+import 'package:automobile_project/core/resources/app_values.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/component/app_widgets/my_app_bar.dart';
@@ -39,8 +40,11 @@ class SellBuyPrivacy extends StatelessWidget {
             if(data.isLoading){
               return SingleChildScrollView(
                 padding: EdgeInsets.all(16.h),
-                child: const Center(
-                  child: CircularProgressIndicator(),
+                child: SizedBox(
+                  height: deviceHeight * 0.8 ,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ) ,
               );
             }else{
