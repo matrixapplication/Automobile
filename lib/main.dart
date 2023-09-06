@@ -101,10 +101,10 @@ void main() async {
     String? cachedLnag = shared!.getString("lang") ;
     if(cachedLnag == "ar"){
       lang = const Locale("ar") ;
-      shared!.setString("lang", "ar") ;
+      await shared!.setString("lang", "ar") ;
     }else{
       lang = const Locale("en") ;
-      shared!.setString("lang", "en") ;
+      await shared!.setString("lang", "en") ;
     }
     runApp(AppProviders(
         child: EasyLocalization(

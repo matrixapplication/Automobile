@@ -93,59 +93,62 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                     return ! item.isBlocked! ?
                     TapEffect(
                       onClick: () {
-                        NavigationService.push(
-                            context, Routes.agencyProfilePage ,
-                            arguments: {
-                              "showRoomModel" : viewModel.allAgencyList[index] ,
-                              "tab" : 0
-                            }
-                        );
+
                       },
                       child: Card(
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 10.w, horizontal: 10.w),
                           child: Column(children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  child: CustomShimmerImage(
-                                    image:
-                                        "${item.image}",
-                                    boxFit: BoxFit.contain,
-                                    height: 100.h,
-                                    width: 120.h,
-                                  ),
-                                ),
-                                HorizontalSpace(20.w),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      CustomText(
-                                          text: item.showroomName,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge!
-                                              .copyWith(
-                                                color: ColorManager
-                                                    .blackColor1C1C1C,
-                                                height: 1,
-                                                fontWeight:
-                                                    FontWeightManager.semiBold,
-                                              )),
-                                      const VerticalSpace(15),
-                                      DescriptionText(text: item.description!, reveal: reveal)
+                           TapEffect(onClick: (){
 
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                             NavigationService.push(
+                                 context, Routes.agencyProfilePage ,
+                                 arguments: {
+                                   "showRoomModel" : viewModel.allAgencyList[index] ,
+                                   "tab" : 0
+                                 }
+                             );
+                           }, child:  Row(
+                             mainAxisAlignment: MainAxisAlignment.start,
+                             children: [
+                               ClipRRect(
+                                 borderRadius: BorderRadius.circular(12.r),
+                                 child: CustomShimmerImage(
+                                   image:
+                                   "${item.image}",
+                                   boxFit: BoxFit.contain,
+                                   height: 100.h,
+                                   width: 120.h,
+                                 ),
+                               ),
+                               HorizontalSpace(20.w),
+                               Expanded(
+                                 child: Column(
+                                   crossAxisAlignment:
+                                   CrossAxisAlignment.start,
+                                   mainAxisAlignment: MainAxisAlignment.start,
+                                   children: [
+                                     CustomText(
+                                         text: item.showroomName,
+                                         textStyle: Theme.of(context)
+                                             .textTheme
+                                             .titleLarge!
+                                             .copyWith(
+                                           color: ColorManager
+                                               .blackColor1C1C1C,
+                                           height: 1,
+                                           fontWeight:
+                                           FontWeightManager.semiBold,
+                                         )),
+                                     const VerticalSpace(15),
+                                     DescriptionText(text: item.description!, reveal: reveal)
+
+                                   ],
+                                 ),
+                               )
+                             ],
+                           )),
                             const VerticalSpace(20),
                             Container(
                               color:

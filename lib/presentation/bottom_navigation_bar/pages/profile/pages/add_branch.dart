@@ -207,6 +207,7 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     isPhoneNumber: true,
                     borderRadius: 15.w,
+
                     hintWeight: FontWeight.bold,
                     prefixIcon:  const Icon(Icons.phone_android),
                     controller: phoneController,
@@ -216,6 +217,8 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     validate: (String? value){
                       if(value == null || value.isEmpty){
                         return translate(LocaleKeys.required) ;
+                      }else if(value.length  != 11){
+                        return translate(LocaleKeys.phoneErrorMessage) ;
                       }
 
                       return null  ;
@@ -243,6 +246,8 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     validate: (String? value){
                       if(value == null || value.isEmpty){
                         return translate(LocaleKeys.required) ;
+                      }else if(value.length  != 11){
+                        return translate(LocaleKeys.phoneErrorMessage) ;
                       }
 
                       return null  ;

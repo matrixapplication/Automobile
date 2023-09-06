@@ -136,7 +136,11 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                               padding: EdgeInsets.all(8.h),
                               decoration: BoxDecoration(
                                 color: ColorManager.primaryColor ,
-                                borderRadius: BorderRadius.circular(15.r) ,
+                                borderRadius: BorderRadius.only(
+                                    topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                                    topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)
+                                )
                               ),
                               child: Center(
                                 child: CustomText(text: translate(LocaleKeys.soldOut) , textStyle: Theme.of(context)
@@ -200,7 +204,7 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                         children: [
                           Expanded(
                             child: CustomText(
-                                text: "${data.adminCarsList[index].brand?.name} ${data.adminCarsList[index].brandModel?.name} ${data.adminCarsList[index].brandModelExtension?.name}",
+                                text: "${data.adminCarsList[index].brand?.name} ${data.adminCarsList[index].brandModel?.name} ${data.adminCarsList[index].year}",
                                 textStyle: Theme
                                     .of(context)
                                     .textTheme

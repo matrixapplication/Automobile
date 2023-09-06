@@ -81,7 +81,7 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
           // padding: EdgeInsets.symmetric(horizontal: 7.w),
           padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 1 / 1.40,
+            childAspectRatio: 1 / 1.23,
             crossAxisCount: 2,
             crossAxisSpacing: 10.w,
             mainAxisSpacing: 10.h,
@@ -171,7 +171,9 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
                         decoration: BoxDecoration(
                           color: ColorManager.primaryColor ,
                           borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(15.r)
+                              topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                              topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)
                           ) ,
                         ),
                         child: Center(
@@ -195,7 +197,7 @@ class _UsersCarsGridComponentState extends State<UsersCarsGridComponent> {
                     Expanded(
                       child:data.carList[index].brand?.name  != null ?
                       CustomText(
-                          text: "${data.carList[index].brand?.name} ${data.carList[index].brandModel?.name} ${data.carList[index].brandModelExtension?.name}",
+                          text: "${data.carList[index].brand?.name} ${data.carList[index].brandModel?.name} ${data.carList[index].year}",
                           textStyle: Theme.of(context)
                               .textTheme
                               .titleSmall!

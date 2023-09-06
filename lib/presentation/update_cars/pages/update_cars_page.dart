@@ -1556,7 +1556,7 @@ class _UpdateCarsPageState extends State<UpdateCarsPage> {
                                                       const NeverScrollableScrollPhysics(),
                                                   gridDelegate:
                                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                                    childAspectRatio: 4 / 1,
+                                                    childAspectRatio: 5 / 1,
                                                     crossAxisCount: 2,
                                                     crossAxisSpacing: 10.w,
                                                     mainAxisSpacing: 5.h,

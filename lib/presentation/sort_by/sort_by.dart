@@ -213,7 +213,7 @@ class _SortPageState extends State<SortPage> {
                                     children: [
                                       CustomText(
                                           text:
-                                          "${data.carList[index].brand?.name} ${data.carList[index].brandModel?.name} ${data.carList[index].brandModelExtension?.name}",
+                                          "${data.carList[index].brand?.name} ${data.carList[index].brandModel?.name} ${data.carList[index].year}",
                                           textStyle: Theme.of(
                                               context)
                                               .textTheme

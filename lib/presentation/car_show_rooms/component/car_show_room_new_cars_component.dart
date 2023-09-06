@@ -79,7 +79,7 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
         // padding: EdgeInsets.symmetric(horizontal: 7.w),
         padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 1 / 1.32,
+          childAspectRatio: 1 / 1.23,
           crossAxisCount: 2,
           crossAxisSpacing: 10.w,
           mainAxisSpacing: 10.h,
@@ -169,7 +169,9 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                       decoration: BoxDecoration(
                         color: ColorManager.primaryColor ,
                         borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(12.r)
+                            topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                            topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)
                         ) ,
                       ),
                       child: Center(
@@ -193,7 +195,7 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                   Expanded(
                     child:newCarsAgencyProvider.showroomCarList[index].brand?.name  != null ?
                     CustomText(
-                        text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModelExtension?.name}",
+                        text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].year}",
                         textStyle: Theme.of(context)
                             .textTheme
                             .titleSmall!

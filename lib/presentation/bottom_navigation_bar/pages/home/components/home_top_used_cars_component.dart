@@ -89,7 +89,9 @@ class _HomeTopUsedCarsComponentState extends State<HomeTopUsedCarsComponent> {
                           decoration: BoxDecoration(
                             color: ColorManager.primaryColor ,
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(15.r)
+                                topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                                topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)
                             ) ,
                           ),
                           child: Center(

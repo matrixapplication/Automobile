@@ -81,7 +81,7 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
         // padding: EdgeInsets.symmetric(horizontal: 7.w),
         padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 1 / 1.40,
+          childAspectRatio: 1 / 1.23,
           crossAxisCount: 2,
           crossAxisSpacing: 10.w,
           mainAxisSpacing: 10.h,
@@ -170,7 +170,9 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                       padding: EdgeInsets.all(8.h),
                       decoration: BoxDecoration(
                         color: ColorManager.primaryColor ,
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(12.r)) ,
+                        borderRadius: BorderRadius.only(                    topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                            topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)) ,
                       ),
                       child: Center(
                         child: CustomText(text: translate(LocaleKeys.soldOut)  , textStyle: Theme.of(context)
@@ -193,7 +195,7 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                   Expanded(
                     child:newCarsAgencyProvider.showroomCarList[index].brand?.name  != null ?
                     CustomText(
-                        text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModelExtension?.name}",
+                        text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].year}",
                         textStyle: Theme.of(context)
                             .textTheme
                             .titleSmall!

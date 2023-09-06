@@ -3,6 +3,7 @@
 import 'package:automobile_project/config/navigation/navigation.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
+import 'package:automobile_project/main.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_status_view_model.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
@@ -45,6 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
         final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
         await userProider.getEndUserData();
         print("end user ==> ${userProider.endUser}");
+        if(shared!.getString("lang") == null ){
+          await shared!.setString("lang", "en") ;
+        }
         await userProider.getUserData();
         print(" user ==> ${userProider.user}");
         Provider.of<GetMyCarsViewModel>(context, listen: false).getMyCars(context: context , states: null  , id: null ,  modelRole:  null  , isAll: false) ;

@@ -106,7 +106,7 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                       NavigationService.push(
                           context, Routes.bottomNavigationBar);
                     },
-                    child:  Icon(Icons.arrow_back_ios , color: ColorManager.white,textDirection: shared!.getString("lang") == "en"? TextDirection.rtl : TextDirection.ltr,)),
+                    child:  Icon(Icons.arrow_back_ios , color: ColorManager.white,textDirection: shared!.getString("lang") == "en"? TextDirection.ltr : TextDirection.rtl,)),
           )),
       body: Consumer<GetMyCarsViewModel>(
         builder: (_, data, __) {
@@ -136,7 +136,7 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: (1 / 1.50).w,
+                  childAspectRatio: (1 / 1.30).w,
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.w,
                   mainAxisSpacing: 10.h,
@@ -250,7 +250,11 @@ class _CarCardState extends State<CarCard> {
                 decoration: BoxDecoration(
                   color: ColorManager.primaryColor,
                   borderRadius:
-                  BorderRadius.circular(15.r),
+                  BorderRadius.only(
+                    topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                    topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)
+                  ),
                 ),
                 child: Center(
                   child: CustomText(
@@ -276,7 +280,7 @@ class _CarCardState extends State<CarCard> {
                 child: widget.carList.brand?.name != null
                     ? CustomText(
                     text:
-                    "${widget.carList.brand?.name} ${widget.carList.brandModel?.name} ${widget.carList.brandModelExtension?.name}",
+                    "${widget.carList.brand?.name} ${widget.carList.brandModel?.name} ${widget.carList.year}",
                     textStyle: Theme.of(context)
                         .textTheme
                         .titleSmall!

@@ -1529,12 +1529,12 @@ class _SellCarsPageState extends State<SellCarsPage> {
 
                                                   gridDelegate:
                                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                                    childAspectRatio: 4 / 1,
+                                                    childAspectRatio: 5 / 1,
                                                     crossAxisCount: 2,
                                                     crossAxisSpacing: 10.w,
                                                     mainAxisSpacing: 5.h,
                                                   ),
-                                                  padding: EdgeInsets.only(bottom: 85.h),
+                                                  // padding: EdgeInsets.only(bottom: 85.h),
                                                   itemCount: data
                                                       .getCarFeaturesResponse
                                                       ?.data?[index]

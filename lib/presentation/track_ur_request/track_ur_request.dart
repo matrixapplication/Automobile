@@ -118,7 +118,7 @@ class _TrackUrRequestState extends State<TrackUrRequest> {
                         if(value == null || value.isEmpty){
                           return translate(LocaleKeys.required) ;
                         }
-                        return"" ;
+                        return null ;
                       },
                       isPhoneNumber: true,
                       contentVerticalPadding: 17.h,

@@ -96,134 +96,132 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                     final item = viewModel.showRoomsList[index];
 
                     return !item.isBlocked!  ?
-                    TapEffect(
-                      onClick: () {
-                        NavigationService.push(context,
-                            Routes.carShowRoomProfilePage , arguments: {
-                              "showRoomModel" : viewModel.showRoomsList[index] ,
-                              "tab" : 0
-                            });
-                      },
-                      child: Card(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10.w, horizontal: 10.w),
-                          child: Column(children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  child: CustomShimmerImage(
-                                    image:
-                                    "${viewModel.showRoomsList[index].image}",
-                                    boxFit: BoxFit.contain,
-                                    height: 100.h,
-                                    width: 120.h,
-                                  ),
+                    Card(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.w, horizontal: 10.w),
+                        child: Column(children: [
+                          TapEffect(onClick: (){
+                            NavigationService.push(context,
+                                Routes.carShowRoomProfilePage , arguments: {
+                                  "showRoomModel" : viewModel.showRoomsList[index] ,
+                                  "tab" : 0
+                                });
+
+                          }, child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12.r),
+                                child: CustomShimmerImage(
+                                  image:
+                                  "${viewModel.showRoomsList[index].image}",
+                                  boxFit: BoxFit.contain,
+                                  height: 100.h,
+                                  width: 120.h,
                                 ),
-                                HorizontalSpace(20.w),
+                              ),
+                              HorizontalSpace(20.w),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    CustomText(
+                                        text: item.showroomName,
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .copyWith(
+                                          color:
+                                          ColorManager.blackColor1C1C1C,
+                                          height: 1,
+                                          fontWeight:
+                                          FontWeightManager.semiBold,
+                                        )),
+                                    const VerticalSpace(15),
+                                    DescriptionText(text: item.description!, reveal: reveal)
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),) ,
+                          const VerticalSpace(20),
+                          Container(
+                            color:
+                            ColorManager.greyColorCBCBCB.withOpacity(0.4),
+                            padding: EdgeInsets.symmetric(vertical: 5.h),
+                            child: Row(
+                              children: [
                                 Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      CustomText(
-                                          text: item.showroomName,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge!
-                                              .copyWith(
-                                            color:
-                                            ColorManager.blackColor1C1C1C,
-                                            height: 1,
-                                            fontWeight:
-                                            FontWeightManager.semiBold,
-                                          )),
-                                      const VerticalSpace(15),
-                                      DescriptionText(text: item.description!, reveal: reveal)
-                                    ],
-                                  ),
+                                  child: TapEffect(
+                                      onClick: () {
+                                        if(userProvider.isAuth){
+                                          telePhone(item.phone!);
+                                        }else{
+                                          showCustomSnackBar(message: "please login first", context: context);
+                                        }
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(Icons.call,
+                                              color: ColorManager.primaryColor),
+                                          HorizontalSpace(10.w),
+                                          CustomText(
+                                            text: "Call",
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge!
+                                                .copyWith(
+                                                fontWeight:
+                                                FontWeightManager
+                                                    .semiBold,
+                                                color: ColorManager.black),
+                                          )
+                                        ],
+                                      )),
+                                ),
+                                Container(
+                                  width: 1,
+                                  height: 35.h,
+                                  color: ColorManager.greyColor919191,
+                                ),
+                                Expanded(
+                                  child: TapEffect(
+                                      onClick: () {
+                                        NavigationService.push(context,
+                                            Routes.carShowRoomProfilePage , arguments: {
+                                              "showRoomModel" : viewModel.showRoomsList[index] ,
+                                              "tab" : 2
+                                            });
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(Icons.location_on,
+                                              color: ColorManager.primaryColor),
+                                          HorizontalSpace(10.w),
+                                          CustomText(
+                                            text: translate(LocaleKeys.branches),
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge!
+                                                .copyWith(
+                                                fontWeight:
+                                                FontWeightManager
+                                                    .semiBold,
+                                                color: ColorManager.black),
+                                          )
+                                        ],
+                                      )),
                                 )
                               ],
                             ),
-                            const VerticalSpace(20),
-                            Container(
-                              color:
-                              ColorManager.greyColorCBCBCB.withOpacity(0.4),
-                              padding: EdgeInsets.symmetric(vertical: 5.h),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: TapEffect(
-                                        onClick: () {
-                                          if(userProvider.isAuth){
-                                            telePhone(item.phone!);
-                                          }else{
-                                            showCustomSnackBar(message: "please login first", context: context);
-                                          }
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            const Icon(Icons.call,
-                                                color: ColorManager.primaryColor),
-                                            HorizontalSpace(10.w),
-                                            CustomText(
-                                              text: "Call",
-                                              textStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .titleLarge!
-                                                  .copyWith(
-                                                  fontWeight:
-                                                  FontWeightManager
-                                                      .semiBold,
-                                                  color: ColorManager.black),
-                                            )
-                                          ],
-                                        )),
-                                  ),
-                                  Container(
-                                    width: 1,
-                                    height: 35.h,
-                                    color: ColorManager.greyColor919191,
-                                  ),
-                                  Expanded(
-                                    child: TapEffect(
-                                        onClick: () {
-                                          NavigationService.push(context,
-                                              Routes.carShowRoomProfilePage , arguments: {
-                                                "showRoomModel" : viewModel.showRoomsList[index] ,
-                                                "tab" : 2
-                                              });
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            const Icon(Icons.location_on,
-                                                color: ColorManager.primaryColor),
-                                            HorizontalSpace(10.w),
-                                            CustomText(
-                                              text: translate(LocaleKeys.branches),
-                                              textStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .titleLarge!
-                                                  .copyWith(
-                                                  fontWeight:
-                                                  FontWeightManager
-                                                      .semiBold,
-                                                  color: ColorManager.black),
-                                            )
-                                          ],
-                                        )),
-                                  )
-                                ],
-                              ),
-                            )
-                          ]),
-                        ),
+                          )
+                        ]),
                       ),
                     ) : const SizedBox();
                   } else {

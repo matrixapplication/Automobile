@@ -80,7 +80,7 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
           // padding: EdgeInsets.symmetric(horizontal: 7.w),
           padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 1 / 1.30,
+            childAspectRatio: 1 / 1.23,
             crossAxisCount: 2,
             crossAxisSpacing: 10.w,
             mainAxisSpacing: 10.h,
@@ -169,7 +169,9 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
                         decoration: BoxDecoration(
                           color: ColorManager.greyColor515151 ,
                           borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(12.h)
+                              topLeft:  shared!.getString("lang") == "en" ? Radius.circular(12.r) : Radius.circular(0),
+
+                              topRight:   shared!.getString("lang") == "ar" ? Radius.circular(12.r) :  Radius.circular(0)
                           ) ,
                         ),
                         child: Center(
@@ -193,7 +195,7 @@ class _ShowRoomUsedCarComponentsState extends State<ShowRoomUsedCarComponents> {
                     Expanded(
                       child:data.showroomCarList[index].brand?.name  != null ?
                       CustomText(
-                          text: "${data.showroomCarList[index].brand?.name} ${data.showroomCarList[index].brandModel?.name} ${data.showroomCarList[index].brandModelExtension?.name}",
+                          text: "${data.showroomCarList[index].brand?.name} ${data.showroomCarList[index].brandModel?.name} ${data.showroomCarList[index].year}",
                           textStyle: Theme.of(context)
                               .textTheme
                               .titleSmall!

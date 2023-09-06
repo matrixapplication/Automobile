@@ -1,37 +1,28 @@
 import 'dart:io';
 
 import 'package:automobile_project/config/navigation/navigation.dart';
-import 'package:automobile_project/core/services/local/shared_preferences_keys.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
-import 'package:automobile_project/data/models/end_user/end_user_model.dart';
 import 'package:automobile_project/data/models/show_room_branch_model/show_room_branch_model.dart';
-import 'package:automobile_project/data/provider/local_auth_provider.dart';
-import 'package:automobile_project/main.dart';
-import 'package:automobile_project/presentation/auth/login/view_model/end_user_view_model.dart';
-import 'package:automobile_project/presentation/auth/show_room_login/view_model/show_room_login_view_model.dart';
-import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
+
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/profile/pages/view_model/get_districts_veiw_model.dart';
-import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_features_view_model.dart';
-import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_mechanical_view_model.dart';
-import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_status_view_model.dart';
+
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/show_rooms_branches_view_model.dart';
 import 'package:automobile_project/presentation/component/custom_button.dart';
-import 'package:automobile_project/presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
-import 'package:automobile_project/presentation/used_cars/view_model/showroom_used_cars_view_model.dart';
+
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../../../core/resources/resources.dart';
-import '../../../../component/app_widgets/my_app_bar.dart';
+
 import '../../../../component/components.dart';
-import '../../../../component/cutom_shimmer_image.dart';
+
 import 'view_model/get_cities_view_model.dart';
 class EditBranchBottomSheet extends StatefulWidget {
   final ShowRoomBranchModel model ;
@@ -215,6 +206,8 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                     validate: (String? value){
                       if(value == null || value.isEmpty){
                         return translate(LocaleKeys.required) ;
+                      }else if(value.length  != 11){
+                        return translate(LocaleKeys.phoneErrorMessage) ;
                       }
                       return null  ;
                     },
@@ -242,8 +235,8 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                       if(value == null || value.isEmpty){
                         return translate(LocaleKeys.required) ;
                       }
-                      if(value.length < 11 ){
-                        return "phone must be 11 numbers" ;
+                      else if(value.length  != 11){
+                        return translate(LocaleKeys.phoneErrorMessage) ;
                       }
                       return null  ;
                     },
@@ -271,8 +264,8 @@ class _EditBranchBottomSheetState extends State<EditBranchBottomSheet> {
                       if(value == null || value.isEmpty){
                         return translate(LocaleKeys.required) ;
                       }
-                      if(value.length < 11 ){
-                        return "phone must be 11 numbers" ;
+                      else if(value.length  != 11){
+                        return translate(LocaleKeys.phoneErrorMessage) ;
                       }
                       return null  ;
                     },

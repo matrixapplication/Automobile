@@ -151,7 +151,8 @@ class CodegenLoader extends AssetLoader{
     "nameAr" : "الاسم بالعربي",
     "selectDistrict" : "اختر المنطقة",
     "addCover" : "اضف صورة العرض" ,
-    "editBranch" : "تعديل الفرع"
+    "editBranch" : "تعديل الفرع" ,
+    "phoneErrorMessage" : "الهاتف يجب ان يكون 11 رقم"
 
 
 
@@ -293,7 +294,8 @@ static const Map<String,dynamic> en = {
   "nameAr" : "name-ar",
   "selectDistrict" : "Select District",
   "addCover" : "Add Cover Image Here" ,
-  "editBranch" : "Edit Branch"
+  "editBranch" : "Edit Branch" ,
+  "phoneErrorMessage" : "phone number must be 11 numbers"
 
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
