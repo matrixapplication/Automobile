@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/core/utils/alerts.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
 import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/main.dart';
@@ -35,41 +36,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  bool deleteAccountLoading = false;
   File? mainImage;
   final ImagePicker _picker = ImagePicker();
 
-
   @override
   void dispose() {
-
     _nameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
     _passwordController.dispose();
-    _whatsAppController.dispose() ;
-    _showRoomNameController.dispose() ;
+    _whatsAppController.dispose();
+    _showRoomNameController.dispose();
     super.dispose();
   }
 
   Future<void> _submit(context, EndUserViewModel viewModel) async {
     if (kDebugMode) {
-      ResponseModel responseModel = await viewModel.editProfileEndUser(
-          context: context,
-          email: "mahmoudsalah@test.com",
-          password: "12345678" ,
-          confirmPassword: "12345678" ,
-          phone: "01006449771" ,
-          name: "please don't delete"
-      );
+      ResponseModel responseModel = await viewModel.editProfileEndUser(context: context, email: "mahmoudsalah@test.com", password: "12345678", confirmPassword: "12345678", phone: "01006449771", name: "please don't delete");
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
 
-
-        await viewModel.getEndUserData(context: context, token: shared!.getString("token")!).
-        then((value) =>  NavigationService.pushReplacement(context, Routes.bottomNavigationBar));
-
-
+        await viewModel.getEndUserData(context: context, token: shared!.getString("token")!).then((value) => NavigationService.pushReplacement(context, Routes.bottomNavigationBar));
       }
     } else {
       FocusScope.of(context).unfocus();
@@ -78,44 +66,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
         return;
       }
       _key.currentState!.save();
-      ResponseModel responseModel =await viewModel.editProfileEndUser(
-          context: context,
-          email: _emailController.text,
-          password: _passwordController.text ,
-          name: _nameController.text ,
-          phone: _phoneController.text ,
-          confirmPassword: _passwordController.text
-      );
+      ResponseModel responseModel = await viewModel.editProfileEndUser(context: context, email: _emailController.text, password: _passwordController.text, name: _nameController.text, phone: _phoneController.text, confirmPassword: _passwordController.text);
 
-      if(responseModel.isSuccess){
-
-        await viewModel.getEndUserData(context: context, token: shared!.getString("token")!).then((value)
-        => NavigationService.pushReplacement(context, Routes.bottomNavigationBar)) ;
-
+      if (responseModel.isSuccess) {
+        await viewModel.getEndUserData(context: context, token: shared!.getString("token")!).then((value) => NavigationService.pushReplacement(context, Routes.bottomNavigationBar));
       }
     }
   }
+
   Future<void> _showRoomSubmit(context, ShowRoomLoginViewModel viewModel) async {
     if (kDebugMode) {
-      ResponseModel responseModel = await viewModel.editProfileShowRoom(
-          context: context,
-          code: "1400",
-          password: "123456789" ,
-          confirmPassword: "123456789" ,
-          phone: "123456789" ,
-          whatsApp: "123456789",
-          name: "test1" ,
-        showRoomName: "showroom test" ,
-        coverImage: mainImage?.path
-      );
+      ResponseModel responseModel = await viewModel.editProfileShowRoom(context: context, code: "1400", password: "123456789", confirmPassword: "123456789", phone: "123456789", whatsApp: "123456789", name: "test1", showRoomName: "showroom test", coverImage: mainImage?.path);
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
 
-
-        await viewModel.getShowRoomData(context: context).
-        then((value) =>  NavigationService.pushReplacement(context, Routes.bottomNavigationBar));
-
-
+        await viewModel.getShowRoomData(context: context).then((value) => NavigationService.pushReplacement(context, Routes.bottomNavigationBar));
       }
     } else {
       FocusScope.of(context).unfocus();
@@ -125,73 +90,66 @@ class _EditProfilePageState extends State<EditProfilePage> {
       }
 
       _key.currentState!.save();
-      ResponseModel responseModel =await viewModel.editProfileShowRoom(
-          context: context,
-          code: _emailController.text,
-          whatsApp: _whatsAppController.text,
-          showRoomName: _showRoomNameController.text,
-          password: _passwordController.text ,
-          name: _nameController.text ,
-          phone: _phoneController.text ,
-          confirmPassword: _passwordController.text ,
-          coverImage: mainImage?.path
-      );
+      ResponseModel responseModel = await viewModel.editProfileShowRoom(context: context, code: _emailController.text, whatsApp: _whatsAppController.text, showRoomName: _showRoomNameController.text, password: _passwordController.text, name: _nameController.text, phone: _phoneController.text, confirmPassword: _passwordController.text, coverImage: mainImage?.path);
 
-      if(responseModel.isSuccess){
-
-        await viewModel.getShowRoomData(context: context,).then((value)
-        => NavigationService.pushReplacement(context, Routes.bottomNavigationBar)) ;
-
+      if (responseModel.isSuccess) {
+        await viewModel
+            .getShowRoomData(
+              context: context,
+            )
+            .then((value) => NavigationService.pushReplacement(context, Routes.bottomNavigationBar));
       }
     }
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds:0 ) , ()async{
-      final userProvider = Provider.of<LocalAuthProvider>(context , listen: false) ;
+    Future.delayed(const Duration(seconds: 0), () async {
+      final userProvider = Provider.of<LocalAuthProvider>(context, listen: false);
 
-      if(userProvider.user?.role == "showroom" || userProvider.user?.role == "agency"){
-        _nameController.text = userProvider.user!.ownerName! ;
-        _showRoomNameController.text = userProvider.user!.showroomName! ;
-        _emailController.text = userProvider.user!.code! ;
-        _phoneController.text = userProvider.user!.phone! ;
-        _whatsAppController.text = userProvider.user!.whatsapp! ;
-
-      }else {
-        _nameController.text = userProvider.endUser!.name! ;
-        _emailController.text = userProvider.endUser!.email! ;
-        _phoneController.text = userProvider.endUser!.phone! ;
-    }}) ;
+      if (userProvider.user?.role == "showroom" || userProvider.user?.role == "agency") {
+        _nameController.text = userProvider.user!.ownerName!;
+        _showRoomNameController.text = userProvider.user!.showroomName!;
+        _emailController.text = userProvider.user!.code!;
+        _phoneController.text = userProvider.user!.phone!;
+        _whatsAppController.text = userProvider.user!.whatsapp!;
+      } else {
+        _nameController.text = userProvider.endUser!.name!;
+        _emailController.text = userProvider.endUser!.email!;
+        _phoneController.text = userProvider.endUser!.phone!;
+      }
+    });
   }
+
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<LocalAuthProvider>(context , listen: false) ;
+    final userProvider = Provider.of<LocalAuthProvider>(context, listen: false);
 
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.h), child: MyAppbar(
-        title: translate(LocaleKeys.editProfile),
-        titleColor: ColorManager.white,
-        backgroundColor: ColorManager.primaryColor,
-        centerTitle: true,
-        leading: TapEffect(
-            onClick: () {
-              NavigationService.goBack(context);
-            },
-            //context.locale.languageCode == "en" ?
-            child:  EasyLocale.EasyLocalization.of(context)!.locale.languageCode == "en" ?
-              Icon(
-
-              Icons.arrow_back_ios_new_outlined ,
-              color: ColorManager.white,
-            ) :  Icon(
-
-              Icons.arrow_forward_ios ,
-              color: ColorManager.white,
-            )),
-      )),
+          preferredSize: Size.fromHeight(70.h),
+          child: MyAppbar(
+            title: translate(LocaleKeys.editProfile),
+            titleColor: ColorManager.white,
+            backgroundColor: ColorManager.primaryColor,
+            centerTitle: true,
+            leading: TapEffect(
+                onClick: () {
+                  NavigationService.goBack(context);
+                },
+                //context.locale.languageCode == "en" ?
+                child: EasyLocale.EasyLocalization.of(context)!.locale.languageCode == "en"
+                    ? Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: ColorManager.white,
+                      )
+                    : Icon(
+                        Icons.arrow_forward_ios,
+                        color: ColorManager.white,
+                      )),
+          )),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -207,86 +165,70 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 children: [
                   const VerticalSpace(AppSize.s75),
 
-                  shared!.getString("role") == "showroom" || shared!.getString("role") == "agency" ?
-                  TapEffect(
-                    onClick: () async {
-                      final XFile? pickedFile =
-                      await _picker.pickImage(source: ImageSource.gallery);
-                      if (pickedFile != null) {
-                        setState(() {
-                          mainImage = File(pickedFile.path);
-                          print("courseImage =>${pickedFile.path.split("/").last}");
-                        });
-                      }
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: deviceHeight * 0.15,
-                      decoration: BoxDecoration(
-                          color: ColorManager.greyColorF4F4F4,
-                          borderRadius: BorderRadius.circular(12.r)),
-                      child: mainImage != null
-                          ? Image.file(
-                          File(
-                            mainImage!.path,
-                          ),
-                          fit: BoxFit.cover)
-                          : userProvider.user?.coverImage != null ?  
-                          Stack(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: ColorManager.black.withOpacity(0.1) ,
-                                      blurRadius: 58 ,
-                                      offset: const Offset(0, 0) ,
-                                      
-                                    )
-                                  ]
-                                ),
-                                child: CustomShimmerImage(
-                                  image: userProvider.user!.coverImage! , width: double.infinity,) ,
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child:Container(
-                                  padding: EdgeInsets.all(8.h),
-                                  decoration: BoxDecoration(
-                                    color: ColorManager.primaryColor.withOpacity(0.3) ,
-                                    borderRadius: BorderRadius.circular(8.h) ,
-
-                                  ),
-                                  child: CustomText(text: "Change Cover Image",
-                                    textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      color: ColorManager.white ,
-                                      fontWeight: FontWeight.bold
+                  shared!.getString("role") == "showroom" || shared!.getString("role") == "agency"
+                      ? TapEffect(
+                          onClick: () async {
+                            final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+                            if (pickedFile != null) {
+                              setState(() {
+                                mainImage = File(pickedFile.path);
+                                print("courseImage =>${pickedFile.path.split("/").last}");
+                              });
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: deviceHeight * 0.15,
+                            decoration: BoxDecoration(color: ColorManager.greyColorF4F4F4, borderRadius: BorderRadius.circular(12.r)),
+                            child: mainImage != null
+                                ? Image.file(
+                                    File(
+                                      mainImage!.path,
                                     ),
-                                )),
-                              )
-                            ],
-                          )
-                          : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.image,
-                                color: ColorManager.blueColor, size: 100.h),
-                            CustomText(
-                                text: translate(LocaleKeys.addCover) ,
-                                textStyle: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .copyWith(
-                                    fontWeight:
-                                    FontWeightManager.semiBold,
-                                    color: ColorManager.blueColor)),
-                          ]),
-                    ),
-                  ) : const SizedBox(),
-                  shared!.getString("role") == "showroom" || shared!.getString("role") == "agency" ?
-                      SizedBox(
-                        height: 10.h,
-                      ) : const SizedBox() ,
+                                    fit: BoxFit.cover)
+                                : userProvider.user?.coverImage != null
+                                    ? Stack(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(boxShadow: [
+                                              BoxShadow(
+                                                color: ColorManager.black.withOpacity(0.1),
+                                                blurRadius: 58,
+                                                offset: const Offset(0, 0),
+                                              )
+                                            ]),
+                                            child: CustomShimmerImage(
+                                              image: userProvider.user!.coverImage!,
+                                              width: double.infinity,
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.bottomCenter,
+                                            child: Container(
+                                                padding: EdgeInsets.all(8.h),
+                                                decoration: BoxDecoration(
+                                                  color: ColorManager.primaryColor.withOpacity(0.3),
+                                                  borderRadius: BorderRadius.circular(8.h),
+                                                ),
+                                                child: CustomText(
+                                                  text: "Change Cover Image",
+                                                  textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: ColorManager.white, fontWeight: FontWeight.bold),
+                                                )),
+                                          )
+                                        ],
+                                      )
+                                    : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                        Icon(Icons.image, color: ColorManager.blueColor, size: 100.h),
+                                        CustomText(text: translate(LocaleKeys.addCover), textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeightManager.semiBold, color: ColorManager.blueColor)),
+                                      ]),
+                          ),
+                        )
+                      : const SizedBox(),
+                  shared!.getString("role") == "showroom" || shared!.getString("role") == "agency"
+                      ? SizedBox(
+                          height: 10.h,
+                        )
+                      : const SizedBox(),
                   //name
                   CustomTextField(
                     controller: _nameController,
@@ -306,28 +248,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     maxLine: 1,
                     isValidator: true,
                   ),
-                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ?
-                  const VerticalSpace(AppSize.s20) : const SizedBox(),
-                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency"  ?
-                  CustomTextField(
-                    controller: _showRoomNameController,
-                    validate: (String? value) {
-                      if (value!.isEmpty) {
-                        return translate(LocaleKeys.required);
-                      }
-                      return null;
-                    },
-                    prefixIcon: Icon(
-                      Icons.groups,
-                      size: 30.h,
-                    ),
-                    // controller: _emailController,
-                    hintText: translate(LocaleKeys.showRoomName),
-                    textInputType: TextInputType.name,
-                    maxLine: 1,
-                    isValidator: true,
-                  ) :
-                  const SizedBox(),
+                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ? const VerticalSpace(AppSize.s20) : const SizedBox(),
+                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency"
+                      ? CustomTextField(
+                          controller: _showRoomNameController,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return translate(LocaleKeys.required);
+                            }
+                            return null;
+                          },
+                          prefixIcon: Icon(
+                            Icons.groups,
+                            size: 30.h,
+                          ),
+                          // controller: _emailController,
+                          hintText: translate(LocaleKeys.showRoomName),
+                          textInputType: TextInputType.name,
+                          maxLine: 1,
+                          isValidator: true,
+                        )
+                      : const SizedBox(),
                   const VerticalSpace(AppSize.s20),
                   //Email
                   CustomTextField(
@@ -339,8 +280,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       return null;
                     },
                     prefixIcon: Icon(
-                      userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ?
-                      Icons.numbers : Icons.email_outlined,
+                      userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ? Icons.numbers : Icons.email_outlined,
                       size: 30.h,
                     ),
                     // controller: _emailController,
@@ -372,39 +312,44 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     maxLine: 1,
                     isValidator: true,
                   ),
-                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ?
-                  const VerticalSpace(AppSize.s20) : const SizedBox(),
-                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ?
-                  CustomTextField(
-                    controller: _whatsAppController,
-                    validate: (String? value) {
-                      if (value!.isEmpty) {
-                        return StringsManager.required;
-                      }
-                      return null;
-                    },
-                    // prefix: SizedBox(
-                    //   height: 20.h,
-                    //   width: 20.h,
-                    //   child: CustomSvgImage(image: AssetsManager.whatsAppIcon , height: 20.h,width: 20.h , boxFit: BoxFit.fill, ),
-                    // ),
-                    prefixIcon: SizedBox(
-                      height: 17.h,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomSvgImage(image: AssetsManager.whatsAppIcon , height: 20.h,width: 20.h , boxFit: BoxFit.fill,color: ColorManager.black, )
-                        ],
-                      ),
-                    ),
+                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ? const VerticalSpace(AppSize.s20) : const SizedBox(),
+                  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency"
+                      ? CustomTextField(
+                          controller: _whatsAppController,
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              return StringsManager.required;
+                            }
+                            return null;
+                          },
+                          // prefix: SizedBox(
+                          //   height: 20.h,
+                          //   width: 20.h,
+                          //   child: CustomSvgImage(image: AssetsManager.whatsAppIcon , height: 20.h,width: 20.h , boxFit: BoxFit.fill, ),
+                          // ),
+                          prefixIcon: SizedBox(
+                            height: 17.h,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomSvgImage(
+                                  image: AssetsManager.whatsAppIcon,
+                                  height: 20.h,
+                                  width: 20.h,
+                                  boxFit: BoxFit.fill,
+                                  color: ColorManager.black,
+                                )
+                              ],
+                            ),
+                          ),
 
-                    // controller: _emailController,
-                    hintText: translate(LocaleKeys.whatsApp),
-                    textInputType: TextInputType.emailAddress,
-                    maxLine: 1,
-                    isValidator: true,
-                  ) :
-                  const SizedBox(),
+                          // controller: _emailController,
+                          hintText: translate(LocaleKeys.whatsApp),
+                          textInputType: TextInputType.emailAddress,
+                          maxLine: 1,
+                          isValidator: true,
+                        )
+                      : const SizedBox(),
                   const VerticalSpace(AppSize.s20),
 
                   //password
@@ -415,7 +360,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       }
                       return null;
                     },
-
                     prefixIcon: Icon(
                       Icons.lock_outline,
                       size: 30.h,
@@ -427,50 +371,77 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     isPassword: true,
                   ),
 
-
                   const VerticalSpace(AppSize.s50),
-                  shared!.getString("role") == "showroom" ||
-                      shared!.getString("role") == "agency"  ?
-                  Consumer<ShowRoomLoginViewModel>(
-                    builder: (_, viewModel , __){
-                      return !viewModel.isLoading ?
-                      CustomButton(
-                        radius: 50.r,
-                        height: 50.h,
-                        width: deviceWidth * 0.60,
-                        buttonText: translate(LocaleKeys.save),
-                        onTap: () async {
-
-                            _showRoomSubmit(context, viewModel) ;
-                          // NavigationService.pushReplacementAll(context, Routes.bottomNavigationBar , );
-                        },
-                      ) :
-                          MyProgressIndicator(
-                            width: 80.h ,
-                              height: 80.h,
-                          ) ;
-                    },
-                  ) :
-                  Consumer<EndUserViewModel>(
-                    builder: (_, viewModel , __){
-                      return !viewModel.isLoading ?
-                      CustomButton(
-                        radius: 50.r,
-                        height: 50.h,
-                        width: deviceWidth * 0.60,
-                        buttonText: translate(LocaleKeys.save),
-                        onTap: () async {
-
-                          _submit(context, viewModel) ;
-                          // NavigationService.pushReplacementAll(context, Routes.bottomNavigationBar , );
-                        },
-                      ) :
-                      MyProgressIndicator(
-                        width: 80.h ,
-                        height: 80.h,
-                      ) ;
-                    },
+                  shared!.getString("role") == "showroom" || shared!.getString("role") == "agency"
+                      ? Consumer<ShowRoomLoginViewModel>(
+                          builder: (_, viewModel, __) {
+                            return !viewModel.isLoading
+                                ? CustomButton(
+                                    radius: 50.r,
+                                    height: 50.h,
+                                    width: deviceWidth * 0.60,
+                                    buttonText: translate(LocaleKeys.save),
+                                    onTap: () async {
+                                      _showRoomSubmit(context, viewModel);
+                                      // NavigationService.pushReplacementAll(context, Routes.bottomNavigationBar , );
+                                    },
+                                  )
+                                : MyProgressIndicator(
+                                    width: 80.h,
+                                    height: 80.h,
+                                  );
+                          },
+                        )
+                      : Consumer<EndUserViewModel>(
+                          builder: (_, viewModel, __) {
+                            return !viewModel.isLoading
+                                ? CustomButton(
+                                    radius: 50.r,
+                                    height: 50.h,
+                                    width: deviceWidth * 0.60,
+                                    buttonText: translate(LocaleKeys.save),
+                                    onTap: () async {
+                                      _submit(context, viewModel);
+                                      // NavigationService.pushReplacementAll(context, Routes.bottomNavigationBar , );
+                                    },
+                                  )
+                                : MyProgressIndicator(
+                                    width: 80.h,
+                                    height: 80.h,
+                                  );
+                          },
+                        ),
+                  //*Delete accout
+                  Row(
+                    children: [
+                      Spacer(),
+                      TextButton(
+                          onPressed: () async {
+                            Alerts.showAppDialog(
+                              context,
+                              alertTitle: translate(LocaleKeys.notification),
+                              alertDescription: translate(LocaleKeys.deleteAccountDescription),
+                              onConfirm: () async {
+                                deleteAccountLoading = true;
+                                setState(() {});
+                                final showRoomLoginViewModel = Provider.of<ShowRoomLoginViewModel>(context, listen: false);
+                                bool status = await showRoomLoginViewModel.deleteAccount(context: context);
+                                if (context.mounted) Provider.of<LocalAuthProvider>(context, listen: false).logOut(context: context);
+                                deleteAccountLoading = false;
+                                setState(() {});
+                              },
+                              confirmText: translate(LocaleKeys.deleteAccount),
+                              withClose: false,
+                              confirmTextColor: ColorManager.white,
+                            );
+                          },
+                          child: CustomText(
+                            text: translate(LocaleKeys.deleteAccount),
+                            textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: ColorManager.red),
+                          )),
+                    ],
                   ),
+                  const VerticalSpace(AppSize.s20),
                 ],
               ),
             ),

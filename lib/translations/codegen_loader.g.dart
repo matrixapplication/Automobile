@@ -15,7 +15,10 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> ar = {
+  "notification ":  "تنبية",
+  "deleteAccountDescription ": "هل انت متأكد من حذف حسابك؟",
   "onBoarding1Title ": "title 1",
+  "deleteAccount": "حذف الحساب",
   "ShowRoomName": "اسم المعرض",
   "whatsApp": "واتساب",
   "onBoarding1SubTitle": "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
@@ -159,6 +162,9 @@ class CodegenLoader extends AssetLoader{
 
   };
 static const Map<String,dynamic> en = {
+  "deleteAccountDescription ":  "Are you sure you want to delete your account?",
+  "notification ":   "Notification",
+  "deleteAccount ":  "Delete Account",
   "onBoarding1Title ": "title 1",
   "ShowRoomName": "Show Room Name",
   "whatsApp": "WhatsApp",

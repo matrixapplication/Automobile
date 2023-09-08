@@ -1,6 +1,9 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
+  static const notification  = 'notification ';
+  static const deleteAccount  = 'deleteAccount ';
+  static const deleteAccountDescription  = 'deleteAccountDescription ';
   static const onBoarding1Title  = 'onBoarding1Title ';
   static const whatsApp  = 'whatsApp';
   static const onBoarding1SubTitle = 'onBoarding1SubTitle';

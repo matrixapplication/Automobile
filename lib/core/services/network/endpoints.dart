@@ -42,6 +42,7 @@ class EndPoints {
   static const String showBranchesById = "/branch";
   static const String userUploadImage = "/edit-user-image";
   static const String showroomUploadImage = "/edit-showroom-image";
+  static const String deleteAccount = "/deleteAccount";
   static const String editBranch = "/edit_branch";
   static const String hideBranch = "/hide_branch";
   static const String isBayed = "/car/get/buyed";

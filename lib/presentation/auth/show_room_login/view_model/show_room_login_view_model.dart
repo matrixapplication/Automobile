@@ -20,31 +20,24 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
   final SaveTokenDataUseCase _saveUserTokenUseCase;
   final SaveRoleDataUseCase _saveRoleUseCase;
   final SaveUserDataUseCase _saveUserDataUseCase;
-  final GetUserDataUseCase _getUserDataUseCase ;
+  final GetUserDataUseCase _getUserDataUseCase;
   final GetUserRoleUseCase _getUserRoleUseCase;
-  ShowRoomLoginViewModel(
-      {required ShowRoomLoginUseCase loginUseCase,
-      required SaveTokenDataUseCase saveUserTokenUseCase,
-      required SaveRoleDataUseCase saveRoleUseCase,
-      required SaveUserDataUseCase saveUserDataUseCase  ,
-      required GetUserDataUseCase getUserDataUseCase ,
-      required GetUserRoleUseCase getUserRoleUseCase
-      })
+  ShowRoomLoginViewModel({required ShowRoomLoginUseCase loginUseCase, required SaveTokenDataUseCase saveUserTokenUseCase, required SaveRoleDataUseCase saveRoleUseCase, required SaveUserDataUseCase saveUserDataUseCase, required GetUserDataUseCase getUserDataUseCase, required GetUserRoleUseCase getUserRoleUseCase})
       : _signInUseCase = loginUseCase,
         _saveUserTokenUseCase = saveUserTokenUseCase,
         _saveRoleUseCase = saveRoleUseCase,
-        _saveUserDataUseCase = saveUserDataUseCase ,
-        _getUserDataUseCase = getUserDataUseCase ,
-        _getUserRoleUseCase = getUserRoleUseCase
-  ;
+        _saveUserDataUseCase = saveUserDataUseCase,
+        _getUserDataUseCase = getUserDataUseCase,
+        _getUserRoleUseCase = getUserRoleUseCase;
 
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
-  ShowRoomModel? _userModel ;
-  ShowRoomModel? get  userModel {
-    return _userModel ;
+  ShowRoomModel? _userModel;
+  ShowRoomModel? get userModel {
+    return _userModel;
   }
+
   Future<ResponseModel<ShowRoomModel>> login({
     required BuildContext context,
     required String code,
@@ -62,12 +55,11 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
     if (responseModel.isSuccess) {
       String? token = responseModel.data!.token.toString();
       String? role = responseModel.data!.role.toString();
-       _saveUserTokenUseCase.call(token: token , userModel: responseModel.data!);
-       _saveRoleUseCase.call(role: role);
-       _saveUserDataUseCase.call(userModel: responseModel.data!);
-       await _getUserDataUseCase.call() ;
-       await _getUserRoleUseCase.call() ;
-
+      _saveUserTokenUseCase.call(token: token, userModel: responseModel.data!);
+      _saveRoleUseCase.call(role: role);
+      _saveUserDataUseCase.call(userModel: responseModel.data!);
+      await _getUserDataUseCase.call();
+      await _getUserRoleUseCase.call();
     } else {
       if (kDebugMode) {
         print("Fail view Model ${responseModel.message}");
@@ -81,28 +73,25 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
 
   Future<ResponseModel<ShowRoomModel>> getShowRoomData({
     required BuildContext context,
-
   }) async {
     _isLoading = true;
     notifyListeners();
 
     final responseModel = await _signInUseCase.callShowRoomData(
-        context: context,
+      context: context,
     );
     if (kDebugMode) {
       print(responseModel.data);
     }
     if (responseModel.isSuccess) {
       String? role = responseModel.data!.role.toString();
-      if(kDebugMode){
+      if (kDebugMode) {
         print("success view Model role $role");
         print("success view Model data ${responseModel.data}");
       }
       _saveRoleUseCase.call(role: role);
       _saveUserDataUseCase.call(userModel: responseModel.data!);
-      await _getUserDataUseCase.call() ;
-
-
+      await _getUserDataUseCase.call();
     } else {
       if (kDebugMode) {
         print("Fail view Model ${responseModel.message}");
@@ -114,45 +103,33 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
     return responseModel;
   }
 
-
-
   Future<ResponseModel<ShowRoomModel>> editProfileShowRoom({
     required BuildContext context,
-    required String name ,
-    required String showRoomName ,
-    required String code ,
-    required String phone ,
-    required String whatsApp ,
-    required String password  ,
-    required String confirmPassword ,
-    required String? coverImage ,
+    required String name,
+    required String showRoomName,
+    required String code,
+    required String phone,
+    required String whatsApp,
+    required String password,
+    required String confirmPassword,
+    required String? coverImage,
   }) async {
     _isLoading = true;
     notifyListeners();
 
-    final responseModel = await _signInUseCase.editShowRoomCall(
-        context: context,
-        name:  name ,
-        showRoomName: showRoomName,
-        phone: phone ,
-        password: password ,
-        whatsApp: whatsApp,
-        email: code ,
-        confirmPassword: confirmPassword ,
-      coverImage: coverImage
-    );
+    final responseModel = await _signInUseCase.editShowRoomCall(context: context, name: name, showRoomName: showRoomName, phone: phone, password: password, whatsApp: whatsApp, email: code, confirmPassword: confirmPassword, coverImage: coverImage);
     if (kDebugMode) {
       print(responseModel.data);
     }
     if (responseModel.isSuccess) {
       String? role = responseModel.data!.role.toString();
-      if(kDebugMode){
+      if (kDebugMode) {
         print("success view Model role $role");
         print("success view Model data ${responseModel.data}");
       }
       _saveRoleUseCase.call(role: role);
       _saveUserDataUseCase.call(userModel: responseModel.data!);
-      await _getUserDataUseCase.call() ;
+      await _getUserDataUseCase.call();
     } else {
       if (kDebugMode) {
         print("Fail view Model ${responseModel.message}");
@@ -163,11 +140,9 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
     return responseModel;
   }
 
-
   Future<ResponseModel<ShowRoomModel>> userUploadImage({
     required BuildContext context,
-    required File image ,
-
+    required File image,
   }) async {
     _isLoading = true;
     notifyListeners();
@@ -178,14 +153,14 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
     }
     if (responseModel.isSuccess) {
       String? role = responseModel.data!.role.toString();
-      if(kDebugMode){
+      if (kDebugMode) {
         print("success view Model role $role");
         print("success view Model data ${responseModel.data}");
       }
-      _userModel = responseModel.data! ;
+      _userModel = responseModel.data!;
       _saveRoleUseCase.call(role: role);
       _saveUserDataUseCase.call(userModel: responseModel.data!);
-      await _getUserDataUseCase.call() ;
+      await _getUserDataUseCase.call();
     } else {
       if (kDebugMode) {
         print("Fail view Model ${responseModel.message}");
@@ -194,5 +169,12 @@ class ShowRoomLoginViewModel extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
     return responseModel;
+  }
+
+  Future<bool> deleteAccount({
+    required BuildContext context,
+  }) async {
+    final status = await _signInUseCase.deleteAccount(context: context);
+    return status;
   }
 }
