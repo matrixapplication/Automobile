@@ -83,7 +83,7 @@ class CarModel {
         : null;
     status =
     json['status'] != null ? Status.fromJson(json['status']) : null;
-    price = double.parse(json['price'].toString()).toStringAsFixed(0);
+    price = double.parse(json['price'].toString().replaceAll(',', '')).toStringAsFixed(0);
     doors = json['doors'];
     engine = json['engine'];
     cylinders = json['cylinders'];
