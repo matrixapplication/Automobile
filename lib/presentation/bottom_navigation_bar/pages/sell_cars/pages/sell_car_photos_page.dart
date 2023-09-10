@@ -237,7 +237,7 @@ class _SellCarPhotosPageState extends State<SellCarPhotosPage> {
                               carData: widget.carData,
                               images: images,
                               mainImage: mainImage!);
-                          NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
+                         NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
                           Alerts.showAppDialog(context,
                               alertTitle: translate(LocaleKeys.alert),
                               alertDescription: translate(LocaleKeys.adSuccess),

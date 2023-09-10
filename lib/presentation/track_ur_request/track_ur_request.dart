@@ -156,15 +156,15 @@ class _TrackUrRequestState extends State<TrackUrRequest> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(text: "Name: ${viewModel.response?.name}"  , textStyle: Theme.of(context).textTheme.labelLarge,) ,
+                        CustomText(text: "${translate(LocaleKeys.fullName)}: ${viewModel.response?.name}"  , textStyle: Theme.of(context).textTheme.labelLarge,) ,
                         SizedBox(
                           height:  10.h,
                         ) ,
-                        CustomText(text: "Phone: ${viewModel.response?.phone}" , textStyle: Theme.of(context).textTheme.labelLarge,) ,
+                        CustomText(text: "${translate(LocaleKeys.phone)}: ${viewModel.response?.phone}" , textStyle: Theme.of(context).textTheme.labelLarge,) ,
                         SizedBox(
                           height:  10.h,
                         ) ,
-                        CustomText(text: "Statue: ${viewModel.response?.isApproved}", textStyle: Theme.of(context).textTheme.labelLarge, ) ,
+                        CustomText(text: "${translate(LocaleKeys.carStatus)}: ${viewModel.response?.isApproved}", textStyle: Theme.of(context).textTheme.labelLarge, ) ,
                       ],
                     ),
                   ) :

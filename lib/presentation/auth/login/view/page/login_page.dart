@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
     final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.login(
-          context: context, email: "aya1.test@gmail.com", password: "123123");
+          context: context, email: "aya2@gmail.com", password: "123123");
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
         await userProvider.isLogin() ;

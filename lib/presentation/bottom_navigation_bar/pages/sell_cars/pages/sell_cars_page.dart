@@ -1488,7 +1488,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                   builder: (_, data, ch) {
                                     return ListView.builder(
                                         padding:
-                                        EdgeInsets.symmetric(horizontal: 20.w),
+                                        EdgeInsets.only(left: 20.w , right: 20.w , bottom: 100.h),
                                         itemCount: data
                                             .getCarFeaturesResponse?.data?.length,
                                         shrinkWrap: true,

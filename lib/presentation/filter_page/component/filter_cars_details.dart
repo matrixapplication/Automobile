@@ -69,7 +69,7 @@ class _FiltersCarsDetailsState extends State<FiltersCarsDetails> {
 
   telePhone(String phone) async {
     // The "launch" method is part of "url_launcher".
-    await launchUrl(Uri.parse('tel://+20$phone'),
+    await launchUrl(Uri.parse('tel://+2$phone'),
         mode: LaunchMode.externalApplication);
   }
   @override

@@ -52,7 +52,7 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
 
   telePhone(String phone) async {
     // The "launch" method is part of "url_launcher".
-    await launchUrl(Uri.parse('tel://+20$phone'),
+    await launchUrl(Uri.parse('tel://+2$phone'),
         mode: LaunchMode.externalApplication);
   }
   @override

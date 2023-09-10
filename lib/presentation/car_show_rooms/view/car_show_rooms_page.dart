@@ -51,7 +51,7 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
   }
   telePhone(String phone) async {
     // The "launch" method is part of "url_launcher".
-    await launchUrl(Uri.parse('tel://+20$phone'),
+    await launchUrl(Uri.parse('tel://+2$phone'),
         mode: LaunchMode.externalApplication);
   }
   @override
@@ -170,7 +170,7 @@ class _CarShowRoomPageState extends State<CarShowRoomPage> {
                                               color: ColorManager.primaryColor),
                                           HorizontalSpace(10.w),
                                           CustomText(
-                                            text: "Call",
+                                            text: translate(LocaleKeys.call),
                                             textStyle: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!

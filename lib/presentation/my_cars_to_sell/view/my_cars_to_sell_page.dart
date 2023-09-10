@@ -100,7 +100,7 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                     onClick: () {
                       NavigationService.goBack(context);
                     },
-                    child:  Icon(Icons.arrow_back_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,))
+                    child:  Icon(Icons.arrow_back_ios , color: ColorManager.white, textDirection: shared!.getString("lang") == "en" ? TextDirection.ltr : TextDirection.rtl,))
                 : TapEffect(
                     onClick: () {
                       NavigationService.push(
@@ -136,7 +136,7 @@ class _MyCarsToSellPageState extends State<MyCarsToSellPage> {
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: (1 / 1.30).w,
+                  childAspectRatio: 1 / 1.56,
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.w,
                   mainAxisSpacing: 10.h,
@@ -273,183 +273,187 @@ class _CarCardState extends State<CarCard> {
           SizedBox(
             height: 20.h,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Padding(padding: EdgeInsets.symmetric(horizontal: 8.w) , child: Column(
             children: [
-              Expanded(
-                child: widget.carList.brand?.name != null
-                    ? CustomText(
-                    text:
-                    "${widget.carList.brand?.name} ${widget.carList.brandModel?.name} ${widget.carList.year}",
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(
-                        height: 1.2,
-                        color: ColorManager
-                            .blackColor1C1C1C,
-                        fontWeight:
-                        FontWeightManager.semiBold))
-                    : Shimmer.fromColors(
-                  baseColor: Colors.grey[200]!,
-                  highlightColor: Colors.grey[600]!,
-                  child: Container(
-                    height: 14.h,
-                    width: 20.w,
-                    decoration: BoxDecoration(
-                        color:
-                        ColorManager.greyColorCBCBCB,
-                        borderRadius:
-                        BorderRadius.circular(15.h)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: widget.carList.brand?.name != null
+                        ? CustomText(
+                        text:
+                        "${widget.carList.brand?.name} ${widget.carList.brandModel?.name} ${widget.carList.year}",
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(
+                            height: 1.2,
+                            color: ColorManager
+                                .blackColor1C1C1C,
+                            fontWeight:
+                            FontWeightManager.semiBold))
+                        : Shimmer.fromColors(
+                      baseColor: Colors.grey[200]!,
+                      highlightColor: Colors.grey[600]!,
+                      child: Container(
+                        height: 14.h,
+                        width: 20.w,
+                        decoration: BoxDecoration(
+                            color:
+                            ColorManager.greyColorCBCBCB,
+                            borderRadius:
+                            BorderRadius.circular(15.h)
 
-                      // shape: BoxShape.circle
+                          // shape: BoxShape.circle
+                        ),
+                      ),
                     ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              widget.carList.price != null
+                  ? Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  CustomText(
+                      text:
+                      "${double.parse("${widget.carList.price}").toStringAsFixed(0)} EGP",
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                          color:
+                          ColorManager.primaryColor,
+                          fontSize: 28.h,
+                          fontWeight:
+                          FontWeightManager.bold,
+                          height: 1))
+                ],
+              )
+                  : Shimmer.fromColors(
+                baseColor: Colors.grey[200]!,
+                highlightColor: Colors.grey[600]!,
+                child: Container(
+                  height: 14.h,
+                  width: 50.w,
+                  decoration: BoxDecoration(
+                      color: ColorManager.greyColorCBCBCB,
+                      borderRadius:
+                      BorderRadius.circular(15.h)
+                    // shape: BoxShape.circle
                   ),
                 ),
               ),
-            ],
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          widget.carList.price != null
-              ? Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CustomText(
-                  text:
-                  "${double.parse("${widget.carList.price}").toStringAsFixed(0)} EGP",
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(
-                      color:
-                      ColorManager.primaryColor,
-                      fontSize: 28.h,
-                      fontWeight:
-                      FontWeightManager.bold,
-                      height: 1))
-            ],
-          )
-              : Shimmer.fromColors(
-            baseColor: Colors.grey[200]!,
-            highlightColor: Colors.grey[600]!,
-            child: Container(
-              height: 14.h,
-              width: 50.w,
-              decoration: BoxDecoration(
-                  color: ColorManager.greyColorCBCBCB,
-                  borderRadius:
-                  BorderRadius.circular(15.h)
-                // shape: BoxShape.circle
-              ),
-            ),
-          ),
-          VerticalSpace(10.h),
-          !_isLoading
-              ? CustomButton(
-            buttonText: translate(LocaleKeys.edit),
-            backgroundColor: ColorManager.primaryColor,
-            height: 40.h,
-            onTap: () async {
-              setState(() {
-                _isLoading = true;
-              });
-              await Provider.of<CarBrandsViewModel>(
-                  context,
-                  listen: false)
-                  .getBrands(context: context);
-              await Provider.of<CarBrandsModelViewModel>(
-                  context,
-                  listen: false)
-                  .getBrandsModels(
-                  context: context,
-                  brandId:
-                  widget.carList.brand!.id!);
-              await Provider.of<
-                  CarBrandsModelExtensionViewModel>(
-                  context,
-                  listen: false)
-                  .getBrandsModels(
-                  context: context,
-                  id: widget.carList.brandModel!
-                      .id!);
-              await Provider.of<CarFeaturesViewModel>(
-                  context,
-                  listen: false)
-                  .getCarFeatures(context: context);
-              await Provider.of<YearsViewModel>(context,
-                  listen: false)
-                  .getYears(context: context);
-              await Provider.of<CarColorsViewModel>(
-                  context,
-                  listen: false)
-                  .getColors(context: context);
-
-
-              await Provider.of<BodyShapeViewModel>(context , listen: false).getBodyShape(context: context) ;
-              await Provider.of<FuelTypeViewModel>(context , listen: false).getFuelType(context: context) ;
-              if(shared!.getString("role")!= 'user'){
-                await Provider.of<
-                    ShowRoomsBranchesViewModel>(
-                    context,
-                    listen: false)
-                    .getBranches(context: context, id: 1);
-              }
-
-              NavigationService.push(
-                  context, Routes.updateCarPage,
-                  arguments: {
-                    "carModel": widget.carList
+              VerticalSpace(10.h),
+              !_isLoading
+                  ? CustomButton(
+                buttonText: translate(LocaleKeys.edit),
+                backgroundColor: ColorManager.primaryColor,
+                height: 40.h,
+                onTap: () async {
+                  setState(() {
+                    _isLoading = true;
                   });
-              setState(() {
-                _isLoading = false;
-              });
-            },
-          )
-              : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MyProgressIndicator(
-                color: ColorManager.primaryColor,
-                size: 40.h,
+                  await Provider.of<CarBrandsViewModel>(
+                      context,
+                      listen: false)
+                      .getBrands(context: context);
+                  await Provider.of<CarBrandsModelViewModel>(
+                      context,
+                      listen: false)
+                      .getBrandsModels(
+                      context: context,
+                      brandId:
+                      widget.carList.brand!.id!);
+                  await Provider.of<
+                      CarBrandsModelExtensionViewModel>(
+                      context,
+                      listen: false)
+                      .getBrandsModels(
+                      context: context,
+                      id: widget.carList.brandModel!
+                          .id!);
+                  await Provider.of<CarFeaturesViewModel>(
+                      context,
+                      listen: false)
+                      .getCarFeatures(context: context);
+                  await Provider.of<YearsViewModel>(context,
+                      listen: false)
+                      .getYears(context: context);
+                  await Provider.of<CarColorsViewModel>(
+                      context,
+                      listen: false)
+                      .getColors(context: context);
+
+
+                  await Provider.of<BodyShapeViewModel>(context , listen: false).getBodyShape(context: context) ;
+                  await Provider.of<FuelTypeViewModel>(context , listen: false).getFuelType(context: context) ;
+                  if(shared!.getString("role")!= 'user'){
+                    await Provider.of<
+                        ShowRoomsBranchesViewModel>(
+                        context,
+                        listen: false)
+                        .getBranches(context: context, id: 1);
+                  }
+
+                  NavigationService.push(
+                      context, Routes.updateCarPage,
+                      arguments: {
+                        "carModel": widget.carList
+                      });
+                  setState(() {
+                    _isLoading = false;
+                  });
+                },
+              )
+                  : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyProgressIndicator(
+                    color: ColorManager.primaryColor,
+                    size: 40.h,
+                  )
+                ],
+              ),
+              VerticalSpace(10.h),
+              CustomButton(
+                buttonText: translate(LocaleKeys.soldOut),
+                backgroundColor: widget.carList.isBayed!
+                    ? ColorManager.greyColor515151
+                    : ColorManager.orange,
+                height: 40.h,
+                onTap: !widget.carList.isBayed!
+                    ? () async {
+                  // await sellCarProvider.hideBranch(
+                  //     context: context,
+                  //     id: widget.carList.id!);
+                  // Provider.of<GetMyCarsViewModel>(context,
+                  //     listen: false)
+                  //     .getMyCars(
+                  //     context: context,
+                  //     id: shared?.getString("role") ==
+                  //         "showroom" ||
+                  //         shared?.getString("role") ==
+                  //             "agency"
+                  //         ? userProvider.user!.id!
+                  //         : userProvider.endUser!.id!,
+                  //     modelRole: shared?.getString(
+                  //         "role") ==
+                  //         "showroom" ||
+                  //         shared?.getString("role") ==
+                  //             "agency"
+                  //         ? userProvider.user!.role!
+                  //         : "user",
+                  //     states: null,
+                  //     isAll: true);
+                }
+                    : () {},
               )
             ],
-          ),
-          VerticalSpace(10.h),
-          CustomButton(
-            buttonText: translate(LocaleKeys.soldOut),
-            backgroundColor: widget.carList.isBayed!
-                ? ColorManager.greyColor515151
-                : ColorManager.orange,
-            height: 40.h,
-            onTap: !widget.carList.isBayed!
-                ? () async {
-              // await sellCarProvider.hideBranch(
-              //     context: context,
-              //     id: widget.carList.id!);
-              // Provider.of<GetMyCarsViewModel>(context,
-              //     listen: false)
-              //     .getMyCars(
-              //     context: context,
-              //     id: shared?.getString("role") ==
-              //         "showroom" ||
-              //         shared?.getString("role") ==
-              //             "agency"
-              //         ? userProvider.user!.id!
-              //         : userProvider.endUser!.id!,
-              //     modelRole: shared?.getString(
-              //         "role") ==
-              //         "showroom" ||
-              //         shared?.getString("role") ==
-              //             "agency"
-              //         ? userProvider.user!.role!
-              //         : "user",
-              //     states: null,
-              //     isAll: true);
-            }
-                : () {},
-          )
+          ),)
         ],
       ),
     );

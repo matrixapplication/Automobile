@@ -39,9 +39,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             alignment: Alignment.center,
             child: SizedBox(
               height: deviceHeight,
-              child: const CustomAssetsImage(
+              child:  CustomAssetsImage(
                 image:"assets/images/Component 1 – 1.png",
                 boxFit: BoxFit.fitHeight,
+
               ),
             ),
           ),
@@ -53,7 +54,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset("assets/images/Group 36.png"),
+                  Image.asset("assets/images/Group 2953.png" , height: 120.h,),
                   SizedBox(
                     height: 100.h,
                   ) ,
@@ -63,7 +64,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CustomText(text: "Auto Mobile" , textStyle: Theme.of(context)
+                        CustomText(text: "Automobile" , textStyle: Theme.of(context)
                             .textTheme
                             .bodyLarge!
                             .copyWith(
