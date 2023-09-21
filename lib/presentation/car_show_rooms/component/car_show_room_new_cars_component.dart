@@ -189,56 +189,62 @@ class _NewCarsShowRoomsDataComponentState extends State<NewCarsShowRoomsDataComp
                 height: 20.h,
               ),
 
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child:newCarsAgencyProvider.showroomCarList[index].brand?.name  != null ?
-                    CustomText(
-                        text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].year}",
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(
-                            height: 1.2,
-                            color: ColorManager.blackColor1C1C1C,
-                            fontWeight: FontWeightManager.semiBold)) :
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey[200]!,
-                      highlightColor: Colors.grey[600]!,
-                      child: Container(
-                        height: 14.h,
-                        width: 20.w,
-                        decoration:  BoxDecoration(
-                            color: ColorManager.greyColorCBCBCB,
-                            borderRadius: BorderRadius.circular(15.h)
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child:newCarsAgencyProvider.showroomCarList[index].brand?.name  != null ?
+                      CustomText(
+                          text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].year}",
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                              height: 1.2,
+                              color: ColorManager.blackColor1C1C1C,
+                              fontWeight: FontWeightManager.semiBold)) :
+                      Shimmer.fromColors(
+                        baseColor: Colors.grey[200]!,
+                        highlightColor: Colors.grey[600]!,
+                        child: Container(
+                          height: 14.h,
+                          width: 20.w,
+                          decoration:  BoxDecoration(
+                              color: ColorManager.greyColorCBCBCB,
+                              borderRadius: BorderRadius.circular(15.h)
 
-                          // shape: BoxShape.circle
+                            // shape: BoxShape.circle
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                ],
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10.h,
               ),
 
               newCarsAgencyProvider.showroomCarList[index].price != null ?
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CustomText(
-                      text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                          color: ColorManager.primaryColor,
-                          fontWeight: FontWeightManager.semiBold,
-                          height: 1))
-                ],
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CustomText(
+                        text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                            color: ColorManager.primaryColor,
+                            fontWeight: FontWeightManager.semiBold,
+                            height: 1))
+                  ],
+                ),
               ): Shimmer.fromColors(
                 baseColor: Colors.grey[200]!,
                 highlightColor: Colors.grey[600]!,

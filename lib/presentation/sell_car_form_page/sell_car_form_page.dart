@@ -1,4 +1,6 @@
+import 'package:automobile_project/core/exceptions/error_widget.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
+import 'package:automobile_project/data/models/base_response/error_response.dart';
 import 'package:automobile_project/data/models/base_response/response_model.dart';
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
 import 'package:automobile_project/main.dart';
@@ -72,10 +74,14 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
   int currentStep = 0;
   bool isCompleted = false;
 
-  BasicModel? brand ;
-  BasicModel? brandModel ;
-  BasicModel ? brandModelEx ;
-  BasicModel ? carYearModel ;
+  BasicModel? brand;
+
+  BasicModel? brandModel;
+
+  BasicModel? brandModelEx;
+
+  BasicModel? carYearModel;
+
   List<Step> getSteps() => [
         Step(
           //for check true icon
@@ -102,7 +108,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                         .copyWith(fontWeight: FontWeightManager.semiBold)),*/
                     Consumer<CarBrandsViewModel>(builder: (_, data, __) {
                       return DropdownSearch<BasicModel>(
-                        asyncItems: (filter) async => data.getBrandsResponse!.data!,
+                        asyncItems: (filter) async =>
+                            data.getBrandsResponse!.data!,
                         itemAsString: (BasicModel u) => u.name!,
                         onChanged: (BasicModel? data) {
                           setState(() {
@@ -112,10 +119,10 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                             _selectedModel = null;
                             _selectedClass = null;
                             Provider.of<CarBrandsModelViewModel>(context,
-                                listen: false)
+                                    listen: false)
                                 .getBrandsModels(
-                                context: context,
-                                brandId: int.parse(_selectedBrand!));
+                                    context: context,
+                                    brandId: int.parse(_selectedBrand!));
                           });
                         },
                         dropdownDecoratorProps: DropDownDecoratorProps(
@@ -130,15 +137,18 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
-                                      color: ColorManager.greyCanvasColor, width: 2)),
+                                      color: ColorManager.greyCanvasColor,
+                                      width: 2)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
-                                      color: ColorManager.greyCanvasColor, width: 2)),
+                                      color: ColorManager.greyCanvasColor,
+                                      width: 2)),
                               disabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
-                                      color: ColorManager.greyCanvasColor, width: 2)),
+                                      color: ColorManager.greyCanvasColor,
+                                      width: 2)),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
@@ -146,85 +156,94 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                       width: 2))),
                         ),
                         dropdownBuilder: (_, value) {
-                          return _selectedBrand != null ?
-                          Row(
-                            children: [
-                              CustomShimmerImage(
-                                image: value?.image ?? '',
-                                height: 20,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              CustomText(
-                                text: value?.name ?? '',
-                                textStyle: Theme.of(context).textTheme.titleLarge,
-                              )
-                            ],
-                          ) :  Row(
-                            children: [
-                              const CustomAssetsImage(
-                                image: AssetsManager.brandIcon,
-                                height: 20,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              CustomText(
-                                text: translate(LocaleKeys.selectBrand),
-                                textStyle: Theme.of(context).textTheme.titleMedium,
-                              )
-                            ],
-                          );
+                          return _selectedBrand != null
+                              ? Row(
+                                  children: [
+                                    CustomShimmerImage(
+                                      image: value?.image ?? '',
+                                      height: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    CustomText(
+                                      text: value?.name ?? '',
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    )
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    const CustomAssetsImage(
+                                      image: AssetsManager.brandIcon,
+                                      height: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    CustomText(
+                                      text: translate(LocaleKeys.selectBrand),
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    )
+                                  ],
+                                );
                         },
-                        popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                          return Padding(
-                            padding: EdgeInsets.all(16.h),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomText(
-                                  text: value.name ?? '',
-                                  textStyle: Theme.of(context).textTheme.titleLarge,
+                        popupProps: PopupProps.menu(
+                            itemBuilder: (_, value, state) {
+                              return Padding(
+                                padding: EdgeInsets.all(16.h),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomText(
+                                      text: value.name ?? '',
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    CustomShimmerImage(
+                                      image: value.image ?? '',
+                                      height: 40.h,
+                                      width: 40.h,
+                                      boxFit: BoxFit.contain,
+                                    ),
+                                  ],
                                 ),
-                                CustomShimmerImage(
-                                  image: value.image ?? '',
-                                  height: 40.h,
-                                  width: 40.h,
-                                  boxFit: BoxFit.contain,
-                                ),
-                              ],
-                            ),
-                          );
-                        } ,
-                            fit: FlexFit.loose
-                        ),
+                              );
+                            },
+                            fit: FlexFit.loose),
                         dropdownButtonProps: DropdownButtonProps(
                             icon: !data.isLoading
                                 ? const Icon(Icons.keyboard_arrow_down)
                                 : const MyProgressIndicator(
-                              width: 30,
-                              height: 30,
-                              size: 30,
-                            )),
+                                    width: 30,
+                                    height: 30,
+                                    size: 30,
+                                  )),
                       );
                     }),
                     selectBrand
                         ? CustomText(
-                      text: translate(LocaleKeys.required),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall
-                          ?.copyWith(color: ColorManager.primaryColor),
-                    )
+                            text: translate(LocaleKeys.required),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(color: ColorManager.primaryColor),
+                          )
                         : const SizedBox(),
                     const VerticalSpace(20),
                     Consumer<CarBrandsModelViewModel>(builder: (_, data, __) {
                       return IgnorePointer(
-                        ignoring: data.getBrandModelsResponse != null ? false : true,
+                        ignoring:
+                            data.getBrandModelsResponse != null ? false : true,
                         child: DropdownSearch<BasicModel>(
                           asyncItems: (filter) async =>
-                          data.getBrandModelsResponse!.data!,
+                              data.getBrandModelsResponse!.data!,
                           itemAsString: (BasicModel u) => u.name!,
                           selectedItem: brandModel,
                           onChanged: (BasicModel? data) {
@@ -234,19 +253,18 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                               _selectedClass = null;
                               brandModelEx = null;
                               selectModel = false;
-                              Provider.of<CarBrandsModelExtensionViewModel>(context,
-                                  listen: false)
+                              Provider.of<CarBrandsModelExtensionViewModel>(
+                                      context,
+                                      listen: false)
                                   .getBrandsModels(
-                                  context: context,
-                                  id: int.parse(_selectedModel.toString()));
+                                      context: context,
+                                      id: int.parse(_selectedModel.toString()));
                             });
                           },
                           dropdownDecoratorProps: DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
                                 labelText: translate(LocaleKeys.selectModel),
-                                enabled: brandModel != null
-                                    ? true
-                                    : false,
+                                enabled: brandModel != null ? true : false,
                                 labelStyle: Theme.of(context)
                                     .textTheme
                                     .titleLarge!
@@ -277,188 +295,199 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                           dropdownBuilder: (_, value) {
                             return brandModel != null
                                 ? Row(
-                              children: [
-                                CustomText(
-                                  text: value?.name ?? '',
-                                  textStyle:
-                                  Theme.of(context).textTheme.titleLarge,
-                                )
-                              ],
-                            )
-                                :  Row(
-                              children: [
-                                const CustomAssetsImage(
-                                  image: AssetsManager.carModel,
-                                  height: 18,
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                CustomText(
-                                  text:  translate(LocaleKeys.selectModel),
-                                  textStyle: Theme.of(context).textTheme.titleMedium,
-                                )
-                              ],
-                            );
+                                    children: [
+                                      CustomText(
+                                        text: value?.name ?? '',
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      )
+                                    ],
+                                  )
+                                : Row(
+                                    children: [
+                                      const CustomAssetsImage(
+                                        image: AssetsManager.carModel,
+                                        height: 18,
+                                      ),
+                                      SizedBox(
+                                        width: 10.w,
+                                      ),
+                                      CustomText(
+                                        text: translate(LocaleKeys.selectModel),
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                      )
+                                    ],
+                                  );
                           },
-                          popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                            return Padding(
-                              padding: EdgeInsets.all(16.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CustomText(
-                                    text: value.name ?? '',
-                                    textStyle: Theme.of(context).textTheme.titleLarge,
+                          popupProps: PopupProps.menu(
+                              itemBuilder: (_, value, state) {
+                                return Padding(
+                                  padding: EdgeInsets.all(16.h),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CustomText(
+                                        text: value.name ?? '',
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            );
-                          } ,
-                              fit: FlexFit.loose
-                          ),
+                                );
+                              },
+                              fit: FlexFit.loose),
                           dropdownButtonProps: DropdownButtonProps(
                               icon: !data.isLoading
                                   ? const Icon(Icons.keyboard_arrow_down)
                                   : const MyProgressIndicator(
-                                width: 30,
-                                height: 30,
-                                size: 30,
-                              )),
+                                      width: 30,
+                                      height: 30,
+                                      size: 30,
+                                    )),
                         ),
                       );
                     }),
                     selectModel
                         ? CustomText(
-                      text: translate(LocaleKeys.required),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall
-                          ?.copyWith(color: ColorManager.primaryColor),
-                    )
+                            text: translate(LocaleKeys.required),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(color: ColorManager.primaryColor),
+                          )
                         : const SizedBox(),
                     const VerticalSpace(20),
                     Consumer<CarBrandsModelExtensionViewModel>(
                         builder: (_, data, __) {
-                          return IgnorePointer(
-                            ignoring: data.getCarBrandsModelExtensionResponse != null
+                      return IgnorePointer(
+                        ignoring:
+                            data.getCarBrandsModelExtensionResponse != null
                                 ? false
                                 : true,
-                            child: DropdownSearch<BasicModel>(
-                              asyncItems: (filter) async =>
+                        child: DropdownSearch<BasicModel>(
+                          asyncItems: (filter) async =>
                               data.getCarBrandsModelExtensionResponse!.data!,
-                              itemAsString: (BasicModel u) => u.name!,
-                              selectedItem: brandModelEx,
-                              onChanged: (BasicModel? data) {
-                                setState(() {
-                                  brandModelEx = data;
-                                  _selectedClass = data!.id.toString();
-                                  selectClass = false;
-                                });
-                              },
-                              dropdownDecoratorProps: DropDownDecoratorProps(
-                                dropdownSearchDecoration: InputDecoration(
-                                    labelText: translate(LocaleKeys.carModelExtention),
-                                    enabled:
+                          itemAsString: (BasicModel u) => u.name!,
+                          selectedItem: brandModelEx,
+                          onChanged: (BasicModel? data) {
+                            setState(() {
+                              brandModelEx = data;
+                              _selectedClass = data!.id.toString();
+                              selectClass = false;
+                            });
+                          },
+                          dropdownDecoratorProps: DropDownDecoratorProps(
+                            dropdownSearchDecoration: InputDecoration(
+                                labelText:
+                                    translate(LocaleKeys.carModelExtention),
+                                enabled:
                                     data.getCarBrandsModelExtensionResponse != null
                                         ? true
                                         : false,
-                                    labelStyle: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .copyWith(color: ColorManager.primaryColor),
-                                    fillColor: ColorManager.white,
-                                    filled: true,
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        borderSide: const BorderSide(
-                                            color: ColorManager.greyCanvasColor,
-                                            width: 2)),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        borderSide: const BorderSide(
-                                            color: ColorManager.greyCanvasColor,
-                                            width: 2)),
-                                    disabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        borderSide: const BorderSide(
-                                            color: ColorManager.greyCanvasColor,
-                                            width: 2)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15.r),
-                                        borderSide: const BorderSide(
-                                            color: ColorManager.greyCanvasColor,
-                                            width: 2))),
-                              ),
-                              dropdownBuilder: (_, value) {
-                                return brandModelEx != null
-                                    ? Row(
-                                  children: [
-                                    CustomText(
-                                      text: value?.name ?? '',
-                                      textStyle:
-                                      Theme.of(context).textTheme.titleLarge,
-                                    )
-                                  ],
-                                )
-                                    : Row(
-                                  children: [
-                                    const CustomAssetsImage(
-                                      image: AssetsManager.carModelExIcon,
-                                      height: 18,
-                                    ),
-                                    SizedBox(
-                                      width: 10.w,
-                                    ),
-                                    CustomText(
-                                      text:  translate(LocaleKeys.carModelExtention),
-                                      textStyle: Theme.of(context).textTheme.titleMedium,
-                                    )
-                                  ],
-                                );
-                              },
-                              popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(color: ColorManager.primaryColor),
+                                fillColor: ColorManager.white,
+                                filled: true,
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    borderSide: const BorderSide(
+                                        color: ColorManager.greyCanvasColor,
+                                        width: 2)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    borderSide: const BorderSide(
+                                        color: ColorManager.greyCanvasColor,
+                                        width: 2)),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.r),
+                                    borderSide: const BorderSide(
+                                        color: ColorManager.greyCanvasColor,
+                                        width: 2)),
+                                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: const BorderSide(color: ColorManager.greyCanvasColor, width: 2))),
+                          ),
+                          dropdownBuilder: (_, value) {
+                            return brandModelEx != null
+                                ? Row(
+                                    children: [
+                                      CustomText(
+                                        text: value?.name ?? '',
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      )
+                                    ],
+                                  )
+                                : Row(
+                                    children: [
+                                      const CustomAssetsImage(
+                                        image: AssetsManager.carModelExIcon,
+                                        height: 18,
+                                      ),
+                                      SizedBox(
+                                        width: 10.w,
+                                      ),
+                                      CustomText(
+                                        text: translate(
+                                            LocaleKeys.carModelExtention),
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                      )
+                                    ],
+                                  );
+                          },
+                          popupProps: PopupProps.menu(
+                              itemBuilder: (_, value, state) {
                                 return Padding(
                                   padding: EdgeInsets.all(16.h),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       CustomText(
                                         text: value.name ?? '',
-                                        textStyle: Theme.of(context).textTheme.titleLarge,
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
                                       ),
                                     ],
                                   ),
                                 );
-                              } ,
-                                  fit: FlexFit.loose
-                              ),
-                              dropdownButtonProps: DropdownButtonProps(
-                                  icon: !data.isLoading
-                                      ? const Icon(Icons.keyboard_arrow_down)
-                                      : const MyProgressIndicator(
-                                    width: 30,
-                                    height: 30,
-                                    size: 30,
-                                  )),
-                            ),
-                          );
-                        }),
+                              },
+                              fit: FlexFit.loose),
+                          dropdownButtonProps: DropdownButtonProps(
+                              icon: !data.isLoading
+                                  ? const Icon(Icons.keyboard_arrow_down)
+                                  : const MyProgressIndicator(
+                                      width: 30,
+                                      height: 30,
+                                      size: 30,
+                                    )),
+                        ),
+                      );
+                    }),
                     selectClass
                         ? CustomText(
-                      text: translate(LocaleKeys.required),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall
-                          ?.copyWith(color: ColorManager.primaryColor),
-                    )
+                            text: translate(LocaleKeys.required),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(color: ColorManager.primaryColor),
+                          )
                         : const SizedBox(),
                     const VerticalSpace(20),
                     Consumer<YearsViewModel>(
                       builder: (_, data, __) {
                         return DropdownSearch<int>(
                           asyncItems: (filter) async =>
-                          data.getYearsResponse!.data!,
+                              data.getYearsResponse!.data!,
                           itemAsString: (int u) => u.toString(),
                           onChanged: (int? data) {
                             setState(() {
@@ -469,8 +498,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                           dropdownDecoratorProps: DropDownDecoratorProps(
                             dropdownSearchDecoration: InputDecoration(
                                 labelText: translate(LocaleKeys.carYear),
-                                enabled:
-                                data.getYearsResponse != null
+                                enabled: data.getYearsResponse != null
                                     ? true
                                     : false,
                                 labelStyle: Theme.of(context)
@@ -503,76 +531,78 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                           dropdownBuilder: (_, value) {
                             return _selectedYear != null
                                 ? Row(
-                              children: [
-                                CustomText(
-                                  textStyle:
-                                  Theme.of(context).textTheme.titleLarge,
-                                  text: value.toString(),
-                                )
-                              ],
-                            )
+                                    children: [
+                                      CustomText(
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                        text: value.toString(),
+                                      )
+                                    ],
+                                  )
                                 : Row(
-                              children: [
-
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                CustomText(
-                                  text:  translate(LocaleKeys.carYear),
-                                  textStyle: Theme.of(context).textTheme.titleMedium,
-                                )
-                              ],
-                            );
+                                    children: [
+                                      SizedBox(
+                                        width: 10.w,
+                                      ),
+                                      CustomText(
+                                        text: translate(LocaleKeys.carYear),
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                      )
+                                    ],
+                                  );
                           },
-                          popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                            return Padding(
-                              padding: EdgeInsets.all(16.h),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CustomText(
-                                    text: value.toString(),
-                                    textStyle: Theme.of(context).textTheme.titleLarge,
+                          popupProps: PopupProps.menu(
+                              itemBuilder: (_, value, state) {
+                                return Padding(
+                                  padding: EdgeInsets.all(16.h),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CustomText(
+                                        text: value.toString(),
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            );
-                          } ,
-                              fit: FlexFit.loose
-                          ),
+                                );
+                              },
+                              fit: FlexFit.loose),
                           dropdownButtonProps: DropdownButtonProps(
                               icon: !data.isLoading
                                   ? const Icon(Icons.keyboard_arrow_down)
                                   : const MyProgressIndicator(
-                                width: 30,
-                                height: 30,
-                                size: 30,
-                              )),
+                                      width: 30,
+                                      height: 30,
+                                      size: 30,
+                                    )),
                         );
                       },
                     ),
                     selectYear
                         ? CustomText(
-                      text: translate(LocaleKeys.required),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall
-                          ?.copyWith(color: ColorManager.primaryColor),
-                    )
+                            text: translate(LocaleKeys.required),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(color: ColorManager.primaryColor),
+                          )
                         : const SizedBox(),
-
-
                     const VerticalSpace(20),
                     Consumer<GetCitiesViewModel>(builder: (_, data, __) {
                       return DropdownSearch<BasicModel>(
-                        asyncItems: (filter) async => data.getCitiesRespose!.data!,
+                        asyncItems: (filter) async =>
+                            data.getCitiesRespose!.data!,
                         itemAsString: (BasicModel u) => u.name!,
                         onChanged: (BasicModel? data) {
                           setState(() {
-                            _selectedCity = data!.id.toString() ;
-                            formData['city_id'] = _selectedCity ;
-
-
+                            _selectedCity = data!.id.toString();
+                            formData['city_id'] = _selectedCity;
                           });
                         },
                         dropdownDecoratorProps: DropDownDecoratorProps(
@@ -587,15 +617,18 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
-                                      color: ColorManager.greyCanvasColor, width: 2)),
+                                      color: ColorManager.greyCanvasColor,
+                                      width: 2)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
-                                      color: ColorManager.greyCanvasColor, width: 2)),
+                                      color: ColorManager.greyCanvasColor,
+                                      width: 2)),
                               disabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
-                                      color: ColorManager.greyCanvasColor, width: 2)),
+                                      color: ColorManager.greyCanvasColor,
+                                      width: 2)),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15.r),
                                   borderSide: const BorderSide(
@@ -603,98 +636,94 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                       width: 2))),
                         ),
                         dropdownBuilder: (_, value) {
-                          return _selectedCity != null ?
-                          Row(
-                            children: [
-                              CustomShimmerImage(
-                                image: value?.image ?? '',
-                                height: 20,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              CustomText(
-                                text: value?.name ?? '',
-                                textStyle: Theme.of(context).textTheme.titleLarge,
-                              )
-                            ],
-                          ) :  Row(
-                            children: [
-
-                              CustomText(
-                                text: translate(LocaleKeys.selectCity),
-                                textStyle: Theme.of(context).textTheme.titleMedium,
-                              )
-                            ],
-                          );
+                          return _selectedCity != null
+                              ? Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    CustomText(
+                                      text: value?.name ?? '',
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    )
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    CustomText(
+                                      text: translate(LocaleKeys.selectCity),
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    )
+                                  ],
+                                );
                         },
-                        popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                          return Padding(
-                            padding: EdgeInsets.all(16.h),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomText(
-                                  text: value.name ?? '',
-                                  textStyle: Theme.of(context).textTheme.titleLarge,
+                        popupProps: PopupProps.menu(
+                            itemBuilder: (_, value, state) {
+                              return Padding(
+                                padding: EdgeInsets.all(16.h),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomText(
+                                      text: value.name ?? '',
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                  ],
                                 ),
-
-                              ],
-                            ),
-                          );
-                        } ,
-                        fit: FlexFit.loose
-                        ),
+                              );
+                            },
+                            fit: FlexFit.loose),
                         dropdownButtonProps: DropdownButtonProps(
-                            icon: !data.isLoading
-                                ? const Icon(Icons.keyboard_arrow_down)
-                                : const MyProgressIndicator(
-                              width: 30,
-                              height: 30,
-                              size: 30,
-                            ) ,
-
+                          icon: !data.isLoading
+                              ? const Icon(Icons.keyboard_arrow_down)
+                              : const MyProgressIndicator(
+                                  width: 30,
+                                  height: 30,
+                                  size: 30,
+                                ),
                         ),
-
                       );
                     }),
                     const VerticalSpace(20),
-
-
                     Form(
                       key: _keyStep1,
                       child: CustomTextField(
                         height: 70.h,
-                        controller: _mileageController,textInputType: TextInputType.number,
-
-                        onChange: (String? value){
-                          formData['mileage'] = value  ;
+                        controller: _mileageController,
+                        textInputType: TextInputType.number,
+                        onChange: (String? value) {
+                          formData['mileage'] = value;
                         },
-                        prefixIcon: const Icon(Icons.speed_outlined , color: ColorManager.primaryColor,),
-                        validate: (String? value){
-                          if(value == null || value.isEmpty){
-
-                            return LocaleKeys.required ;
+                        prefixIcon: const Icon(
+                          Icons.speed_outlined,
+                          color: ColorManager.primaryColor,
+                        ),
+                        validate: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return LocaleKeys.required;
                           }
-                          return null ;
+                          return null;
                         },
                         hintText: translate(LocaleKeys.mileage),
                         borderColor: ColorManager.greyColorD6D6D6,
                         borderRadius: 15.r,
-
-                      )  ,
-                    ) ,
-
-
-
+                      ),
+                    ),
                     selectCity
                         ? CustomText(
-                      text: translate(LocaleKeys.required),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall
-                          ?.copyWith(color: ColorManager.primaryColor),
-                    )
+                            text: translate(LocaleKeys.required),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(color: ColorManager.primaryColor),
+                          )
                         : const SizedBox(),
                     const VerticalSpace(40),
                     CustomButton(
@@ -704,7 +733,6 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                               _selectedModel != null &&
                               _selectedClass != null &&
                               _selectedYear != null &&
-
                               _selectedCity != null) {
                             setState(() {
                               currentStep = 1;
@@ -729,7 +757,6 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                               if (_selectedDistance == null) {
                                 selectDistance = true;
                               }
-
                             });
                             showCustomSnackBar(
                                 message: "Please complete the form first ",
@@ -780,10 +807,11 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                       CustomTextField(
                         controller: _phoneController,
                         isPhoneNumber: true,
-
                         validate: (String? value) {
                           if (value!.isEmpty) {
                             return StringsManager.required;
+                          } else if (value.length < 11) {
+                            return translate(LocaleKeys.phoneErrorMessage);
                           }
                           return null;
                         },
@@ -841,10 +869,15 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                         ],
                       ),
 
-                      terms ?
-                          CustomText(text: translate(LocaleKeys.termsMessage), textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
-                            color: ColorManager.primaryColor
-                          ),)   : const SizedBox(),
+                      terms
+                          ? CustomText(
+                              text: translate(LocaleKeys.termsMessage),
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(color: ColorManager.primaryColor),
+                            )
+                          : const SizedBox(),
                       const VerticalSpace(40),
 
                       Consumer<SellChangeCarViewModel>(
@@ -859,8 +892,6 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                                 buttonText: translate(LocaleKeys.ok),
                                 onTap: () {
                                   _submit(context);
-
-
                                 });
                           }
                         },
@@ -880,7 +911,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
       "car_model_id": _selectedModel,
       "car_model_extension_id": _selectedClass,
       "year": _selectedYear,
-      "mileage": _mileageController,
+      "mileage": _mileageController.text,
       "city_id": _selectedCity,
       "name": _nameController.text,
       "phone": _phoneController.text,
@@ -888,49 +919,49 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
 
     final sellChangeCarProvider =
         Provider.of<SellChangeCarViewModel>(context, listen: false);
-    if (kDebugMode) {
+    if (!kDebugMode) {
       ResponseModel responseModel = await sellChangeCarProvider.sellChangeCar(
           context: context, formData: formData);
+      print('responseModel.data ${responseModel.message}');
       if (responseModel.isSuccess) {
         showCustomSnackBar(
-            message: "You have booked examination successfully",
+            isError: false,
+            message: responseModel.message ?? "",
             context: context);
         //NavigationService.pushReplacement(context, Routes.homeScreen)
-        // NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
+        NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
       } else {
         showCustomSnackBar(
             message: "${responseModel.message}", context: context);
       }
     } else {
       FocusScope.of(context).unfocus();
-      if (!_key.currentState!.validate()) {
-        debugPrint("Form Not Valid");
-        return;
+      if (_key.currentState!.validate()) {
+        //   _key.currentState!.save();
+        //   if (isSwitched1) {
+        //     setState(() {
+        //       terms =false ;
+        //     });
+        //     ResponseModel responseModel = await sellChangeCarProvider.sellChangeCar(
+        //         context: context, formData: formData);
+        //     if (responseModel.isSuccess) {
+        //       NavigationService.goBack(context) ;
+        //       showCustomSnackBar(
+        //           message: "You have booked examination successfully",
+        //           context: context);
+        //       NavigationService.pushReplacement(
+        //           context, Routes.bottomNavigationBar);
+        //     } else {
+        //       showCustomSnackBar(
+        //           message: "${responseModel.message}", context: context);
+        //     }
+        //   } else {
+        //     setState(() {
+        //       terms =true ;
+        //     });
+        //
+        // }
       }
-      _key.currentState!.save();
-      if (isSwitched1) {
-        setState(() {
-          terms =false ;
-        });
-        ResponseModel responseModel = await sellChangeCarProvider.sellChangeCar(
-            context: context, formData: formData);
-        if (responseModel.isSuccess) {
-          NavigationService.goBack(context) ;
-          showCustomSnackBar(
-              message: "You have booked examination successfully",
-              context: context);
-          NavigationService.pushReplacement(
-              context, Routes.bottomNavigationBar);
-        } else {
-          showCustomSnackBar(
-              message: "${responseModel.message}", context: context);
-        }
-      } else {
-        setState(() {
-          terms =true ;
-        });
-
-    }
     }
   }
 
@@ -956,10 +987,12 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                 onClick: () {
                   NavigationService.goBack(context);
                 },
-                child:  Icon(
+                child: Icon(
                   Icons.arrow_forward_ios,
                   color: ColorManager.white,
-                  textDirection: shared!.getString("lang") == "ar" ? TextDirection.ltr : TextDirection.rtl,
+                  textDirection: shared!.getString("lang") == "ar"
+                      ? TextDirection.ltr
+                      : TextDirection.rtl,
                 )),
           )),
       body: Column(
@@ -972,7 +1005,6 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
               data: ThemeData(
                 colorScheme: ColorScheme.fromSwatch().copyWith(
                   primary: ColorManager.primaryColor,
-
                 ),
               ),
               child: Stepper(

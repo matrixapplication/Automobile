@@ -5,4 +5,9 @@
     <string name="package_name">com.automobile.app</string>
     <string name="custom_url_scheme">com.automobile.app</string>
     <string name="default_notification_channel_id">auto_mobile_channel</string>
+
+    <!-- facebook app events-->
+    <string name="facebook_app_id">1234</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
 </resources>

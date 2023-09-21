@@ -23,27 +23,34 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:automobile_project/core/services/responsive/num_extensions.dart';
 import 'package:provider/provider.dart';
+
 class AddBranchBottomSheet extends StatefulWidget {
-  final String? selectedCity ;
-  final String? selectedisterct ;
-  const AddBranchBottomSheet({Key? key, this.selectedCity, this.selectedisterct}) : super(key: key);
+  final String? selectedCity;
+
+  final String? selectedisterct;
+
+  const AddBranchBottomSheet(
+      {Key? key, this.selectedCity, this.selectedisterct})
+      : super(key: key);
 
   @override
   State<AddBranchBottomSheet> createState() => _AddBranchBottomSheetState();
 }
 
 class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
-  String? _selectedCity ;
-  String? _selectedDistrict ;
-  Map<String , dynamic> formData = {
-    "name" : null ,
-    "name_en" : null ,
-    "address" : null ,
-    "address_en" : null ,
-    "city_id" : null ,
-    "district_id" : null ,
-    "whatsapp" : null
-  } ;
+  String? _selectedCity;
+
+  String? _selectedDistrict;
+
+  Map<String, dynamic> formData = {
+    "name": null,
+    "name_en": null,
+    "address": null,
+    "address_en": null,
+    "city_id": null,
+    "district_id": null,
+    "whatsapp": null
+  };
 
   final TextEditingController nameArController = TextEditingController();
   final TextEditingController nameEnController = TextEditingController();
@@ -51,39 +58,48 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
   final TextEditingController addressEnController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController whatsappController = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _selectedCity = widget.selectedCity ;
-    _selectedDistrict = widget.selectedisterct ;
-    Provider.of<GetCitiesViewModel>(context , listen: false).getCities(context: context) ;
-    Provider.of<GetDistrictsViewModel>(context , listen: false).getCitiesRespose?.data?.clear() ;
-
+    _selectedCity = widget.selectedCity;
+    _selectedDistrict = widget.selectedisterct;
+    Provider.of<GetCitiesViewModel>(context, listen: false)
+        .getCities(context: context);
+    Provider.of<GetDistrictsViewModel>(context, listen: false)
+        .getCitiesRespose
+        ?.data
+        ?.clear();
   }
 
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-  Future<void> _submit(context,) async {
-    final showRoomsProvider = Provider.of<ShowRoomsBranchesViewModel>(context , listen: false) ;
+  Future<void> _submit(
+    context,
+  ) async {
+    final showRoomsProvider =
+        Provider.of<ShowRoomsBranchesViewModel>(context, listen: false);
     if (!_key.currentState!.validate()) {
       debugPrint("Form Not Valid");
       return;
     }
     _key.currentState!.save();
-    ResponseModel result = await showRoomsProvider.addBranch(context: context, formData: formData) ;
-    if(result.isSuccess){
+    ResponseModel result =
+        await showRoomsProvider.addBranch(context: context, formData: formData);
+    if (result.isSuccess) {
       NavigationService.goBack(context);
 
-      showCustomSnackBar(message: result.message!, context: context) ;
-    }else{
-      showCustomSnackBar(message: result.message!, context: context) ;
-
+      showCustomSnackBar(message: result.message!, context: context);
+    } else {
+      showCustomSnackBar(message: result.message!, context: context);
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    final showRoomsProvider = Provider.of<ShowRoomsBranchesViewModel>(context , listen: true) ;
+    final showRoomsProvider =
+        Provider.of<ShowRoomsBranchesViewModel>(context, listen: true);
     return SizedBox(
       height: 800.h,
       child: SingleChildScrollView(
@@ -93,11 +109,13 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
             SizedBox(
               height: 20.h,
             ),
-            Text(translate(LocaleKeys.addNewBranch) , style: Theme.of(context).textTheme.titleLarge,) ,
+            Text(
+              translate(LocaleKeys.addNewBranch),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             SizedBox(
               height: 10.h,
             ),
-
             Form(
               key: _key,
               child: Column(
@@ -110,20 +128,19 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     borderRadius: 15.w,
                     hintWeight: FontWeight.bold,
-                    prefixIcon:  const Icon(Icons.drive_file_rename_outline),
+                    prefixIcon: const Icon(Icons.drive_file_rename_outline),
                     controller: nameArController,
-                    onChange: (String? value){
-                      formData['name'] = value ;
+                    onChange: (String? value) {
+                      formData['name'] = value;
                     },
                     isValidator: true,
-                    validate: (String? value){
-                      if(value == null || value.isEmpty){
-                        return translate(LocaleKeys.required) ;
+                    validate: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return translate(LocaleKeys.required);
                       }
-                      return null  ;
+                      return null;
                     },
-
-                  ) ,
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -134,20 +151,19 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     borderRadius: 15.w,
                     hintWeight: FontWeight.bold,
-                    prefixIcon:  const Icon(Icons.drive_file_rename_outline),
+                    prefixIcon: const Icon(Icons.drive_file_rename_outline),
                     controller: nameEnController,
-                    onChange: (String? value){
-                      formData['name_en'] = value ;
+                    onChange: (String? value) {
+                      formData['name_en'] = value;
                     },
-                    validate: (String? value){
-                      if(value == null || value.isEmpty){
-                        return translate(LocaleKeys.required) ;
+                    validate: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return translate(LocaleKeys.required);
                       }
-                      return null  ;
+                      return null;
                     },
                     isValidator: true,
-
-                  ) ,
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -158,20 +174,19 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     borderRadius: 15.w,
                     hintWeight: FontWeight.bold,
-                    prefixIcon:  const Icon(Icons.home_filled),
+                    prefixIcon: const Icon(Icons.home_filled),
                     controller: addressArController,
-                    onChange: (String? value){
-                      formData['address'] = value ;
+                    onChange: (String? value) {
+                      formData['address'] = value;
                     },
-                    validate: (String? value){
-                      if(value == null || value.isEmpty){
-                        return translate(LocaleKeys.required) ;
+                    validate: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return translate(LocaleKeys.required);
                       }
-                      return null  ;
+                      return null;
                     },
                     isValidator: true,
-
-                  ) ,
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -182,21 +197,19 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     borderRadius: 15.w,
                     hintWeight: FontWeight.bold,
-                    prefixIcon:  const Icon(Icons.home_filled),
+                    prefixIcon: const Icon(Icons.home_filled),
                     controller: addressEnController,
-                    onChange: (String? value){
-                      formData['address_en'] = value ;
+                    onChange: (String? value) {
+                      formData['address_en'] = value;
                     },
-                    validate: (String? value){
-                      if(value == null || value.isEmpty){
-                        return translate(LocaleKeys.required) ;
+                    validate: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return translate(LocaleKeys.required);
                       }
-                      return null  ;
+                      return null;
                     },
-
                     isValidator: true,
-
-                  ) ,
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -207,26 +220,23 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     isPhoneNumber: true,
                     borderRadius: 15.w,
-
                     hintWeight: FontWeight.bold,
-                    prefixIcon:  const Icon(Icons.phone_android),
+                    prefixIcon: const Icon(Icons.phone_android),
                     controller: phoneController,
-                    onChange: (String? value){
-                      formData['phone'] = value ;
+                    onChange: (String? value) {
+                      formData['phone'] = value;
                     },
-                    validate: (String? value){
-                      if(value == null || value.isEmpty){
-                        return translate(LocaleKeys.required) ;
-                      }else if(value.length  != 11){
-                        return translate(LocaleKeys.phoneErrorMessage) ;
+                    validate: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return translate(LocaleKeys.required);
+                      } else if (value.length != 11) {
+                        return translate(LocaleKeys.phoneErrorMessage);
                       }
 
-                      return null  ;
+                      return null;
                     },
-
                     isValidator: true,
-
-                  ) ,
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -237,55 +247,40 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                     fillColor: Colors.white,
                     borderRadius: 15.w,
                     hintWeight: FontWeight.bold,
-                    prefixIcon:  const Icon(Icons.phone_android),
+                    prefixIcon: const Icon(Icons.phone_android),
                     controller: whatsappController,
                     isPhoneNumber: true,
-                    onChange: (String? value){
-                      formData['whatsapp'] = value ;
+                    onChange: (String? value) {
+                      formData['whatsapp'] = value;
                     },
-                    validate: (String? value){
-                      if(value == null || value.isEmpty){
-                        return translate(LocaleKeys.required) ;
-                      }else if(value.length  != 11){
-                        return translate(LocaleKeys.phoneErrorMessage) ;
+                    validate: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return translate(LocaleKeys.required);
+                      } else if (value.length != 11) {
+                        return translate(LocaleKeys.phoneErrorMessage);
                       }
 
-                      return null  ;
+                      return null;
                     },
-
                     isValidator: true,
-
-                  ) ,
-
-
-
-
-
-
-
-
-
+                  ),
                 ],
               ),
             ),
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
-
             Consumer<GetCitiesViewModel>(builder: (_, data, __) {
               return DropdownSearch<BasicModel>(
                 asyncItems: (filter) async => data.getCitiesRespose!.data!,
                 itemAsString: (BasicModel u) => u.name!,
                 onChanged: (BasicModel? data) {
                   setState(() {
-                    _selectedCity = data!.id.toString() ;
-                    formData['city_id'] = _selectedCity ;
+                    _selectedCity = data!.id.toString();
+                    formData['city_id'] = _selectedCity;
 
-                    Provider.of<GetDistrictsViewModel>(context,
-                        listen: false)
-                        .getCities(
-                        context: context,
-                        id: data.id!);
+                    Provider.of<GetDistrictsViewModel>(context, listen: false)
+                        .getCities(context: context, id: data.id!);
                   });
                 },
                 dropdownDecoratorProps: DropDownDecoratorProps(
@@ -312,68 +307,63 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.r),
                           borderSide: const BorderSide(
-                              color: ColorManager.greyCanvasColor,
-                              width: 2))),
+                              color: ColorManager.greyCanvasColor, width: 2))),
                 ),
                 dropdownBuilder: (_, value) {
-                  return _selectedCity != null ?
-                  Row(
-                    children: [
-                      CustomShimmerImage(
-                        image: value?.image ?? '',
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      CustomText(
-                        text: value?.name ?? '',
-                        textStyle: Theme.of(context).textTheme.titleLarge,
-                      )
-                    ],
-                  ) :  Row(
-                    children: [
-
-                      CustomText(
-                        text:  translate(LocaleKeys.selectCity),
-                        textStyle: Theme.of(context).textTheme.titleMedium,
-                      )
-                    ],
-                  );
+                  return _selectedCity != null
+                      ? Row(
+                          children: [
+                            CustomShimmerImage(
+                              image: value?.image ?? '',
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            CustomText(
+                              text: value?.name ?? '',
+                              textStyle: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            CustomText(
+                              text: translate(LocaleKeys.selectCity),
+                              textStyle:
+                                  Theme.of(context).textTheme.titleMedium,
+                            )
+                          ],
+                        );
                 },
-                popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                  return Padding(
-                    padding: EdgeInsets.all(16.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: value.name ?? '',
-                          textStyle: Theme.of(context).textTheme.titleLarge,
+                popupProps: PopupProps.menu(
+                    itemBuilder: (_, value, state) {
+                      return Padding(
+                        padding: EdgeInsets.all(16.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                              text: value.name ?? '',
+                              textStyle: Theme.of(context).textTheme.titleLarge,
+                            ),
+                          ],
                         ),
-                       
-                      ],
-                    ),
-                  );
-                } ,
-                    fit: FlexFit.loose
-                ),
+                      );
+                    },
+                    fit: FlexFit.loose),
                 dropdownButtonProps: DropdownButtonProps(
                     icon: !data.isLoading
                         ? const Icon(Icons.keyboard_arrow_down)
                         : const MyProgressIndicator(
-                      width: 30,
-                      height: 30,
-                      size: 30,
-                    )),
+                            width: 30,
+                            height: 30,
+                            size: 30,
+                          )),
               );
             }),
-
-
-
-
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
             Consumer<GetDistrictsViewModel>(builder: (_, data, __) {
               return DropdownSearch<BasicModel>(
@@ -382,14 +372,14 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
 
                 onChanged: (BasicModel? data) {
                   setState(() {
-                    _selectedDistrict = data!.id.toString() ;
-                    formData['district_id'] = _selectedDistrict            ;
-
+                    _selectedDistrict = data!.id.toString();
+                    formData['district_id'] = _selectedDistrict;
                   });
                 },
                 dropdownDecoratorProps: DropDownDecoratorProps(
                   dropdownSearchDecoration: InputDecoration(
                       labelText: translate(LocaleKeys.selectDistrict),
+
                       labelStyle: Theme.of(context)
                           .textTheme
                           .titleLarge!
@@ -411,97 +401,84 @@ class _AddBranchBottomSheetState extends State<AddBranchBottomSheet> {
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.r),
                           borderSide: const BorderSide(
-                              color: ColorManager.greyCanvasColor,
-                              width: 2))),
+                              color: ColorManager.greyCanvasColor, width: 2))),
                 ),
                 dropdownBuilder: (_, value) {
-                  return _selectedDistrict != null ?
-                  Row(
-                    children: [
-
-                      CustomText(
-                        text: value?.name ?? '',
-                        textStyle: Theme.of(context).textTheme.titleLarge,
-                      )
-                    ],
-                  ) :  Row(
-                    children: [
-
-                      CustomText(
-                        text: translate(LocaleKeys.selectDistrict),
-                        textStyle: Theme.of(context).textTheme.titleMedium,
-                      )
-                    ],
-                  );
+                  return _selectedDistrict != null
+                      ? Row(
+                          children: [
+                            CustomText(
+                              text: value?.name ?? '',
+                              textStyle: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            CustomText(
+                              text: translate(LocaleKeys.selectDistrict),
+                              textStyle:
+                                  Theme.of(context).textTheme.titleMedium,
+                            )
+                          ],
+                        );
                 },
-                popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                  return Padding(
-                    padding: EdgeInsets.all(16.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: value.name ?? '',
-                          textStyle: Theme.of(context).textTheme.titleLarge,
-                        ),
-
-                      ],
-                    ),
-                  );
-                } ,
-                    fit: FlexFit.loose ,
-
+                popupProps: PopupProps.menu(
+                  itemBuilder: (_, value, state) {
+                    return Padding(
+                      padding: EdgeInsets.all(16.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomText(
+                            text: value.name ?? '',
+                            textStyle: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  fit: FlexFit.loose,
                 ),
                 dropdownButtonProps: DropdownButtonProps(
                     icon: !data.isLoading
                         ? const Icon(Icons.keyboard_arrow_down)
                         : const MyProgressIndicator(
-                      width: 30,
-                      height: 30,
-                      size: 30,
-                    )),
-
+                            width: 30,
+                            height: 30,
+                            size: 30,
+                          )),
               );
             }),
-
-
-
-
-
             SizedBox(
               height: 20.h,
-            ) ,
-
-            Consumer<ShowRoomsBranchesViewModel>(
-                builder:
-                    (_ , data , __ ){
-                  if(data.isLoading){
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MyProgressIndicator(
-                          height: 80.h,
-                          width: 80.h,
-                        )
-                      ],
-                    ) ;
-                  }else{
-                    return CustomButton(
-                      height: 60.h,
-                      padding: EdgeInsets.all(10.w),
-                      width: 420.w,
-                      onTap: (){
-                        _submit(context) ;
-                      },
-                      backgroundColor: Theme.of(context).primaryColor,
-                      buttonText: translate(LocaleKeys.ok),
-                      loading: showRoomsProvider.isLoading,
-                      radius: 10.h,
-
-                    );
-                  }
-                }
-            ) ,
+            ),
+            Consumer<ShowRoomsBranchesViewModel>(builder: (_, data, __) {
+              if (data.isLoading) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyProgressIndicator(
+                      height: 80.h,
+                      width: 80.h,
+                    )
+                  ],
+                );
+              } else {
+                return CustomButton(
+                  height: 60.h,
+                  padding: EdgeInsets.all(10.w),
+                  width: 420.w,
+                  onTap: () {
+                    _submit(context);
+                  },
+                  backgroundColor: Theme.of(context).primaryColor,
+                  buttonText: translate(LocaleKeys.ok),
+                  loading: showRoomsProvider.isLoading,
+                  radius: 10.h,
+                );
+              }
+            }),
           ],
         ),
       ),

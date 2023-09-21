@@ -530,7 +530,7 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                               fontSize: 18
                           ),) ,
                           VerticalSpace(20.h) ,
-                          CustomText(text: "${ double.parse( widget.adminCars.price.toString()).toStringAsFixed(0)} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          CustomText(text: "${widget.adminCars.price} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: ColorManager.primaryColor ,
 
                               fontSize: 31

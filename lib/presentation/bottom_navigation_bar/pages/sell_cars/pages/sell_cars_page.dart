@@ -758,7 +758,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                           physics: const NeverScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount:
-                              viewModel.getMechanicalResponse!.data!.length,
+                              viewModel.getMechanicalResponse?.data?.length ?? 0,
                           itemBuilder: (context, index) {
                             return TapEffect(
                               onClick: () {

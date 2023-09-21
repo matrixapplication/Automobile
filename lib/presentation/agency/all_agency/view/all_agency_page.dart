@@ -244,7 +244,7 @@ class _AllAgencyPageState extends State<AllAgencyPage> {
                         child: viewModel.hasMore
                             ? const MyProgressIndicator()
                             : CustomText(
-                            text: translate(LocaleKeys.dataNotFound),
+                            text: '',//translate(LocaleKeys.dataNotFound),
                             textStyle: Theme.of(context).textTheme.bodySmall),
                       ),
                     );

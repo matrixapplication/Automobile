@@ -161,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 250.h,
                           color: ColorManager.primaryColor,
                           child: CustomShimmerImage(
-                            image: userProvider.user!.coverImage!,
+                            image: userProvider.user?.coverImage ?? '',
                             boxFit: BoxFit.fill,
                           ),
                         ) ,

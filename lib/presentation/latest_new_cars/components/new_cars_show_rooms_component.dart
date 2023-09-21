@@ -81,7 +81,7 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
         // padding: EdgeInsets.symmetric(horizontal: 7.w),
         padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 1 / 1.23,
+          childAspectRatio: 1 / 1.30,
           crossAxisCount: 2,
           crossAxisSpacing: 10.w,
           mainAxisSpacing: 10.h,
@@ -189,56 +189,62 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                 height: 20.h,
               ),
 
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child:newCarsAgencyProvider.showroomCarList[index].brand?.name  != null ?
-                    CustomText(
-                        text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].year}",
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(
-                            height: 1.2,
-                            color: ColorManager.blackColor1C1C1C,
-                            fontWeight: FontWeightManager.semiBold)) :
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey[200]!,
-                      highlightColor: Colors.grey[600]!,
-                      child: Container(
-                        height: 14.h,
-                        width: 20.w,
-                        decoration:  BoxDecoration(
-                            color: ColorManager.greyColorCBCBCB,
-                            borderRadius: BorderRadius.circular(15.h)
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child:newCarsAgencyProvider.showroomCarList[index].brand?.name  != null ?
+                      CustomText(
+                          text: "${newCarsAgencyProvider.showroomCarList[index].brand?.name} ${newCarsAgencyProvider.showroomCarList[index].brandModel?.name} ${newCarsAgencyProvider.showroomCarList[index].year}",
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                              height: 1.2,
+                              color: ColorManager.blackColor1C1C1C,
+                              fontWeight: FontWeightManager.semiBold)) :
+                      Shimmer.fromColors(
+                        baseColor: Colors.grey[200]!,
+                        highlightColor: Colors.grey[600]!,
+                        child: Container(
+                          height: 14.h,
+                          width: 20.w,
+                          decoration:  BoxDecoration(
+                              color: ColorManager.greyColorCBCBCB,
+                              borderRadius: BorderRadius.circular(15.h)
 
-                          // shape: BoxShape.circle
+                            // shape: BoxShape.circle
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                ],
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10.h,
               ),
 
               newCarsAgencyProvider.showroomCarList[index].price != null ?
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CustomText(
-                      text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                          color: ColorManager.primaryColor,
-                          fontWeight: FontWeightManager.semiBold,
-                          height: 1))
-                ],
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CustomText(
+                        text: "${double.parse("${newCarsAgencyProvider.showroomCarList[index].price}").toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                            color: ColorManager.primaryColor,
+                            fontWeight: FontWeightManager.semiBold,
+                            height: 1))
+                  ],
+                ),
               ): Shimmer.fromColors(
                 baseColor: Colors.grey[200]!,
                 highlightColor: Colors.grey[600]!,
@@ -253,11 +259,11 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                 ),
               ),
               const Spacer(),
-              Padding(padding: EdgeInsets.all(8.h) ,
-              child: CustomButton(
+              CustomButton(
                 buttonText: translate(LocaleKeys.details),
                 backgroundColor: ColorManager.primaryColor,
                 height: 40.h,
+                margin: EdgeInsets.only(right: 8.w , left: 8.w , bottom: 8.h),
                 padding: EdgeInsets.all(8.h),
                 onTap: () {
                   NavigationService.push(
@@ -265,7 +271,6 @@ class _NewCarsShowRoomsComponentState extends State<NewCarsShowRoomsComponent> {
                       arguments: {"isShowRoom": true , "carModel" : newCarsAgencyProvider.showroomCarList[index]});
 
                 },
-              ),
               )
             ],
           ),

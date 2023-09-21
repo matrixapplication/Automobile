@@ -129,6 +129,7 @@ class FireBaseAPI {
     });
 
     FirebaseMessaging.onMessage.listen((event) {
+      print("onMessage");
       final notification = event.notification;
       if (notification == null) return;
       // showNotification(notification.title!, notification.body!, event.data) ;

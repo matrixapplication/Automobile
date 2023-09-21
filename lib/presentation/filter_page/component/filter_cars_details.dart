@@ -79,7 +79,7 @@ class _FiltersCarsDetailsState extends State<FiltersCarsDetails> {
       appBar: PreferredSize(preferredSize: Size.fromHeight(70.h), child:
       MyAppbar(
         backgroundColor:  ColorManager.primaryColor,
-        title: "Filter Result",
+        title: translate(LocaleKeys.filterResult),
         titleColor: ColorManager.white,
         centerTitle: true,
         leading: TapEffect(

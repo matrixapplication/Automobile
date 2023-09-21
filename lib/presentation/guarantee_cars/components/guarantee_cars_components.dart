@@ -67,9 +67,9 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
       } else if (data.adminCarsList.isEmpty) {
         return  Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const[
+          children:[
              CustomText(
-              text: "No Data found",
+              text: translate(LocaleKeys.dataNotFound),
             ),
           ],
         );
@@ -229,7 +229,8 @@ class _GuaranteeCarsComponentState extends State<GuaranteeCarsComponent> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CustomText(
-                              text: "${double.parse(data.adminCarsList[index].price!).toStringAsFixed(0)} ${translate(LocaleKeys.egp)}",
+                              text: //"${double.parse(data.adminCarsList[index].price!.replaceAll(',', '')).toStringAsFixed(0)} "
+                                  "${data.adminCarsList[index].price} ${translate(LocaleKeys.egp)}",
                               textStyle: Theme
                                   .of(context)
                                   .textTheme

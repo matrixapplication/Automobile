@@ -234,7 +234,7 @@ class SlidersUseCase {
 
     if (apiResponse.response != null &&
         apiResponse.response!.statusCode == 200) {
-      responseModel = ResponseModel(true, "Success" ,) ;
+      responseModel = ResponseModel(true, apiResponse.response?.data['message'] ,) ;
     } else {
       responseModel = ResponseModel(true, apiResponse.response?.data['message'],) ;
     }

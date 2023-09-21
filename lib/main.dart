@@ -85,6 +85,7 @@ void handleMessage(RemoteMessage message) async {
   }
 }
 Future<void> handleBackGroundMessage(RemoteMessage message) async {
+  print("handleBackGroundMessage");
   if (message.notification == null) return;
   handleMessage(message) ;
 }

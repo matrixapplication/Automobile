@@ -2,7 +2,7 @@
 
 abstract class  LocaleKeys {
   static const notification  = 'notification ';
-  static const deleteAccount  = 'deleteAccount ';
+  static const deleteAccount  = 'deleteAccount';
   static const deleteAccountDescription  = 'deleteAccountDescription ';
   static const onBoarding1Title  = 'onBoarding1Title ';
   static const whatsApp  = 'whatsApp';
@@ -49,6 +49,7 @@ abstract class  LocaleKeys {
   static const privacy = 'privacy' ;
   static const carReturn = 'carReturn' ;
   static const filter = 'filter' ;
+  static const filterResult = 'filterResult' ;
   static const seeAll = 'see_all' ;
   static const sortBy = 'sort_by' ;
   static const search = 'search' ;
@@ -114,6 +115,7 @@ abstract class  LocaleKeys {
   static const gas = "gas";
   static const diesel = "diesel";
   static const naturalGas = "naturalGas";
+  static const phoneValidation = "phoneValidation";
 
   static const asc = "asc";
   static const desc = "desc";
@@ -141,4 +143,5 @@ abstract class  LocaleKeys {
   static const checkNumber = "checkNumber" ;
   static const editBranch = 'editBranch'  ;
   static const phoneErrorMessage = "phoneErrorMessage" ;
+  static const notes = "Notes" ;
 }

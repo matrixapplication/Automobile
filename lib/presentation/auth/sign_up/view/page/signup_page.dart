@@ -39,11 +39,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.register(
           context: context,
-          email: "new@test.com",
+          email: "dsfsdf@test.com",
           password: "123456789" ,
           confirmPassword: "123456789" ,
-          phone: "01006649981" ,
-        name: "new554"
+          phone: "01008549981" ,
+        name: "Harbey"
       );
       if (responseModel.isSuccess) {
         NavigationService.pushReplacement(context, Routes.bottomNavigationBar);

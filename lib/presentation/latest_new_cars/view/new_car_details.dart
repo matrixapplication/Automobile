@@ -532,13 +532,40 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                           ),) ,
                           VerticalSpace(20.h) ,
                           CustomText(text: "${ widget.carModel.price.toString()} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              color: ColorManager.primaryColor ,
+                              color: ColorManager.black ,
 
                               fontSize: 31
                           ),) ,
                         ],
                       ),
                     ) ,
+
+                    Container(
+                      padding: EdgeInsets.all(16.h),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white ,
+                          border: Border.all(color: ColorManager.homeCanvasColor , )
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomText(text: translate(LocaleKeys.notes) , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: ColorManager.primaryColor ,
+                              decoration: TextDecoration.underline ,
+                              decorationColor: ColorManager.primaryColor,
+                              fontSize: 18
+                          ),) ,
+                          VerticalSpace(20.h) ,
+                          CustomText(text: "${widget.carModel.description.toString()} ${translate(LocaleKeys.egp)}" , textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: ColorManager.black ,
+
+                              fontSize: 20
+                          ),) ,
+                        ],
+                      ),
+                    ),
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(

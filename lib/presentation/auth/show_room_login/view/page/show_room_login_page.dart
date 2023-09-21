@@ -27,9 +27,10 @@ class _ShowRoomLoginPageState extends State<ShowRoomLoginPage> {
 
   Future<void> _submit(context, ShowRoomLoginViewModel viewModel) async {
   final userProvider = Provider.of<LocalAuthProvider>(context ,listen: false) ;
+  print("userProvider.isLogin()");
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.login(
-          context: context, code: "1437", password: "123456789");
+          context: context, code: "1471", password: "123456789");
       if (responseModel.isSuccess) {
         //NavigationService.pushReplacement(context, Routes.homeScreen);
         await userProvider.isLogin()  ;

@@ -285,7 +285,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                     // controller: _emailController,
                     hintText: translate(LocaleKeys.email),
-                    textInputType: TextInputType.emailAddress,
+                    textInputType:  userProvider.user?.role == "showroom" || userProvider.user?.role == "agency" ? TextInputType.number : TextInputType.emailAddress,
                     maxLine: 1,
                     isValidator: true,
                   ),
@@ -308,7 +308,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                     // controller: _emailController,
                     hintText: translate(LocaleKeys.phone),
-                    textInputType: TextInputType.emailAddress,
+                    textInputType: TextInputType.phone,
                     maxLine: 1,
                     isValidator: true,
                   ),
@@ -345,7 +345,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                           // controller: _emailController,
                           hintText: translate(LocaleKeys.whatsApp),
-                          textInputType: TextInputType.emailAddress,
+                          textInputType: TextInputType.phone,
                           maxLine: 1,
                           isValidator: true,
                         )
