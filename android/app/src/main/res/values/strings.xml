@@ -7,7 +7,7 @@
     <string name="default_notification_channel_id">auto_mobile_channel</string>
 
     <!-- facebook app events-->
-    <string name="facebook_app_id">1234</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
+    <string name="facebook_app_id">1054753172608711</string>
+    <string name="fb_login_protocol_scheme">fb1054753172608711</string>
+    <string name="facebook_client_token">bd90bc9fc15868d8da6811664f262da0</string>
 </resources>
