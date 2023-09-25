@@ -57,5 +57,23 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	
+	<key>CFBundleURLTypes</key>
+	<array>
+	  <dict>
+	  <key>CFBundleURLSchemes</key>
+	  <array>
+	    <string>fb1054753172608711</string>
+	  </array>
+	  </dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1054753172608711</string>
+	<key>FacebookClientToken</key>
+	<string>[bd90bc9fc15868d8da6811664f262da0</string>
+	<key>FacebookDisplayName</key>
+	<string>Automobile</string>
+
+	
 </dict>
 </plist>
