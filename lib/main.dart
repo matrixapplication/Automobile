@@ -5,7 +5,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/navigation/navigation_services.dart';
 import '../config/navigation/route_generator.dart';
@@ -18,7 +17,6 @@ import 'domain/logger.dart';
 import 'injections.dart' as di;
 import 'package:easy_localization/easy_localization.dart';
 
-import 'presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 SharedPreferences? shared ;
 Locale? lang ;
 late BuildContext appContext ;

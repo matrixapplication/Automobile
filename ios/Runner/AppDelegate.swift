@@ -1,6 +1,9 @@
 import UIKit
 import Flutter
 import Firebase
+import FBAudienceNetwork
+import FBSDKCoreKit
+
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -11,5 +14,7 @@ import Firebase
     FirebaseApp.configure()
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      FBAdSettings.setAdvertiserTrackingEnabled(true)
+
   }
 }
