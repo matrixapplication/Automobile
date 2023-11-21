@@ -88,25 +88,27 @@ class ShowRoomsRepository implements BaseShowRoomsRepository {
     required String? startYear,
     required String? endYear,
   }) async {
+    Map<String, dynamic>? queryParameters = {
+      "page": page,
+      "limit": 15,
+      "order": "desc",
+      "model_role": modelRole,
+      "id": id,
+      'status': states,
+      "brand": brand,
+      "car_model": carModel !=null ? int.parse(carModel) : null,
+      "search": search,
+      "drive_type": driveType,
+      "fuel_type": fuelType,
+      "start_price": startPrice,
+      "end_price": endPrice,
+      "start_year": startYear,
+      "end_year": endYear,
+    };
+    queryParameters.removeWhere((key, value) => value == null || value == "");
     try {
       final response =
-          await dioClient?.get(EndPoints.getCarsApi, queryParameters: {
-        "page": page,
-        "limit": 15,
-        "order": "desc",
-        "model_role": modelRole,
-        "id": id,
-        'status': states,
-        "brand": brand,
-        "car_model": carModel !=null ? int.parse(carModel) : null,
-        "search": search,
-        "drive_type": driveType,
-        "fuel_type": fuelType,
-        "start_price": startPrice,
-        "end_price": endPrice,
-        "start_year": startYear,
-        "end_year": endYear,
-      });
+          await dioClient?.get(EndPoints.getCarsApi, queryParameters: queryParameters);
       return ApiResponse.withSuccess(response!);
     } on DioError catch (error) {
       if (error.response == null) {

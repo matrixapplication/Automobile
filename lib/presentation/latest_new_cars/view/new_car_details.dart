@@ -312,7 +312,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                     )
                                 ),
                                 child: Center(
-                                  child: CustomText(text: "New"),
+                                  child: CustomText(text: widget.carModel.status?.name ?? ''),
                                 ),
                               ) ,
 

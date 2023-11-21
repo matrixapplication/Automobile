@@ -270,6 +270,7 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                             ],
                           ),
                           VerticalSpace(10.h) ,
+
                           Row(
                             children: [
                               CustomText(
@@ -315,7 +316,21 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                   child: CustomText(text: "${widget.carModel.mileage} ${translate(LocaleKeys.km)}"),
                                 ),
                               ) ,
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 10.w),
+                                padding: EdgeInsets.symmetric( horizontal: 10.w , vertical: 2.h),
+                                decoration: BoxDecoration(
+                                    color: ColorManager.homeCanvasColor ,
+                                    borderRadius: BorderRadius.circular(8.h) ,
+                                    border: Border.all(
+                                      color: ColorManager.blackColor1C1C1C ,
 
+                                    )
+                                ),
+                                child: Center(
+                                  child: CustomText(text: widget.carModel.status?.name ?? ''),
+                                ),
+                              ),
 
                             ],
                           ),
