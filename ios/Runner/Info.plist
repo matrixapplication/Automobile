@@ -19,15 +19,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>1.0.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>This app need access to your media library</string>
+	<string>This app need access to your media library to upload/edit photo in profile picture or post photo</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app need access to your calendars</string>
 	<key>NSCameraUsageDescription</key>
@@ -43,7 +43,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Automobile would like to save photos from the app to your gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app need access to your media library</string>
+	<string>This app need access to your media library to upload/edit photo in profile picture or post photo</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>This app need access to your speech recognition</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -57,5 +57,23 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	
+	<key>CFBundleURLTypes</key>
+	<array>
+	  <dict>
+	  <key>CFBundleURLSchemes</key>
+	  <array>
+	    <string>fb1054753172608711</string>
+	  </array>
+	  </dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1054753172608711</string>
+	<key>FacebookClientToken</key>
+	<string>[bd90bc9fc15868d8da6811664f262da0</string>
+	<key>FacebookDisplayName</key>
+	<string>Automobile</string>
+
+	
 </dict>
 </plist>
