@@ -288,7 +288,7 @@ class CodegenLoader extends AssetLoader {
     "termsMessage": "Please accept terms and condition",
     "carReturn": "Car Selling and buying privacy",
     "kNew": "New",
-    "kUsed": "User",
+    "kUsed": "Used",
     "dataNotFound": "Data Not Found",
     "manual": "Manual",
     "automatic": "Automatic",

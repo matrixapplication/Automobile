@@ -103,6 +103,7 @@ class _FiltersCarsDetailsState extends State<FiltersCarsDetails> {
               ) ;
             }else{
               return SingleChildScrollView(
+                  controller: _contoller,
                   padding: EdgeInsets.only(
                       bottom: 100.h ,
                       left: 10.h ,

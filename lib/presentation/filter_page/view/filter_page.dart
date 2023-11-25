@@ -212,7 +212,7 @@ class _FilterPageState extends State<FilterPage> {
                         height: 50.h,
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          itemCount:  data.getBrandsResponse!.data!.length,
+                          itemCount:  data.getBrandsResponse?.data?.length ?? 0,
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           itemBuilder: (context, index) {
                             return Consumer <BrandModelChangeViewModel>(

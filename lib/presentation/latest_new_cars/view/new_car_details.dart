@@ -755,7 +755,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                           Row(
                                             children: [
                                               CustomText(
-                                                text: "${widget.carModel.branch?.city},${widget.carModel.branch?.district}",
+                                                text: "${widget.carModel.branch?.city ?? ''},${widget.carModel.branch?.district ?? ''}",
                                                 textStyle: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!

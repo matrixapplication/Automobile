@@ -63,7 +63,7 @@ class FilterPageViewModel extends ChangeNotifier {
         bool isAll = false ,
       }) async {
     _isLoading = true;
-    notifyListeners()  ;
+  //  notifyListeners()  ;
     if (isAll) {
       clearData();
     }

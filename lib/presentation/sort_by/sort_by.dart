@@ -101,6 +101,7 @@ class _SortPageState extends State<SortPage> {
             return !data.isLoading ?
 
             SingleChildScrollView(
+              controller: _contoller,
                 padding: EdgeInsets.only(
                     bottom: 100.h ,
                     left: 10.h ,
