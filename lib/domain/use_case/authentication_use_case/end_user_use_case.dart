@@ -128,7 +128,7 @@ class EndUserLoginUseCase {
       ErrorResponse.fromJson(apiResponse.response?.data);
       final message = baseModel.message;
       if(kDebugMode){
-        print(message);
+        print('registerCall message $message');
       }
       responseModel = ApiChecker.checkApi(context, message: message);
     }

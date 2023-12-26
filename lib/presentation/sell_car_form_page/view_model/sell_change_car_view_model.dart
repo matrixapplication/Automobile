@@ -45,4 +45,9 @@ class SellChangeCarViewModel extends ChangeNotifier{
     notifyListeners();
     return responseModel;
   }
+
+  offLoading(){
+    _isLoading = false;
+    notifyListeners();
+  }
 }

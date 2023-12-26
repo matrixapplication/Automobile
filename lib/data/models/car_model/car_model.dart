@@ -191,6 +191,7 @@ class ModelObject {
   String? image;
   String? countCars;
   String? coverImage ;
+  String? fcmToken;
 
   ModelObject({this.id, this.description, this.name ,  this.phone , this.whatsApp , this.countCars , this.image , this.coverImage});
 
@@ -203,6 +204,7 @@ class ModelObject {
     image = json['image'] ;
     description = json['description'] ;
     coverImage = json['cover_image'] ;
+    fcmToken = json['fcm_token'] ;
   }
 
   Map<String, dynamic> toJson() {
@@ -214,7 +216,8 @@ class ModelObject {
     data['whatsapp'] = whatsApp;
     data['count_cars'] = countCars;
     data['image'] = image;
-    data['cover_image']  = coverImage ; 
+    data['cover_image']  = coverImage ;
+    data['fcm_token'] = fcmToken;
     return data;
   }
 }

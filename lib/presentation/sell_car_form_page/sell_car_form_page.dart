@@ -13,11 +13,17 @@ import 'package:automobile_project/presentation/component/cutom_shimmer_image.da
 import 'package:automobile_project/presentation/sell_car_form_page/view_model/sell_change_car_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../config/navigation/navigation.dart';
 import '../../core/resources/resources.dart';
+import '../../core/services/network/custom_dio.dart';
+import '../../core/services/network/endpoints.dart';
+import '../../data/provider/local_auth_provider.dart';
+import '../../src/auth/data/models/register_params.dart';
+import '../auth/login/view_model/end_user_view_model.dart';
 import '../component/app_widgets/my_app_bar.dart';
 import '../component/components.dart';
 import '../component/custom_button.dart';
@@ -69,6 +75,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
   final _keyStep1 = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _mileageController = TextEditingController();
   bool isSwitched1 = false;
   int currentStep = 0;
@@ -825,6 +833,26 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                         isValidator: true,
                       ),
                       const VerticalSpace(AppSize.s20),
+                      CustomTextField(
+                        controller: _emailController,
+                        validate: (String? value) {
+                          if (value!.isEmpty) {
+                            return translate(LocaleKeys.required);
+                          } else if (!value.contains('@')) {
+                            return translate(LocaleKeys.emailErrorMessage);
+                          }
+                          return null;
+                        },
+                        prefixIcon: const Icon(
+                          Icons.phone_android,
+                          // size: 30.h,
+                        ),
+                        hintText: translate(LocaleKeys.email),
+                        textInputType: TextInputType.emailAddress,
+                        maxLine: 1,
+                        isValidator: true,
+                      ),
+                      const VerticalSpace(AppSize.s20),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -915,6 +943,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
       "city_id": _selectedCity,
       "name": _nameController.text,
       "phone": _phoneController.text,
+      "email": _emailController.text,
     };
 
     final sellChangeCarProvider =
@@ -937,30 +966,88 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
     } else {
       FocusScope.of(context).unfocus();
       if (_key.currentState!.validate()) {
-        //   _key.currentState!.save();
-        //   if (isSwitched1) {
-        //     setState(() {
-        //       terms =false ;
-        //     });
-        //     ResponseModel responseModel = await sellChangeCarProvider.sellChangeCar(
-        //         context: context, formData: formData);
-        //     if (responseModel.isSuccess) {
-        //       NavigationService.goBack(context) ;
-        //       showCustomSnackBar(
-        //           message: "You have booked examination successfully",
-        //           context: context);
-        //       NavigationService.pushReplacement(
-        //           context, Routes.bottomNavigationBar);
-        //     } else {
-        //       showCustomSnackBar(
-        //           message: "${responseModel.message}", context: context);
-        //     }
-        //   } else {
-        //     setState(() {
-        //       terms =true ;
-        //     });
-        //
-        // }
+          _key.currentState!.save();
+          if (isSwitched1) {
+            setState(() {
+              terms =false ;
+            });
+            ResponseModel responseModel = await sellChangeCarProvider.sellChangeCar(
+                context: context, formData: formData);
+            if (responseModel.isSuccess) {
+             // NavigationService.goBack(context) ;
+              final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
+              showCustomSnackBar(
+                  message: "You have booked examination successfully",
+                  context: context);
+              if(await userProvider.isLogin()){
+                NavigationService.pushReplacement(
+                    context, Routes.bottomNavigationBar);
+              } else {
+                _autoRegister(context, Provider.of<EndUserViewModel>(context , listen: false));
+              }
+            } else {
+              showCustomSnackBar(
+                  message: "${responseModel.message}", context: context);
+            }
+          } else {
+            setState(() {
+              terms =true ;
+            });
+
+        }
+      }
+    }
+    sellChangeCarProvider.offLoading();
+  }
+
+  Future<void> _autoRegister(context, EndUserViewModel viewModel) async {
+    RegisterParams params = RegisterParams(
+      name: _nameController.text,
+      email:  _emailController.text,
+      phone: _phoneController.text,
+      password: '123456',
+      passwordConfirmation: '123456',
+      fcmToken: await FirebaseMessaging.instance.getToken(),
+    );
+    if (kDebugMode) {
+      ResponseModel responseModel = await viewModel.register(
+          context: context,
+          email: "dsfsdf@test.com",
+          password: "123456789" ,
+          confirmPassword: "123456789" ,
+          phone: "01008549981" ,
+          name: "Harbey"
+      );
+      if (responseModel.isSuccess) {
+        NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
+      } else {
+        NavigationService.pushReplacement(context, Routes.loginScreen);
+        showCustomSnackBar(
+            message: "يجب تسجيل الدخول",
+            context: context);
+      }
+    } else {
+      FocusScope.of(context).unfocus();
+      if (!_key.currentState!.validate()) {
+        debugPrint("Form Not Valid");
+        return;
+      }
+      _key.currentState!.save();
+      ResponseModel responseModel =  await viewModel.register(
+          context: context,
+          email: _emailController.text,
+          password: '123456' ,
+          name: _nameController.text ,
+          phone: _phoneController.text ,
+          confirmPassword: '123456'
+      );
+      if (responseModel.isSuccess) {
+        NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
+      } else {
+        NavigationService.pushReplacement(context, Routes.loginScreen);
+        showCustomSnackBar(
+            message: "يجب تسجيل الدخول",
+            context: context);
       }
     }
   }

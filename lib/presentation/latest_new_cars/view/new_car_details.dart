@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/navigation/navigation.dart';
+import '../../../core/firebase/firebase_service.dart';
 import '../../../core/resources/resources.dart';
 import '../../component/components.dart';
 import '../../component/cutom_shimmer_image.dart';
@@ -130,6 +131,8 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<LocalAuthProvider>(context, listen: false);
+
+    FirebaseService.sendPushNotification(userProvider.endUser?.name ?? '', widget.carModel.modelObject?.fcmToken ?? '');
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

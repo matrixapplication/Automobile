@@ -142,6 +142,8 @@ abstract class  LocaleKeys {
   static const addCover = "addCover";
   static const checkNumber = "checkNumber" ;
   static const editBranch = 'editBranch'  ;
-  static const phoneErrorMessage = "phoneErrorMessage" ;
-  static const notes = "Notes" ;
+  static const phoneErrorMessage = "phoneErrorMessage";
+  static const notes = "Notes";
+  static const email_or_mobile = "email_or_mobile";
+  static const emailErrorMessage = "emailErrorMessage";
 }

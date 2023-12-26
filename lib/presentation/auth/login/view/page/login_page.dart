@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         // controller: _emailController,
-                        hintText: translate(LocaleKeys.email),
+                        hintText: translate(LocaleKeys.email_or_mobile),
                         textInputType: TextInputType.emailAddress,
                         maxLine: 1,
                         isValidator: true,

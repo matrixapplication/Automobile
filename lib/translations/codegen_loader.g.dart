@@ -162,6 +162,8 @@ class CodegenLoader extends AssetLoader {
     "filterResult": "نتائج التصفية",
     "phoneValidation": "رقم الهاتف يجب ان يكون 11 رقم",
     "notes": "ملاحظات",
+    "email_or_mobile": "البريد الالكتروني او رقم الهاتف",
+    "emailErrorMessage": "من فضلك ادخل بريد الكتروني صحيح",
   };
   static const Map<String, dynamic> en = {
     "deleteAccountDescription ":
@@ -312,6 +314,8 @@ class CodegenLoader extends AssetLoader {
     "filterResult": "Filter Result",
     "phoneValidation": "phone number must be 11 numbers",
     "notes": "Notes",
+    "email_or_mobile": "Email or Mobile",
+    "emailErrorMessage": "Please enter a valid email",
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
     "ar": ar,
