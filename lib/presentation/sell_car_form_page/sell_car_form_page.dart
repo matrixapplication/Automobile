@@ -948,7 +948,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
 
     final sellChangeCarProvider =
         Provider.of<SellChangeCarViewModel>(context, listen: false);
-    if (!kDebugMode) {
+    if (kDebugMode) {
       ResponseModel responseModel = await sellChangeCarProvider.sellChangeCar(
           context: context, formData: formData);
       print('responseModel.data ${responseModel.message}');

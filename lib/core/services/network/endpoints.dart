@@ -1,5 +1,5 @@
 class NetworkPath {
-  static const String hostName = "https://automobile-egy.com/api";
+  static const String hostName = "https://automobile.matrix-clouds.com/api";
 }
 
 class EndPoints {
