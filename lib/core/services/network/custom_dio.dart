@@ -4,7 +4,7 @@ class CustomDio {
   final Dio _dio = Dio();
 
   CustomDio() {
-    _dio.options.baseUrl = "https://automobile.matrix-clouds.com/api";
+    _dio.options.baseUrl = "https://automobile-egy.com/api/";
     _dio.options.connectTimeout = 5000;
   }
 
