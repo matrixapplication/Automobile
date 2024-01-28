@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/models/base_response/api_response.dart';
 import '../../data/models/base_response/error_response.dart';
 import '../../data/models/base_response/response_model.dart';
+import '../../data/provider/local_auth_provider.dart';
 import '../../presentation/component/components.dart';
 
 
 class ApiChecker {
   static ResponseModel<T> checkApi<T>(BuildContext context, {ApiResponse? apiResponse, String? message}) {
+    // final userProvider = Provider.of<LocalAuthProvider>(context, listen: false);
+    // if (userProvider.role  == 'user') {
+    //   userProvider.endUser.
+    // } else{
+    //
+    // }
     if (apiResponse != null) {
       if (apiResponse.error is ErrorResponse) {
         ErrorResponse error = apiResponse.error;

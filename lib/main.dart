@@ -13,6 +13,7 @@ import '../config/themes/theme_manager.dart';
 import '../core/utils/constants.dart';
 import '../providers.dart';
 import '../translations/codegen_loader.g.dart';
+import 'config/app_linkes/app_links_service.dart';
 import 'domain/logger.dart';
 import 'injections.dart' as di;
 import 'package:easy_localization/easy_localization.dart';
@@ -118,6 +119,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    AppLinkingService.init();
     appContext = context;
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorManager.primaryColor, //or set color with: Color(0xFF0000FF)
