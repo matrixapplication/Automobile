@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
+import 'package:app_links/app_links.dart';
 import 'package:automobile_project/domain/logger.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/show_room_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/home/view_model/sliders_view_model.dart';
@@ -18,9 +19,11 @@ import 'package:automobile_project/presentation/my_cars_to_sell/view%20model/get
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../config/app_linkes/app_links_service.dart';
 import '../../../../config/navigation/navigation.dart';
 import '../../../../core/resources/resources.dart';
 import '../../../../data/provider/local_auth_provider.dart';
+import '../../../bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import '../../../component/components.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,6 +34,34 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+
+    AppLinks _appLinks = AppLinks();
+    _appLinks.uriLinkStream.listen((uri) async {
+      if (uri.path.isEmpty) return;
+      try {
+        String id = uri.path.split('/').last;
+        print('appLinks route id path $id');
+        // final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(context , listen: false);
+        // final result  = await showCarViewModel.showCarDetails(context: context,   id: int.parse(id)) ;
+        print('appLinks route id path ');
+        await  NavigationService.push(context, Routes.latestNewCarsDetails,
+            arguments: {"carModel": {}, "isShowRoom": true});
+
+      } on Exception catch (e) {
+        NavigationService.navigationKey.currentState?.pushNamed(
+          Routes.splashScreen,);
+        print('appLinks error $e');
+      }
+    });
+    super.didChangeDependencies();
+  }
+
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
@@ -74,7 +105,7 @@ class _SplashScreenState extends State<SplashScreen> {
             id: localAuthProvider.user?.id);
 
       await localAuthProvider.getUserData();
-      if(localAuthProvider.user != null){
+      if(localAuthProvider.user != null && await localAuthProvider.isFirstTime()){
         Future.delayed(const Duration(seconds: 3), () async {
           NavigationService.pushReplacement(
             context,
@@ -101,7 +132,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }else{
       await localAuthProvider.getEndUserData();
 
-        if(localAuthProvider.user != null){
+        if(localAuthProvider.user != null && await localAuthProvider.isFirstTime()){
 
           Future.delayed(const Duration(seconds: 3), () async {
             NavigationService.pushReplacement(
@@ -132,6 +163,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // AppLinkingService.init();
     return const Scaffold(
       backgroundColor: ColorManager.black,
       body: Center(

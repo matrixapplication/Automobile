@@ -44,9 +44,23 @@ import 'navigation.dart';
 
 class RouteGenerator {
   static Route onGenerateRoute(RouteSettings settings) {
+    // print("RouteGenerator onGenerateRoute ${settings.name}");
+    if (settings.name!.contains('/ar/cars/show/') ||
+        settings.name!.contains('/en/cars/show/')) {
+      print("RouteGenerator onGenerateRoute ${settings.name}");
+      final args = settings.arguments as Map<String, dynamic>;
+      return platformPageRoute(LatestNewCarsDetails(
+        isShowRoom: args["isShowRoom"],
+        carModel: args['carModel'],
+      ));
+    }
     switch (settings.name) {
       case Routes.splashScreen:
         return platformPageRoute(const SplashScreen());
+      case Routes.appLinkCarAR:
+        return platformPageRoute(const LatestNewCarPage());
+      case Routes.appLinkCarEN:
+        return platformPageRoute(const LatestNewCarPage());
       case Routes.onBoardingPage:
         return platformPageRoute(const OnBoardingPage());
 

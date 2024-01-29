@@ -10,6 +10,7 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../config/app_linkes/share_button.dart';
 import '../../../config/navigation/navigation.dart';
 import '../../../core/firebase/firebase_service.dart';
 import '../../../core/resources/resources.dart';
@@ -266,6 +267,9 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                           size: 22.h,
                                         ),
                                       ),
+                                    ),
+                                    ShareCarButton(
+                                      id: widget.carModel.id?.toString() ?? '',
                                     ),
                                   ],
                                 );

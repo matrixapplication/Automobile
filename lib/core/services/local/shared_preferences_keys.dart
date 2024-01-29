@@ -6,4 +6,5 @@ abstract class SharedPreferencesKeys {
   static const String kUserData = 'user_data';
   static const String kUserExistence = 'userExistence';
   static const String kFirstTime = 'firstTime';
+  static const String isFirstTime = 'isFirstTime';
 }

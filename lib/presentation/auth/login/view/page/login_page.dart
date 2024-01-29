@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _submit(context, EndUserViewModel viewModel) async {
     final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
-    if (kDebugMode) {
+    if (!kDebugMode) {
       ResponseModel responseModel = await viewModel.login(
           context: context, email: "developer_back@developer.com", password: "123456789");
       if (responseModel.isSuccess) {

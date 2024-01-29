@@ -1,10 +1,14 @@
+import 'package:app_links/app_links.dart';
 import 'package:automobile_project/core/resources/app_colors.dart';
 import 'package:automobile_project/data/data_sourse/firebase/firebase_notification.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
+import 'package:automobile_project/presentation/latest_new_cars/view/new_car_details.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/navigation/navigation_services.dart';
 import '../config/navigation/route_generator.dart';
@@ -119,7 +123,6 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    AppLinkingService.init();
     appContext = context;
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorManager.primaryColor, //or set color with: Color(0xFF0000FF)

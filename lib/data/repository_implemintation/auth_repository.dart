@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:automobile_project/main.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,10 +23,11 @@ class AuthRepository implements BaseAuthenticationRepository {
     required String? code,
     required String? password,
   }) async {
+    String fcm = await FirebaseMessaging.instance.getToken() ?? "";
     try {
       final response = await dioClient?.post(
         EndPoints.showRoomLoginApi,
-        body: {'code': code, 'password': password, "fcm_token": sharedPreferences!.getString("fcm")},
+        body: {'code': code, 'password': password, "fcm_token": fcm},
       );
 
       print("response.data ${response?.data}");
@@ -59,10 +61,11 @@ class AuthRepository implements BaseAuthenticationRepository {
 
   @override
   Future<ApiResponse> endUserLogin({required String? email, required String? password}) async {
+    String fcm = await FirebaseMessaging.instance.getToken() ?? "";
     try {
       final response = await dioClient?.post(
         EndPoints.endUserLogin,
-        body: {'email': email, 'password': password, "fcm_token": sharedPreferences!.getString('fcm')},
+        body: {'email': email, 'password': password, "fcm_token": fcm},
       );
 
       print("response.data ${response?.data}");

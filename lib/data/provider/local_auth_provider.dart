@@ -91,11 +91,24 @@ class LocalAuthProvider with ChangeNotifier {
     ResponseModel responseModel = await getUserDataUseCase.callEndUser();
     if (responseModel.isSuccess) {
       notifyListeners();
-
       _endUser = responseModel.data;
     }
     notifyListeners();
     return _endUser;
+  }
+
+  isFirstTime(){
+    bool check = shared?.getBool(SharedPreferencesKeys.isFirstTime)  ?? false;
+    if(check){
+      notifyListeners();
+     return check;
+    }else{
+      logOutForFCM();
+     shared!.setBool(SharedPreferencesKeys.isFirstTime, true);
+      notifyListeners() ;
+      print("isFirstTime $check");
+      return check;
+    }
   }
 
 
@@ -124,6 +137,15 @@ class LocalAuthProvider with ChangeNotifier {
     _isLogin = false ;
     clearUserDataUseCase.call() ;
     NavigationService.pushReplacementAll(context, Routes.loginScreen) ;
+    notifyListeners();
+  }
+
+  Future logOutForFCM() async {
+    _user = null ;
+    _endUser = null ;
+    _role = null ;
+    _isLogin = false ;
+    clearUserDataUseCase.call() ;
     notifyListeners();
   }
 }

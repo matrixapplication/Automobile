@@ -1,5 +1,7 @@
 class Routes {
   static const String splashScreen = "/";
+  static const String appLinkCarAR = "/ar/cars/show/:id";
+  static const String appLinkCarEN = "/en/cars/show/:id";
   static const String onBoardingPage = "/onBoardingPage";
   static const String loginScreen = "/loginScreen";
   static const String signupScreen = "/signupScreen";

@@ -18,7 +18,7 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.dalalah.app",
+      "package_name": "com.automobile.app",
       "sha256_cert_fingerprints": [
         "32:D9:6E:90:87:1D:8B:83:52:19:E6:FB:F0:5B:4B:DA:79:AF:7A:C2:0B:66:99:29:D4:DE:9A:9F:CB:4A:EC:1B"
       ]
@@ -31,7 +31,7 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.dalalah.app",
+      "package_name": "com.automobile.app",
       "sha256_cert_fingerprints": [
         "F8:59:29:3E:F0:DD:6F:DB:E3:CE:A8:DA:E5:05:BA:81:78:E2:1C:ED:A2:1E:39:CE:78:1E:E0:26:F0:23:BE:DF"
       ]

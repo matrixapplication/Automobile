@@ -1,47 +1,30 @@
 import 'package:app_links/app_links.dart';
 import 'package:automobile_project/config/navigation/navigation.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/services/network/endpoints.dart';
+import '../../main.dart';
+import '../../presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
+import '../../presentation/latest_new_cars/view/new_car_details.dart';
 
 class AppLinkingService {
   static  AppLinks _appLinks = AppLinks();
-
-  // static Future<void> initDeepLinks() async {
-  //   _appLinks = AppLinks();
-  //
-  //   // Check initial link if app was in cold state (terminated)
-  //   final appLink = await _appLinks.getInitialAppLink();
-  //   if (appLink != null) {
-  //     print('getInitialAppLink: $appLink');
-  //     openAppLink(appLink);
-  //   }
-  //
-  //   // Handle link when app is in warm state (front or background)
-  //     _appLinks.uriLinkStream.listen((uri) {
-  //     print('onAppLink: $uri');
-  //     openAppLink(uri);
-  //   });
-  // }
-  //
-  // static void openAppLink(Uri uri) {
-  //   // pushNamed(uri.fragment);
-  // }
-
-  static init() {
+  static init(BuildContext context) {
     goToRoute();  // Check initial link if app was in cold state (terminated)
 
     // Handle link when app is in warm state (front or background)
     _appLinks.uriLinkStream.listen((uri) async {
       if (uri.path.isEmpty) return;
       try {
-        String route = uri.path.split('/')[uri.pathSegments.length - 1];
         String id = uri.path.split('/').last;
         print('appLinks route id path $id');
-        print('appLinks uri $route');
-        NavigationService.navigationKey.currentState?.pushNamed(
-            Routes.latestNewCarsDetails,
-            arguments: {"carModel": {}, "isShowRoom": true});
+        final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(context , listen: false);
+        final result  = await showCarViewModel.showCarDetails(context: context,   id: int.parse(id)) ;
+        print('appLinks route id path $result');
+        await  Navigator.pushNamed(context, Routes.latestNewCarsDetails,
+            arguments: {"carModel": result.data, "isShowRoom": true});
 
       } on Exception catch (e) {
         NavigationService.navigationKey.currentState?.pushNamed(
@@ -55,19 +38,23 @@ class AppLinkingService {
     try {
       final uri = await _appLinks.getInitialAppLink();
       if (uri == null) return;
-      String route = uri.path.split('/')[uri.pathSegments.length - 1];
       String id = uri.path.split('/').last;
       print('appLinks route id path $id');
-      print('appLinks uri $route');
-      await  NavigationService.navigationKey.currentState?.pushNamed(
-          Routes.latestNewCarsDetails,
-          arguments: {"carModel": {}, "isShowRoom": true});
+      final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(appContext , listen: false);
+      final result  = await showCarViewModel.showCarDetails(context: appContext,   id: int.parse(id)) ;
+      print('appLinks route id path $result');
+      await  platformPageRoute(LatestNewCarsDetails(
+        isShowRoom: true,
+        carModel: result.data!,
+      ));
+
     } on Exception catch (e) {
       print('appLinks goToRoute error $e');
     }
   }
 
-  static createDynamicLink(String route, {String? id}) {
-    return '${NetworkPath.hostName}/$route/$id';
+  static createDynamicLink(String id) {
+    String lang = appContext.locale.languageCode;
+    return 'https://automobile-egy.com/$lang/cars/show/$id';
   }
 }
