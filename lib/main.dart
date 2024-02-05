@@ -123,6 +123,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    print("MyApp build ${DateTime.now()}");
+    AppLinkingService.init(context);
     appContext = context;
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: ColorManager.primaryColor, //or set color with: Color(0xFF0000FF)
@@ -137,7 +139,6 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.splashScreen,
       navigatorKey: NavigationService.navigationKey,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
-
     );
   }
 }

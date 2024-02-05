@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../config/app_linkes/share_button.dart';
 import '../../../config/navigation/navigation.dart';
 import '../../../core/firebase/firebase_service.dart';
 import '../../../core/resources/resources.dart';
@@ -266,13 +267,15 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
                                         ),
                                       ),
                                     ),
+                                    ShareCarButton(
+                                      id: widget.carModel.id?.toString() ?? '',
+                                    ),
                                   ],
                                 );
                               })
                             ],
                           ),
                           VerticalSpace(10.h) ,
-
                           Row(
                             children: [
                               CustomText(

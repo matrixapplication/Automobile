@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../config/app_linkes/share_button.dart';
 import '../../../config/navigation/navigation.dart';
 import '../../../core/resources/resources.dart';
 import '../../../data/models/car_model/admin_car_model.dart';
@@ -262,6 +263,9 @@ class _GuaranteeCarDetailsDataState extends State<GuaranteeCarDetailsData> {
                                           size: 22.h,
                                         ),
                                       ),
+                                    ),
+                                    ShareCarButton(
+                                      id: widget.adminCars.id?.toString() ?? '',
                                     ),
                                   ],
                                 );

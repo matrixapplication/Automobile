@@ -22,7 +22,6 @@ import '../../core/resources/resources.dart';
 import '../../core/services/network/custom_dio.dart';
 import '../../core/services/network/endpoints.dart';
 import '../../data/provider/local_auth_provider.dart';
-import '../../src/auth/data/models/register_params.dart';
 import '../auth/login/view_model/end_user_view_model.dart';
 import '../component/app_widgets/my_app_bar.dart';
 import '../component/components.dart';
@@ -1001,14 +1000,6 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
   }
 
   Future<void> _autoRegister(context, EndUserViewModel viewModel) async {
-    RegisterParams params = RegisterParams(
-      name: _nameController.text,
-      email:  _emailController.text,
-      phone: _phoneController.text,
-      password: '123456',
-      passwordConfirmation: '123456',
-      fcmToken: await FirebaseMessaging.instance.getToken(),
-    );
     if (kDebugMode) {
       ResponseModel responseModel = await viewModel.register(
           context: context,

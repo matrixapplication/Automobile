@@ -61,28 +61,36 @@
                 <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
                 <data
                     android:scheme="http"
-                    android:host="www.automobile-egy.com" />
+                    android:host="www.automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*"/>
                 <data
                     android:scheme="https"/>
-                <data android:host="www.automobile-egy.com" />
+                <data android:host="www.automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="http"
-                    android:host="automobile-egy.com" />
+                    android:host="automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="https"/>
-                <data android:host="automobile-egy.com" />
+                <data android:host="automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="http"
-                    android:host="www.automobile.matrix-clouds.com" />
+                    android:host="www.automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="https"/>
-                <data android:host="www.automobile.matrix-clouds.com" />
+                <data android:host="www.automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="http"
-                    android:host="automobile.matrix-clouds.com" />
+                    android:host="automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*"  />
                 <data
                     android:scheme="https"/>
-                <data android:host="automobile.matrix-clouds.com" />
+                <data android:host="automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
             </intent-filter>
 
             <!-- App Links -->
@@ -93,28 +101,36 @@
                 <!-- Accepts URIs that begin with https://YOUR_HOST -->
                 <data
                     android:scheme="http"
-                    android:host="www.automobile-egy.com" />
+                    android:host="www.automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*"  />
                 <data
                     android:scheme="https"
-                    android:host="www.automobile-egy.com" />
+                    android:host="www.automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="http"
-                    android:host="automobile-egy.com" />
+                    android:host="automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="https"
-                    android:host="automobile-egy.com" />
+                    android:host="automobile-egy.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="http"
-                    android:host="www.automobile.matrix-clouds.com" />
+                    android:host="www.automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="https"/>
-                <data android:host="www.automobile.matrix-clouds.com" />
+                <data android:host="www.automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="http"
-                    android:host="automobile.matrix-clouds.com" />
+                    android:host="automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
                 <data
                     android:scheme="https"/>
-                <data android:host="automobile.matrix-clouds.com" />
+                <data android:host="automobile.matrix-clouds.com"
+                    android:pathPattern="/(en|ar)/.*" />
             </intent-filter>
 
 

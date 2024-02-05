@@ -119,4 +119,26 @@ import '../../../../../domain/use_case/drop_down/brands_use_case.dart';
     notifyListeners();
     return response;
   }
-}
+
+  CarModel? carDetails;
+  bool isLoadingDetails = false;
+  Future<void> fetchCarDetails(
+      {required BuildContext context,required int id}) async {
+    isLoadingDetails = true;
+    // notifyListeners();
+
+    final response =
+    await _showRoomsSellUseCase.showCar(context: context, id: id);
+
+    if (response.isSuccess) {
+    } else {
+      if (kDebugMode) {
+        print("Fail edit branch ${response.message}");
+      }
+    }
+    carDetails = response.data;
+    isLoadingDetails = false;
+    notifyListeners();
+  }
+
+  }
