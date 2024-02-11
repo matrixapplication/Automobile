@@ -136,11 +136,9 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-
           child: Column(
             children: [
               SizedBox(
-
                 child: Column(
 
                   children: [
@@ -629,9 +627,8 @@ class _UsedCarDetailsDataState extends State<UsedCarDetailsData> {
 
                   ],
                 ),
-              ) ,
+              ),
               SizedBox(
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
