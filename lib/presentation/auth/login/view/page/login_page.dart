@@ -73,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     print("Lang =====> ${context.locale}");
     print("key =====> ${ translate(LocaleKeys.welcome)}");
     return WillPopScope(child: Scaffold(
