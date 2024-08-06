@@ -49,6 +49,10 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to show the country name</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location to show the country name</string>
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>

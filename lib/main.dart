@@ -3,11 +3,15 @@ import 'package:automobile_project/core/resources/app_colors.dart';
 import 'package:automobile_project/data/data_sourse/firebase/firebase_notification.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import 'package:automobile_project/presentation/latest_new_cars/view/new_car_details.dart';
+import 'package:country_codes/country_codes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/navigation/navigation_services.dart';
@@ -93,16 +97,21 @@ Future<void> handleBackGroundMessage(RemoteMessage message) async {
   handleMessage(message) ;
 }
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp()  ;
+  await GetStorage.init();
+  await CountryCodes.init();
   FirebaseMessaging.onBackgroundMessage(handleBackGroundMessage);
   await FireBaseAPI().initNotification() ;
   await EasyLocalization.ensureInitialized();
   await di.init();
+  _getCurrentLocation();
 
   await Future.delayed(const Duration(milliseconds: 400), () async {
     shared =await  SharedPreferences.getInstance() ;
     String? cachedLnag = shared!.getString("lang") ;
+
     if(cachedLnag == "ar"){
       lang = const Locale("ar") ;
       await shared!.setString("lang", "ar") ;
@@ -117,6 +126,60 @@ void main() async {
             assetLoader: const CodegenLoader(),
             child: const MyApp())));
   });
+}
+String countryKey = 'Loading...';
+
+Future<void> _getCurrentLocation() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    // setState(() {
+    //   _country = 'Location services are disabled.';
+    // });
+    return;
+  }
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      // setState(() {
+      //   _country = 'Location permissions are denied';
+      // });
+      return;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    // setState(() {
+    //   _country = 'Location permissions are permanently denied, we cannot request permissions.';
+    // });
+    return;
+  }
+
+  Position position = await Geolocator.getCurrentPosition();
+  _getCountryFromPosition(position);
+}
+
+Future<void> _getCountryFromPosition(Position position) async {
+  List<Placemark> placemarks = await placemarkFromCoordinates(
+    position.latitude,
+    position.longitude,
+  );
+
+  if (placemarks.isNotEmpty) {
+    var  res = placemarks.first.country ?? 'Country not found';
+      if(res =='Egypt'){
+        countryKey='eg';
+      }else{
+        countryKey='sa';
+      }
+    print('--------------------------$countryKey');
+  } else {
+      countryKey = 'Country not found';
+  }
 }
 
 class MyApp extends StatelessWidget {

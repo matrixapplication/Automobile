@@ -55,9 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
         Provider.of<SlidersViewModel>(context, listen: false)
             .showSliders(context: context);
         Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
-
-
-
       });
 
 

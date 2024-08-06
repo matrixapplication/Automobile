@@ -17,7 +17,7 @@ mixin BaseAuthenticationRepository {
     required String? password,
   });
 
-  Future<ApiResponse> endUserRegister({required String? name, required String? email, required String? phone, required String? password, required String? confirmPassword, required String? image});
+  Future<ApiResponse> endUserRegister({required String? name, required String? email, required String? phone, required String? password, required String? confirmPassword, required String? image,required String? countryId});
 
   Future<ApiResponse> endUserEditProfile({
     required String? name,

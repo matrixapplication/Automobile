@@ -60,9 +60,8 @@ class LocalAuthProvider with ChangeNotifier {
 
   Future<bool> isLogin() async {
     ResponseModel responseModel = await getIsUserLoginUseCase.call();
-    if (kDebugMode) {
-      print("response model is Login =?? ${responseModel.isSuccess}");
-    }
+    print("response model is Login =?? ${responseModel.isSuccess}");
+
     if (responseModel.isSuccess) {
       _isLogin = true;
       if(_role == "showroom" || _role == "agency"){
@@ -81,7 +80,6 @@ class LocalAuthProvider with ChangeNotifier {
     ResponseModel responseModel = await getUserDataUseCase.call();
     if (responseModel.isSuccess) {
       notifyListeners();
-
       _user = responseModel.data;
     }
     notifyListeners() ;

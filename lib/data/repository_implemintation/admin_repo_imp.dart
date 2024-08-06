@@ -18,6 +18,7 @@ class ImpAdminRepo implements AdminRepository{
   @override
   Future<ApiResponse> getAdminCars({required int page}) async{
     try {
+      //brands
       final queryParameters = {"page": page, "limit": 7, "order": "desc"};
 
       final response = await dioClient?.get(

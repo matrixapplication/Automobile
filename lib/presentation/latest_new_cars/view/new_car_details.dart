@@ -839,8 +839,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
                                 child: TapEffect(
                                     onClick: () {
                                       if(userProvider.isAuth){
-                                        launchWhatsAppUri(
-                                            "${widget.carModel.modelObject?.whatsApp}");
+                                        launchWhatsAppUri("${widget.carModel.modelObject?.whatsApp}");
                                       }else{
                                         showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                                       }

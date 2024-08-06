@@ -8,7 +8,7 @@ class LoggingInterceptor extends InterceptorsWrapper {
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
 
-    log(_tag,"LOL \n${options.method} : ${options.baseUrl}${options.path}  \nParameter: ${options.queryParameters};  \nFormData: ${options.data.toString()}; \nEND Request");
+    log(_tag,"LOL \n${options.method} : ${options.baseUrl}${options.path}  \nHeaders: ${options.headers};  \nParameter: ${options.queryParameters};  \nFormData: ${options.data.toString()}; \nEND Request");
     return super.onRequest(options, handler);
   }
 

@@ -100,6 +100,7 @@ class EndUserLoginUseCase {
     required String phone ,
     required String password  ,
     required String confirmPassword ,
+    required String countryId ,
   }) async {
     ApiResponse apiResponse = await baseAuthRepository.endUserRegister(
       name: name ,
@@ -107,7 +108,8 @@ class EndUserLoginUseCase {
       confirmPassword: confirmPassword ,
       email: email ,
       password: password ,
-      phone: phone
+      phone: phone,
+      countryId: countryId
     );
     ResponseModel<EndUserModel> responseModel;
     if (apiResponse.response != null &&

@@ -1,6 +1,8 @@
 import 'package:automobile_project/data/models/auth_model/auth_model.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/utils/alerts.dart';
 import '../../../../../data/models/base_response/response_model.dart';
+import '../../../../../data/models/puechase_order.dart';
 import '../../../../../domain/logger.dart';
 import '../../../../../domain/use_case/show_rooms/show_rooms_use_case.dart';
 
@@ -83,6 +85,18 @@ class ShowRoomsViewModel extends ChangeNotifier {
       print("Fail view Model ${response.message}");
     }
 
+    _isLoading = false;
+    notifyListeners();
+    return response;
+  }
+
+  Future sendPurchaseOrder(PurchaseOrderParams params,context) async {
+    _isLoading = true;
+    final response = await _showRoomsUseCase.sendPurchaseOrder(params, context);
+    if(response!.isSuccess){
+      Alerts.showSnackBar(context, 'Successfully',forError: false);
+      Navigator.of(context).pop();
+    }
     _isLoading = false;
     notifyListeners();
     return response;

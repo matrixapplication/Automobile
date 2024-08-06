@@ -3,13 +3,17 @@ import 'package:automobile_project/data/provider/local_auth_provider.dart';
 import 'package:automobile_project/presentation/auth/login/view_model/end_user_view_model.dart';
 import 'package:automobile_project/translations/lang_checker.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
+import 'package:country_codes/country_codes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import '../../../../../config/navigation/navigation.dart';
 import '../../../../../core/resources/resources.dart';
 import '../../../../../data/models/base_response/response_model.dart';
+import '../../../../../domain/use_case/show_rooms/get_cities_use_case.dart';
+import '../../../../../injections.dart';
 import '../../../../component/components.dart';
 import '../../../../component/custom_button.dart';
 
@@ -27,15 +31,16 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _submit(context, EndUserViewModel viewModel) async {
     final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
-    if (!kDebugMode) {
-      ResponseModel responseModel = await viewModel.login(
-          context: context, email: "h@h.com", password: "123456789");
-      if (responseModel.isSuccess) {
-        //NavigationService.pushReplacement(context, Routes.homeScreen);
-        await userProvider.isLogin() ;
-        NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
-      }
-    } else {
+    // if (!kDebugMode) {
+    //   ResponseModel responseModel = await viewModel.login(
+    //       context: context, email: "h@h.com", password: "123456789");
+    //   if (responseModel.isSuccess) {
+    //     //NavigationService.pushReplacement(context, Routes.homeScreen);
+    //     await userProvider.isLogin() ;
+    //     NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
+    //   }
+    // } else {
+      //dsfsdf@test.com
       FocusScope.of(context).unfocus();
       if (!_key.currentState!.validate()) {
         debugPrint("Form Not Valid");
@@ -46,14 +51,11 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           email: _emailController.text,
           password: _passwordController.text);
-
       if (responseModel.isSuccess) {
-        await userProvider.isLogin() ;
-        NavigationService.pushReplacementAll(context, Routes.bottomNavigationBar) ;
-
-
+        await userProvider.isLogin();
+        NavigationService.pushReplacementAll(context, Routes.bottomNavigationBar);
       }
-    }
+    // }
   }
 
   @override
@@ -91,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Column(
                     children: [
+
                       const VerticalSpace(AppSize.s75),
                       Center(
                         child: CustomAssetsImage(
@@ -100,7 +103,17 @@ class _LoginPageState extends State<LoginPage> {
                           width: deviceWidth * 0.55,
                         ),
                       ),
+                      InkWell(
+                          onTap: (){
+                          //   var d =GetStorage().read('countryId');
+                          //   print('${d}');
+                            print('yehya test ${GetStorage().read('isLogin')}');
+
+
+                          },
+                          child: Text('yehyaaaa DropDown')),
                       const VerticalSpace(AppSize.s75),
+
                       CustomText(
                           text: LocaleKeys.welcome.tr(),
                           textStyle: Theme.of(context)

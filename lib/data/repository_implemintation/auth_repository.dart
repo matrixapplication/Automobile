@@ -4,6 +4,7 @@ import 'package:automobile_project/main.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/exceptions/api_error_handler.dart';
@@ -81,13 +82,16 @@ class AuthRepository implements BaseAuthenticationRepository {
   }
 
   @override
-  Future<ApiResponse> endUserRegister({required String? name, required String? email, required String? phone, required String? password, required String? confirmPassword, required String? image}) async {
+  Future<ApiResponse> endUserRegister({required String? name, required String? email, required String? phone, required String? password, required String? confirmPassword, required String? image,required String? countryId}) async {
     try {
       final response = await dioClient?.post(
         EndPoints.endUserRegister,
-        body: {'email': email, 'name': name, 'phone': phone, 'password': password, 'password_confirmation': confirmPassword, 'fcm_token': sharedPreferences!.getString("fcm")},
+        body: {'email': email, 'name': name, 'phone': phone, 'password': password, 'password_confirmation': confirmPassword,
+          'fcm_token': sharedPreferences!.getString("fcm"),
+         'country_key':countryId
+        },
       );
-
+      GetStorage().write('countryId', countryId);
       print("response.data ${response?.data}");
       return ApiResponse.withSuccess(response!);
     } on DioError catch (error) {

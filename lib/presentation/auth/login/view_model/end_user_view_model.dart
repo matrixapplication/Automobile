@@ -129,17 +129,18 @@ class EndUserViewModel extends ChangeNotifier {
     required String phone ,
     required String password  ,
     required String confirmPassword ,
+    required String countryId ,
   }) async {
     _isLoading = true;
     notifyListeners();
-
     final responseModel = await _signInUseCase.registerCall(
       context: context,
       name:  name ,
       phone: phone ,
       password: password ,
       email: email ,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
+      countryId: countryId
     );
     if (kDebugMode) {
       print(responseModel.data);

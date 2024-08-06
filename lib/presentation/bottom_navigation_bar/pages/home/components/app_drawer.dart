@@ -12,15 +12,18 @@ import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell
 import 'package:automobile_project/presentation/component/custom_button.dart';
 import 'package:automobile_project/presentation/latest_new_cars/view_model/show_room_new_cars_view_model.dart';
 import 'package:automobile_project/presentation/my_cars_to_sell/view%20model/get_my_cars_model_view.dart';
+import 'package:automobile_project/presentation/splash/splash.dart';
 import 'package:automobile_project/presentation/used_cars/view_model/showroom_used_cars_view_model.dart';
 import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../config/navigation/navigation.dart';
 import '../../../../../core/resources/resources.dart';
+import '../../../../../core/widget/drop_down.dart';
 import '../../../../component/components.dart';
 import '../widgets/drawer_tile.dart';
 
@@ -33,12 +36,14 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
 
-
-
+  final List<DropDownItem> items = [
+    DropDownItem(id: 'eg', title: LocaleKeys.egypt.tr(),value: 'eg'),
+    DropDownItem(id: 'sa', title: LocaleKeys.saudiArabia.tr(),value:'sa')
+  ];
+  final res = GetStorage().read('countryId');
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<LocalAuthProvider>(context , listen: false) ;
-
     return Drawer(
       child: Column(
         children: [
@@ -58,56 +63,94 @@ class _AppDrawerState extends State<AppDrawer> {
                     padding:
                         EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
                     child: Row(children: [
-                      Row(
-                        children:  [
-                          Icon(Icons.language),
-                          HorizontalSpace(10),
-                          TapEffect(onClick: ()async{
-                            if(shared!.getString("lang") == "ar" ){
-                              shared!.setString("lang", "en") ;
-                              context.setLocale(Locale("en")) ;
-                              lang = Locale("en");
-                            }else{
-                              shared!.setString("lang", "ar") ;
-                              context.setLocale(Locale("ar")) ;
-                              lang = Locale("ar");
+                      Expanded(
+                        child: Row(
+                          children:  [
+                            const Icon(Icons.language),
+                            const HorizontalSpace(10),
+                            TapEffect(onClick: ()async{
+                              if(shared!.getString("lang") == "ar" ){
+                                shared!.setString("lang", "en") ;
+                                context.setLocale(Locale("en")) ;
+                                lang = Locale("en");
+                              }else{
+                                shared!.setString("lang", "ar") ;
+                                context.setLocale(Locale("ar")) ;
+                                lang = Locale("ar");
+                              }
+                              final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
+                              await userProider.getEndUserData();
 
-                            }
-                            final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
-                            await userProider.getEndUserData();
+                              await userProider.getUserData();
 
-                            await userProider.getUserData();
-
-                            Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
-                            Provider.of<SlidersViewModel>(context, listen: false)
-                                .showSliders(context: context);
-                            Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
-                            getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
-                            Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
-                             Provider.of<CarMechanicalViewModel>(context, listen: false)
-                                .getMechanicalFun(context: context);
-
-                             Provider.of<CarFeaturesViewModel>(context, listen: false)
-                                .getCarFeatures(context: context);
-                          }, child: CustomText(
-                            text: shared!.getString("lang") == "ar" ? "English" : "عربي",
-                          )),
-                        ],
+                              Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
+                              Provider.of<SlidersViewModel>(context, listen: false)
+                                  .showSliders(context: context);
+                              Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
+                              getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
+                              Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
+                              Provider.of<CarMechanicalViewModel>(context, listen: false)
+                                  .getMechanicalFun(context: context);
+                               Provider.of<CarFeaturesViewModel>(context, listen: false)
+                                  .getCarFeatures(context: context);
+                            }, child: CustomText(
+                              text: shared!.getString("lang") == "ar" ? "English" : "عربي",
+                            )),
+                          ],
+                        ),
                       ),
-                      const Spacer(),
-                      CustomButton(
-                        onTap: () {
-                          NavigationService.push(
-                              context, Routes.selCarFormPage);
-                        },
-                        buttonText: translate(LocaleKeys.sellChangeCat) ,
-                        width: deviceWidth * 0.30,
-                        height: 40.h,
-                        backgroundColor: ColorManager.white,
-                        borderColor: ColorManager.primaryColor,
-                        textColor: ColorManager.primaryColor,
-                        radius: 10.r,
-                      )
+                      Expanded(
+                          child: DropDownField(
+                              backgroundColor: Colors.transparent,
+                              // prefixIcon: Icons.flag_circle_outlined,
+                              // prefixIconColor: ColorManager.primaryColor,
+                              height: 20,
+                              value:
+                              res=='eg'?
+                              items[0]:
+                              res=='sa'?
+                              items[1]:null,
+                              hint: LocaleKeys.country.tr(),
+                              items:items,
+                              onChanged: (item) {
+                                GetStorage().write('countryId', item!.id);
+                                showDialog(context: context, builder: (context){
+
+
+                                  return const Center(child: SizedBox(
+                                      height: 35,
+                                      width: 35,
+                                      child: CircularProgressIndicator()),);
+                                });
+                                WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
+                                  final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
+                                  await userProider.getEndUserData();
+
+                                  await userProider.getUserData();
+
+                                  Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
+                                  Provider.of<SlidersViewModel>(context, listen: false)
+                                      .showSliders(context: context);
+                                  Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
+                                  getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
+                                  Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
+                                  Provider.of<CarMechanicalViewModel>(context, listen: false)
+                                      .getMechanicalFun(context: context);
+                                  Provider.of<CarFeaturesViewModel>(context, listen: false)
+                                      .getCarFeatures(context: context);
+                                });
+                                Future.delayed(const Duration(seconds: 2)).then((value){
+                                  Navigator.pop(context);
+                                });
+                                // Navigator.pushAndRemoveUntil(
+                                //   context,
+                                //   MaterialPageRoute(builder: (context) => const SplashScreen()),
+                                //       (Route<dynamic> route) => false,
+                                // );
+                              }
+                          ),
+                        ),
+
                     ]),
                   ),
                 ),
@@ -116,33 +159,38 @@ class _AppDrawerState extends State<AppDrawer> {
                     : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomButton(
-                      onTap: () {
-                        NavigationService.push(
-                            context, Routes.loginScreen);
-                      },
-                      buttonText: translate(LocaleKeys.signInUser),
-                      width: deviceWidth * 0.30,
-                      height: 40.h,
-                      backgroundColor: ColorManager.white,
-                      borderColor: ColorManager.primaryColor,
-                      textColor: ColorManager.primaryColor,
-                      radius: 10.r,
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () {
+                          NavigationService.push(context, Routes.loginScreen);
+                        },
+                        buttonText: translate(LocaleKeys.signInUser),
+                        width: deviceWidth * 0.30,
+                        height: 40.h,
+                        backgroundColor: ColorManager.white,
+                        borderColor: ColorManager.primaryColor,
+                        textColor: ColorManager.primaryColor,
+                        radius: 10.r,
+                      ),
                     ) ,
-                    HorizontalSpace(10.w) ,
-                    CustomButton(
-                      onTap: () {
-                        NavigationService.push(
-                            context, Routes.showRoomLoginPage);
-                      },
-                      buttonText: translate(LocaleKeys.signInAgency) ,
-                      width: deviceWidth * 0.38,
-                      height: 40.h,
-                      backgroundColor: ColorManager.white,
-                      borderColor: ColorManager.primaryColor,
-                      textColor: ColorManager.primaryColor,
-                      radius: 10.r,
-                    )
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () {
+                          NavigationService.push(
+                              context, Routes.showRoomLoginPage);
+                        },
+                        buttonText: translate(LocaleKeys.signInAgency) ,
+                        width: deviceWidth * 0.38,
+                        height: 40.h,
+                        backgroundColor: ColorManager.white,
+                        borderColor: ColorManager.primaryColor,
+                        textColor: ColorManager.primaryColor,
+                        radius: 10.r,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
                   ],
                 ),
                ! userProvider.isAuth ? const SizedBox(): VerticalSpace(30.h)   ,
@@ -153,6 +201,44 @@ class _AppDrawerState extends State<AppDrawer> {
                       NavigationService.push(context, Routes.bottomNavigationBar),
                 ),
                 */
+                SizedBox(height: 10,),
+                Row(
+                  children: [
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () {
+                          NavigationService.push(context, Routes.purchaseOrderScreen);
+                        },
+                        buttonText: translate(LocaleKeys.purchaseOrder),
+                        width: deviceWidth * 0.20,
+                        height: 40.h,
+                        backgroundColor: ColorManager.white,
+                        borderColor: ColorManager.primaryColor,
+                        textColor: ColorManager.primaryColor,
+                        radius: 10.r,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () {
+                          NavigationService.push(
+                              context, Routes.selCarFormPage);
+                        },
+                        buttonText: translate(LocaleKeys.sellChangeCat) ,
+                        width: deviceWidth * 0.20,
+                        height: 40.h,
+                        backgroundColor: ColorManager.white,
+                        borderColor: ColorManager.primaryColor,
+                        textColor: ColorManager.primaryColor,
+                        radius: 10.r,
+                      ),
+                    ),
+
+                    SizedBox(width: 10,),
+                  ],
+                ),
 
                 DrawerTile(
                   svgIcon: AssetsManager.sedanIcon,
@@ -179,30 +265,31 @@ class _AppDrawerState extends State<AppDrawer> {
                     NavigationService.push(context, Routes.trackYourRequest);
                   },
                 ),
-                DrawerTile(
-                  svgIcon: AssetsManager.replaceCarIcon,
-                  title: translate(LocaleKeys.sellChangeCat),
-                  onTap: () {
-                    NavigationService.push(context, Routes.selCarFormPage);
-                  },
-                ),
-                shared?.getString('token') == null ?  DrawerTile(
-                  svgIcon: AssetsManager.carDealersIcon,
-                  title: translate(LocaleKeys.signInAgency),
-                  onTap: () {
-                    NavigationService.push(context, Routes.showRoomLoginPage);
-                  },
+                // DrawerTile(
+                //   svgIcon: AssetsManager.replaceCarIcon,
+                //   title: translate(LocaleKeys.sellChangeCat),
+                //   onTap: () {
+                //     NavigationService.push(context, Routes.selCarFormPage);
+                //   },
+                // ),
+                // shared?.getString('token') == null ?  DrawerTile(
+                //   svgIcon: AssetsManager.carDealersIcon,
+                //   title: translate(LocaleKeys.signInAgency),
+                //   onTap: () {
+                //     NavigationService.push(context, Routes.showRoomLoginPage);
+                //   },
+                //
+                //
+                // ) : SizedBox(),
+                // userProvider.endUser == null ?
+                // DrawerTile(
+                //   icon: Icons.person,
+                //   title: translate(LocaleKeys.signInUser),
+                //   onTap: () {
+                //     NavigationService.push(context, Routes.loginScreen);
+                //   },
+                // ) : const SizedBox(),
 
-
-                ) : SizedBox(),
-                userProvider.endUser == null ?
-                DrawerTile(
-                  icon: Icons.person,
-                  title: translate(LocaleKeys.signInUser),
-                  onTap: () {
-                    NavigationService.push(context, Routes.loginScreen);
-                  },
-                ) : const SizedBox(),
                 const Divider(color: ColorManager.greyColorCBCBCB),
                 DrawerTile(
                   svgIcon: AssetsManager.carDealersIcon,
@@ -219,7 +306,6 @@ class _AppDrawerState extends State<AppDrawer> {
                   },
                 ),
                 const Divider(color: ColorManager.greyColorCBCBCB),
-
                 DrawerTile(
                   icon: Icons.location_city_rounded,
                   title: translate(LocaleKeys.whoAreWe),
@@ -248,7 +334,6 @@ class _AppDrawerState extends State<AppDrawer> {
                     NavigationService.push(context, Routes.carReturn);
                   },
                 ),
-
               ],
             ),
           ),

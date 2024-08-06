@@ -152,8 +152,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         : const Icon(Icons.visibility_off),
                     onPressed: _toggle)
                 : widget.suffixIcon,
-            // contentPadding: EdgeInsets.symmetric(horizontal: 25.w,vertical: widget.contentVerticalPadding),
-            // isDense: true,
+
             suffixIconConstraints: const BoxConstraints(minHeight: 0, minWidth: 0),
             counterText: '',
           focusedBorder: OutlineInputBorder(

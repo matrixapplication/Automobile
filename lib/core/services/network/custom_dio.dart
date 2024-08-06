@@ -7,7 +7,7 @@ class CustomDio {
     _dio.options.baseUrl = "https://automobile-egy.com/api/";
     _dio.options.connectTimeout = 5000;
   }
-
+//cities
   Future get(
     String url,
       Map<String, dynamic> queryParameters,

@@ -1007,7 +1007,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
           password: "123456789" ,
           confirmPassword: "123456789" ,
           phone: "01008549981" ,
-          name: "Harbey"
+          name: "Harbey",
+        countryId: ''
       );
       if (responseModel.isSuccess) {
         NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
@@ -1030,7 +1031,9 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
           password: '123456' ,
           name: _nameController.text ,
           phone: _phoneController.text ,
-          confirmPassword: '123456'
+          confirmPassword: '123456',
+          countryId: ''
+
       );
       if (responseModel.isSuccess) {
         NavigationService.pushReplacement(context, Routes.bottomNavigationBar);

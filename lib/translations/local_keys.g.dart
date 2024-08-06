@@ -18,6 +18,8 @@ abstract class  LocaleKeys {
   static const phone = 'phone';
   static const email = 'email';
   static const password = 'password';
+  static const egypt = 'egypt';
+  static const saudiArabia = 'saudi_arabia';
   static const confirmPassword = 'confirmPassword';
   static const login = 'login';
   static const forgetPassword = 'forgetPassword';
@@ -26,6 +28,8 @@ abstract class  LocaleKeys {
   static const __REGISTERPAGE__ = '__REGISTERPAGE__';
   static const fullName = 'fullName';
   static const showRoomName = 'ShowRoomName';
+  static const cash = 'cash';
+  static const finance = 'finance';
   static const create = 'create';
   static const haveAccount = 'haveAccount';
   static const verification = 'verification';
@@ -42,6 +46,7 @@ abstract class  LocaleKeys {
   static const trackUrRequest = 'track_ur_request' ;
   static const showRooms = 'show_rooms' ;
   static const agencies = 'agencies' ;
+  static const purchaseOrder = 'purchaseOrder' ;
   static const users = 'users' ;
   static const contactUs = 'contact_us' ;
   static const whoAreWe = 'who_are_we' ;
@@ -56,6 +61,7 @@ abstract class  LocaleKeys {
   static const popularBrands = 'popular_brands' ;
   static const editProfile = 'edit_profile' ;
   static const favourites = 'favourites' ;
+  static const carBrand = 'car_brand' ;
   static const settings = 'settings' ;
   static const myCars = 'my_cars' ;
   static const myBranches = 'my_branches' ;
@@ -87,7 +93,6 @@ abstract class  LocaleKeys {
   static const showReports = 'show_reports' ;
   static const signInAgency = 'sign_in_agency' ;
   static const signInUser = 'sign_in_user' ;
-  static const carBrand = 'car_brand' ;
   static const selectBrand = "select_brand";
   static const selectModel = "select_car_models";
   static const required = "required";
@@ -146,4 +151,5 @@ abstract class  LocaleKeys {
   static const notes = "Notes";
   static const email_or_mobile = "email_or_mobile";
   static const emailErrorMessage = "emailErrorMessage";
+  static const country = "country";
 }

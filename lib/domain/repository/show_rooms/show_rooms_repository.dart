@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import '../../../data/models/base_response/api_response.dart';
+import '../../../data/models/puechase_order.dart';
 import '../../entities/add_car_entity/add_car_entity.dart';
 
 mixin BaseShowRoomsRepository {
@@ -15,6 +16,7 @@ mixin BaseShowRoomsRepository {
   Future<ApiResponse> showRoomsBranches({required int id});
   Future<ApiResponse> showRoomsBranchesById({required int id});
   Future<ApiResponse> getCities();
+  Future<ApiResponse> sendPurchaseOrder(PurchaseOrderParams params);
   Future<ApiResponse> getMyCarList(
       {
         required int? page ,

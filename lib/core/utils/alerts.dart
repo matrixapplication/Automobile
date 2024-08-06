@@ -16,7 +16,7 @@ class Alerts {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: duration,
-        backgroundColor: forError ? Colors.red : ColorManager.white,
+        backgroundColor: forError ? Colors.red : Colors.greenAccent,
         content: CustomText(text:message,textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
             color: ColorManager.white, fontSize: FontSize.s14
         ), )/*CustomText(message,

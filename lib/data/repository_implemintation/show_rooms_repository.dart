@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:automobile_project/data/models/puechase_order.dart';
 import 'package:automobile_project/domain/entities/add_car_entity/add_car_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -414,6 +415,25 @@ class ShowRoomsRepository implements BaseShowRoomsRepository {
       final response = await dioClient?.get(
 
         "${EndPoints.showCarDetails}/$id",
+      );
+      return ApiResponse.withSuccess(response!);
+    } on DioError catch (error) {
+      if (error.response == null) {
+        return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+      }
+      return ApiResponse.withSuccess(error.response!);
+    } catch (error) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(error));
+    }
+  }
+
+  @override
+  Future<ApiResponse> sendPurchaseOrder(PurchaseOrderParams params)async {
+    try {
+
+      final response = await dioClient?.post(
+        "buy-store-request",
+        body: params.toJson()
       );
       return ApiResponse.withSuccess(response!);
     } on DioError catch (error) {

@@ -9,6 +9,7 @@ class Routes {
   static const String bottomNavigationBar = "/bottomNavigationBar";
   static const String homeScreen = "/homeScreen";
   //static const String homeScreen = "/";
+  static const String purchaseOrderScreen = "/purchaseOrderScreen";
   static const String latestNewCarPage = "/latestNewCarPage";
   static const String latestNewCarsDetails = "/latestNewCarsDetails";
   static const String myCarsToSellPage = "/myCarsToSellPage";

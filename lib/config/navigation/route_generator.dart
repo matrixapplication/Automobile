@@ -18,6 +18,7 @@ import '../../presentation/auth/show_room_login/view/page/show_room_login_page.d
 import '../../presentation/auth/sign_up/view/page/signup_page.dart';
 import '../../presentation/bottom_navigation_bar/bottom_navigation_bar.dart';
 import '../../presentation/bottom_navigation_bar/pages/bottom_navigation_page.dart';
+import '../../presentation/bottom_navigation_bar/pages/home/pages/purchase_order.dart';
 import '../../presentation/bottom_navigation_bar/pages/profile/pages/edit_profile.dart';
 import '../../presentation/bottom_navigation_bar/pages/sell_cars/pages/sell_car_customer_data_page.dart';
 import '../../presentation/car_show_rooms/view/car_show_rooms_profile_page.dart';
@@ -70,6 +71,8 @@ class RouteGenerator {
         return platformPageRoute(const SignUpScreen());
       case Routes.otpPage:
         return platformPageRoute(const OtpPage());
+        case Routes.purchaseOrderScreen:
+        return platformPageRoute(const PurchaseOrderScreen());
       case Routes.bottomNavigationBar:
         Map<String , dynamic>? args = settings.arguments as Map<String, dynamic>?;
         return platformPageRoute(BottomNavigationPage(selectedIndex: args == null ? 0 :args['selectedIndex']??0,));
