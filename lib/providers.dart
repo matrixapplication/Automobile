@@ -19,6 +19,7 @@ import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import 'package:automobile_project/presentation/favourites/view_model/fav_view_model.dart';
 import 'package:automobile_project/presentation/filter_page/view_model/filter_page_view_model.dart';
+import 'package:automobile_project/presentation/finance_car/view_model/finance_car_view_model.dart';
 import 'package:automobile_project/presentation/guarantee_cars/view_model/admin_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -67,6 +68,7 @@ import 'presentation/used_cars/view_model/user_used_cars_view_model.dart';
         ChangeNotifierProvider(create: (_) => sl<GetDistrictsViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<GetMyCarsViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<EndUserViewModel>()),
+        ChangeNotifierProvider(create: (_) => sl<FinanceCarViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<FilterPageViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<BrandModelChangeViewModel>()),
         ChangeNotifierProvider(create: (_) => sl<CarColorsViewModel>()),

@@ -37,6 +37,10 @@ class EndPoints {
   static const String showFavApi = "/get-favorite";
   static const String slidersApi = "/sliders";
   static const String sellChangeCarApi = "/sell_or_trade_car";
+  static const String financeCars = "/finance-cars";
+  static const String financeAddOfferCar = "/store-finance-offer-request";
+  static const String getContactUs = "/ContactUs";
+  static const String getFinanceCars = "/get-finance-offers";
   static const String getAdminCars = "/get_admin_cars";
   static const String trackYourRequestApi = "/track_your_request";
   static const String showBranchesById = "/branch";

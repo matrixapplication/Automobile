@@ -189,7 +189,8 @@ class SlidersUseCase {
   Future<ResponseModel<List<Notifications>>> allNotification({
     required context,
     required int page
-  }) async {
+  }) async
+  {
     ApiResponse apiResponse = await _generalRepository
         .allNotification(page: page);
     ResponseModel<List<Notifications>> responseModel;

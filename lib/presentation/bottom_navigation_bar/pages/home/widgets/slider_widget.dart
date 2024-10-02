@@ -77,36 +77,55 @@ class _BuildSliderComponentState extends State<BuildSliderComponent> {
               alignment: shared!.getString("lang") == "en" ? Alignment.bottomLeft : Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 100.h, horizontal: 20.w),
-                child: CustomText(
-                  text: "${data.showSlidersResponse?.data?[sliderIndex].title}",
-                  textStyle: Theme
-                      .of(context)
-                      .textTheme
-                      .headlineSmall!
-                      .copyWith(
-                      height: 1,
-                      color: ColorManager.white,
-                      fontWeight: FontWeightManager.semiBold),
-                ),
+                child:
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                  decoration: BoxDecoration(
+
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, spreadRadius: 6, offset: const Offset(0, 0))],
+                    color: ColorManager.primaryColor,
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: CustomText(
+                    text: "${data.showSlidersResponse?.data?[sliderIndex].title}",
+                    textStyle: Theme
+                        .of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(
+                        height: 1,
+                        color: ColorManager.white,
+                        fontWeight: FontWeightManager.semiBold),
+                  ),
+                )
               ),
             ),
             Align(
               alignment:shared!.getString("lang") == "en" ? Alignment.bottomLeft : Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 80.h, horizontal: 20.w),
-                child: AnimatedSmoothIndicator(
-                  activeIndex: sliderIndex,
-                  count: data.showSlidersResponse != null ?
-                  data.showSlidersResponse!.data!.length : 0,
-                  axisDirection: Axis.horizontal,
-                  effect: JumpingDotEffect(
-                    dotColor: ColorManager.white,
-                    activeDotColor: ColorManager.orange,
-                    dotHeight: 10.h,
-                    dotWidth: 10.h,
-                    spacing: 12.w,
+                child:
+                Container(
+                  decoration: BoxDecoration(
+
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, spreadRadius: 6, offset: const Offset(0, 0))],
+                    // color: ColorManager.primaryColor,
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
-                ),
+                  child: AnimatedSmoothIndicator(
+                    activeIndex: sliderIndex,
+                    count: data.showSlidersResponse != null ?
+                    data.showSlidersResponse!.data!.length : 0,
+                    axisDirection: Axis.horizontal,
+                    effect: JumpingDotEffect(
+                      dotColor: ColorManager.white,
+                      activeDotColor: ColorManager.orange,
+                      dotHeight: 10.h,
+                      dotWidth: 10.h,
+                      spacing: 12.w,
+                    ),
+                  ),
+                )
               ),
             ),
 

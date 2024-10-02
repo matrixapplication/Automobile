@@ -3,6 +3,7 @@ import 'package:automobile_project/core/services/responsive/num_extensions.dart'
 import 'package:automobile_project/data/models/basic_model/basic_model.dart';
 import 'package:automobile_project/data/models/show_room_branch_model/show_room_branch_model.dart';
 import 'package:automobile_project/main.dart';
+import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/pages/sell_car_photos_page.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/car_colors_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/show_rooms_branches_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/years_view_model.dart';
@@ -57,6 +58,8 @@ class _SellCarsPageState extends State<SellCarsPage> {
   List<String> transmissionTypeTabsIcon = [
     AssetsManager.manualIcon,
     AssetsManager.automaticIcon,
+    AssetsManager.automaticIcon,
+
   ];
   List<String> bodyShapeTabsIcon = [
     AssetsManager.sedanIcon,
@@ -95,6 +98,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
   }
   @override
   void initState() {
+
     Provider.of<CarBrandsModelViewModel>(context , listen: false).clearData() ;
     Provider.of<CarBrandsModelExtensionViewModel>(context , listen: false).clearData() ;
     Provider.of<CarFeaturesViewModel>(context , listen: false).clearData() ;
@@ -108,24 +112,27 @@ class _SellCarsPageState extends State<SellCarsPage> {
         .getEndUserData()
         .then((value) {});
     Provider.of<LocalAuthProvider>(context, listen: false).getUserRole();
-
     if (shared!.getString("role") == "user") {
       _selectedCarStatus = 'used';
     } else if (shared!.getString("role") == "agency") {
       _selectedCarStatus = "new";
     }
 
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+  print('dsf');
+
     final carMechanicalViewModel =
         Provider.of<CarMechanicalViewModel>(context, listen: false);
     final bodyShapeViewModel =
         Provider.of<BodyShapeViewModel>(context, listen: false);
     final localAuthProvider =
         Provider.of<LocalAuthProvider>(context, listen: false);
+
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: PreferredSize(
@@ -412,8 +419,9 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         _selectedBrandModelExtension = data!.id.toString();
                         brandModelExtensionError = false;
                       });
-                      Provider.of<BodyShapeViewModel>(context, listen: false)
-                          .getBodyShape(context: context);
+                                       Provider.of<FuelTypeViewModel>(context, listen: false)
+                                          .getFuelType(context: context);
+
                     },
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
@@ -744,6 +752,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                           .textTheme
                           .titleSmall!
                           .copyWith(fontWeight: FontWeightManager.semiBold)),
+
                 ],
               ),
 
@@ -760,19 +769,21 @@ class _SellCarsPageState extends State<SellCarsPage> {
                           itemCount:
                               viewModel.getMechanicalResponse?.data?.length ?? 0,
                           itemBuilder: (context, index) {
+                            print("indeax ${viewModel.getMechanicalResponse?.data?.length}");
+                            print("index ${index}");
                             return TapEffect(
                               onClick: () {
                                 viewModel.changeTransmissionIndex(viewModel
                                     .getMechanicalResponse?.data?[index].key);
                               },
-                              child: Container(
-                                width: deviceWidth * 0.44,
+                              child:
+                              Container(
+                                width: deviceWidth * 0.27,
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
                                 decoration: BoxDecoration(
                                     color: viewModel.transmissionKey ==
-                                            viewModel.getMechanicalResponse
-                                                ?.data?[index].key
+                                        viewModel.getMechanicalResponse?.data?[index].key
                                         ? ColorManager.primaryColor
                                         : ColorManager.white,
                                     border: Border.all(
@@ -784,40 +795,43 @@ class _SellCarsPageState extends State<SellCarsPage> {
                                   children: [
                                     CustomText(
                                       text: viewModel.getMechanicalResponse
-                                              ?.data?[index].name ??
+                                          ?.data?[index].name ??
                                           "",
                                       maxLines: 1,
                                       textStyle: Theme.of(context)
                                           .textTheme
                                           .titleSmall!
                                           .copyWith(
-                                              color: viewModel
-                                                          .transmissionKey ==
-                                                      viewModel
-                                                          .getMechanicalResponse
-                                                          ?.data?[index]
-                                                          .key
-                                                  ? ColorManager.white
-                                                  : ColorManager
-                                                      .blackColor1C1C1C,
-                                              fontWeight:
-                                                  FontWeightManager.semiBold,
-                                              letterSpacing:
-                                                  0.1 // color: ColorManager.black
-                                              ),
+                                          fontSize: 15.sp,
+                                          color: viewModel
+                                              .transmissionKey ==
+                                              viewModel
+                                                  .getMechanicalResponse
+                                                  ?.data?[index]
+                                                  .key
+                                              ? ColorManager.white
+                                              : ColorManager
+                                              .blackColor1C1C1C,
+                                          fontWeight:
+                                          FontWeightManager.semiBold,
+                                          letterSpacing:
+                                          0.1 // color: ColorManager.black
+                                      ),
                                     ),
-                                    const HorizontalSpace(20),
+                                    const HorizontalSpace(5),
                                     CustomSvgImage(
+                                      width: 15.w,
                                       image: transmissionTypeTabsIcon[index],
                                       color: viewModel.transmissionKey ==
-                                              viewModel.getMechanicalResponse
-                                                  ?.data?[index].key
+                                          viewModel.getMechanicalResponse
+                                              ?.data?[index].key
                                           ? ColorManager.white
                                           : ColorManager.blackColor1C1C1C,
                                     ),
                                   ],
                                 ),
                               ),
+
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {
@@ -827,123 +841,123 @@ class _SellCarsPageState extends State<SellCarsPage> {
                       ),
               ),
 
-              const VerticalSpace(20),
-
-
-                  Consumer<BodyShapeViewModel>(
-                      builder: (_, data, __) {
-                        return IgnorePointer(
-                          ignoring: data.getBodyShapeResponse != null
-                              ? false
-                              : true,
-                          child: DropdownSearch<BasicModel>(
-                            asyncItems: (filter) async =>
-                            data.getBodyShapeResponse!.data!,
-                            itemAsString: (BasicModel u) => u.name!,
-                            selectedItem: bodyShapeModel,
-                            onChanged: (BasicModel? data) {
-                              setState(() {
-                                bodyShapeModel = data ;
-                                _selectedBodyShape = data?.id.toString() ;
-                              });
-                               Provider.of<FuelTypeViewModel>(context, listen: false)
-                                  .getFuelType(context: context);
-                            },
-                            dropdownDecoratorProps: DropDownDecoratorProps(
-                              dropdownSearchDecoration: InputDecoration(
-                                  labelText:translate(LocaleKeys.bodyShape),
-                                  enabled:
-                                  data.getBodyShapeResponse != null
-                                      ? true
-                                      : false,
-                                  labelStyle: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(color: ColorManager.primaryColor),
-                                  fillColor: ColorManager.white,
-                                  filled: true,
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      borderSide: const BorderSide(
-                                          color: ColorManager.greyCanvasColor,
-                                          width: 2)),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      borderSide: const BorderSide(
-                                          color: ColorManager.greyCanvasColor,
-                                          width: 2)),
-                                  disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      borderSide: const BorderSide(
-                                          color: ColorManager.greyCanvasColor,
-                                          width: 2)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      borderSide: const BorderSide(
-                                          color: ColorManager.greyCanvasColor,
-                                          width: 2))),
-                            ),
-                            dropdownBuilder: (_, value) {
-                              if (bodyShapeModel != null) {
-                                return Row(
-                                children: [
-                                  CustomText(
-                                    text: value?.name ?? '',
-                                    textStyle:
-                                    Theme.of(context).textTheme.titleLarge,
-                                  )
-                                ],
-                              );
-                              } else {
-                                return Row(
-                                children: [
-                                   const CustomSvgImage(
-                                    image: AssetsManager.hatchbackIcon,
-                                    height: 30
-                                     ,
-                                     color: ColorManager.primaryColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  CustomText(
-                                    text:   translate(LocaleKeys.bodyShape),
-                                    textStyle: Theme.of(context).textTheme.titleMedium,
-                                  )
-                                ],
-                              );
-                              }
-                            },
-                            popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
-                              return Padding(
-                                padding: EdgeInsets.all(16.h),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomText(
-                                      text: value.name ?? '',
-                                      textStyle: Theme.of(context).textTheme.titleLarge,
-                                    ),
-                                    CustomShimmerImage(image: "${value.icon}"  , height: 36.h) ,
-
-                                  ],
-                                ),
-                              );
-                            } ,
-                                fit: FlexFit.loose
-                            ),
-                            dropdownButtonProps: DropdownButtonProps(
-                                icon: !data.isLoading
-                                    ? const Icon(Icons.keyboard_arrow_down)
-                                    : const MyProgressIndicator(
-                                  width: 30,
-                                  height: 30,
-                                  size: 30,
-                                )),
-                          ),
-                        );
-                      }),
-
+              // const VerticalSpace(20),
+              //
+              //
+              //     Consumer<BodyShapeViewModel>(
+              //         builder: (_, data, __) {
+              //           return IgnorePointer(
+              //             ignoring: data.getBodyShapeResponse != null
+              //                 ? false
+              //                 : true,
+              //             child: DropdownSearch<BasicModel>(
+              //               asyncItems: (filter) async =>
+              //               data.getBodyShapeResponse!.data!,
+              //               itemAsString: (BasicModel u) => u.name!,
+              //               selectedItem: bodyShapeModel,
+              //               onChanged: (BasicModel? data) {
+              //                 setState(() {
+              //                   bodyShapeModel = data ;
+              //                   _selectedBodyShape = data?.id.toString() ;
+              //                 });
+              //                  Provider.of<FuelTypeViewModel>(context, listen: false)
+              //                     .getFuelType(context: context);
+              //               },
+              //               dropdownDecoratorProps: DropDownDecoratorProps(
+              //                 dropdownSearchDecoration: InputDecoration(
+              //                     labelText:translate(LocaleKeys.bodyShape),
+              //                     enabled:
+              //                     data.getBodyShapeResponse != null
+              //                         ? true
+              //                         : false,
+              //                     labelStyle: Theme.of(context)
+              //                         .textTheme
+              //                         .titleLarge!
+              //                         .copyWith(color: ColorManager.primaryColor),
+              //                     fillColor: ColorManager.white,
+              //                     filled: true,
+              //                     focusedBorder: OutlineInputBorder(
+              //                         borderRadius: BorderRadius.circular(15.r),
+              //                         borderSide: const BorderSide(
+              //                             color: ColorManager.greyCanvasColor,
+              //                             width: 2)),
+              //                     border: OutlineInputBorder(
+              //                         borderRadius: BorderRadius.circular(15.r),
+              //                         borderSide: const BorderSide(
+              //                             color: ColorManager.greyCanvasColor,
+              //                             width: 2)),
+              //                     disabledBorder: OutlineInputBorder(
+              //                         borderRadius: BorderRadius.circular(15.r),
+              //                         borderSide: const BorderSide(
+              //                             color: ColorManager.greyCanvasColor,
+              //                             width: 2)),
+              //                     enabledBorder: OutlineInputBorder(
+              //                         borderRadius: BorderRadius.circular(15.r),
+              //                         borderSide: const BorderSide(
+              //                             color: ColorManager.greyCanvasColor,
+              //                             width: 2))),
+              //               ),
+              //               dropdownBuilder: (_, value) {
+              //                 if (bodyShapeModel != null) {
+              //                   return Row(
+              //                   children: [
+              //                     CustomText(
+              //                       text: value?.name ?? '',
+              //                       textStyle:
+              //                       Theme.of(context).textTheme.titleLarge,
+              //                     )
+              //                   ],
+              //                 );
+              //                 } else {
+              //                   return Row(
+              //                   children: [
+              //                      const CustomSvgImage(
+              //                       image: AssetsManager.hatchbackIcon,
+              //                       height: 30
+              //                        ,
+              //                        color: ColorManager.primaryColor,
+              //                     ),
+              //                     SizedBox(
+              //                       width: 10.w,
+              //                     ),
+              //                     CustomText(
+              //                       text:   translate(LocaleKeys.bodyShape),
+              //                       textStyle: Theme.of(context).textTheme.titleMedium,
+              //                     )
+              //                   ],
+              //                 );
+              //                 }
+              //               },
+              //               popupProps: PopupProps.menu(itemBuilder: (_, value, state) {
+              //                 return Padding(
+              //                   padding: EdgeInsets.all(16.h),
+              //                   child: Row(
+              //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //                     children: [
+              //                       CustomText(
+              //                         text: value.name ?? '',
+              //                         textStyle: Theme.of(context).textTheme.titleLarge,
+              //                       ),
+              //                       CustomShimmerImage(image: "${value.icon}"  , height: 36.h) ,
+              //
+              //                     ],
+              //                   ),
+              //                 );
+              //               } ,
+              //                   fit: FlexFit.loose
+              //               ),
+              //               dropdownButtonProps: DropdownButtonProps(
+              //                   icon: !data.isLoading
+              //                       ? const Icon(Icons.keyboard_arrow_down)
+              //                       : const MyProgressIndicator(
+              //                     width: 30,
+              //                     height: 30,
+              //                     size: 30,
+              //                   )),
+              //             ),
+              //           );
+              //         }),
+              //
 
 
               const VerticalSpace(20),
@@ -1313,10 +1327,10 @@ class _SellCarsPageState extends State<SellCarsPage> {
 
 
               const VerticalSpace(10),
-
               localAuthProvider.user?.role == "showroom" ||
                       localAuthProvider.user?.role == "agency"
                   ?  Consumer<ShowRoomsBranchesViewModel>(builder: (_, data, __) {
+
                 return IgnorePointer(
                   ignoring: data.showRoomsBranchesResponse != null ? false : true,
                   child: DropdownSearch<ShowRoomBranchModel>(
@@ -1411,6 +1425,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                   : const SizedBox(),
 
 
+
               showRoomBranchError!
                   ? CustomText(
                       text: translate(LocaleKeys.required),
@@ -1422,7 +1437,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                   : const SizedBox(),
               const VerticalSpace(10),
               CustomText(
-                  text: translate(LocaleKeys.carDescription),
+                  text: translate(LocaleKeys.carDescription2),
                   textStyle: Theme.of(context)
                       .textTheme
                       .titleSmall!
@@ -1436,9 +1451,10 @@ class _SellCarsPageState extends State<SellCarsPage> {
                   }
                   return null;
                 },
+                //استبدل سي
                 contentVerticalPadding: 17.h,
                 controller: _commentController,
-                hintText: translate(LocaleKeys.carDescription),
+                hintText: translate(LocaleKeys.carDescription2),
                 textInputType: TextInputType.text,
                 maxLine: 3,
                 borderColor: ColorManager.greyColorCBCBCB,
@@ -1659,9 +1675,11 @@ class _SellCarsPageState extends State<SellCarsPage> {
                         brandError = true;
                       } else if (_selectedModel == null) {
                         modelError = true;
-                      } else if (_selectedBrandModelExtension == null) {
-                        brandModelExtensionError = true;
-                      } else if (_selectedYear == null) {
+                      }
+                      // else if (_selectedBrandModelExtension == null) {
+                      //   brandModelExtensionError = true;
+                      // }
+                      else if (_selectedYear == null) {
                         yearError = true;
                       } else if (_selectedFuelType == null) {
                         fuelError = true;
@@ -1683,6 +1701,8 @@ class _SellCarsPageState extends State<SellCarsPage> {
                   print("done validation");
 
                   _key.currentState!.save();
+
+
                 try{
                   NavigationService.push(context, Routes.sellCarPhotosPage,
                       arguments: {
@@ -1706,7 +1726,7 @@ class _SellCarsPageState extends State<SellCarsPage> {
                           year: int.parse(_selectedYear!),
                           color: _selectedColor,
                           driveType: carMechanicalViewModel.transmissionKey,
-                          bodyType: int.parse(_selectedBodyShape!),
+                          bodyType: int.parse(_selectedBodyShape??'0'),
                           fuelType: _selectedFuelType,
                           status: _selectedCarStatus,
                           price: int.parse(_priceController.text),

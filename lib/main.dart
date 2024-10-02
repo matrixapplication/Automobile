@@ -200,6 +200,7 @@ class MyApp extends StatelessWidget {
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashScreen,
+      // home: const FinanceCarPage(),
       navigatorKey: NavigationService.navigationKey,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
     );

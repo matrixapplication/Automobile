@@ -103,10 +103,11 @@ class _LoginPageState extends State<LoginPage> {
                           width: deviceWidth * 0.55,
                         ),
                       ),
+                      if(kDebugMode)
                       InkWell(
                           onTap: (){
                           //   var d =GetStorage().read('countryId');
-                          //   print('${d}');
+                          //   print('${d}')
                             print('yehya test ${GetStorage().read('isLogin')}');
 
 

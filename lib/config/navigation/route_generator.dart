@@ -27,6 +27,8 @@ import '../../presentation/component/screens/undefined_route_screen.dart';
 import '../../presentation/favourites/favourites/favourites_page.dart';
 import '../../presentation/filter_page/view/filter_page.dart';
 import '../../presentation/filter_page/component/filter_cars_details.dart';
+import '../../presentation/finance_car/finance_car_screen.dart';
+import '../../presentation/finance_car/finance_offers_screen.dart';
 import '../../presentation/guarantee_cars/view/guarantee_car_details.dart';
 import '../../presentation/guarantee_cars/view/guarantee_car_page.dart';
 import '../../presentation/latest_new_cars/view/new_car_details.dart';
@@ -60,6 +62,10 @@ class RouteGenerator {
         return platformPageRoute(const SplashScreen());
       case Routes.appLinkCarAR:
         return platformPageRoute(const LatestNewCarPage());
+        case Routes.financeCarPage:
+        return platformPageRoute(const FinanceCarPage());
+        case Routes.financeScreen:
+        return platformPageRoute(const FinanceScreen());
       case Routes.appLinkCarEN:
         return platformPageRoute(const LatestNewCarPage());
       case Routes.onBoardingPage:

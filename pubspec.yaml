@@ -39,11 +39,11 @@ dependencies:
   # DI & State management
   get_it: ^7.2.0
   provider: ^6.0.5
+  font_awesome_flutter: ^10.4.0  # Use the latest version
 
   #log
   logger: ^1.1.0
   logging: ^1.0.2
-
   # Network
   dio: ^4.0.6
   pretty_dio_logger: ^1.2.0-beta-1
@@ -126,6 +126,15 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - lib/domain/repository/
+    - lib/domain/repository/admin/
+    - lib/domain/repository/agency/
+    - lib/domain/repository/general/
+    - lib/domain/repository/drop_down/
+    - lib/domain/repository/show_rooms/
+    - lib/domain/repository/authentication/
+    - lib/domain/repository/fav_repository/
+    - lib/domain/repository/local_repository/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final double? height;
   final double? radius;
-
+ final double? fontSize;
   final VoidCallback? onTap;
 
   const CustomButton(
@@ -33,6 +33,7 @@ class CustomButton extends StatelessWidget {
       this.buttonText,
       this.width,
       this.height,
+      this.fontSize,
       this.radius,
       this.textStyle,
       this.borderColor,
@@ -86,7 +87,7 @@ class CustomButton extends StatelessWidget {
           textStyle: textStyle ??
               Theme.of(context).textTheme.labelMedium!.copyWith(
                 color: textColor ?? Colors.white,
-                fontSize: FontSize.s14.sp,
+                fontSize:fontSize?? FontSize.s14.sp,
                 fontWeight: FontWeightManager.medium,
               ),
           textAlign: TextAlign.center,

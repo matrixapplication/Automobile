@@ -79,7 +79,6 @@ class _SplashScreenState extends State<SplashScreen> {
      await Provider.of<CarMechanicalViewModel>(context, listen: false)
          .getMechanicalFun(context: context);
 
-
      await Provider.of<CarFeaturesViewModel>(context, listen: false)
          .getCarFeatures(context: context);
      await Provider.of<YearsViewModel>(context, listen: false)

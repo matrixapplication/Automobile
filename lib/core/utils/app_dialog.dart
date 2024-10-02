@@ -71,6 +71,47 @@ class AppDialog extends BasePlatformWidget<AlertDialog, CupertinoAlertDialog> {
     );
   }
 
+  AlertDialog createOfferRequestWidget(BuildContext context) {
+    print(withClose);
+    return
+      AlertDialog(
+      content: Column(
+        children: [
+          Icon(icon, size: 50.h, color: confirmTextColor),
+          const VerticalSpace(16),
+          CustomText(
+              text: alertDescription,
+              textStyle: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: ColorManager.black)),
+          const VerticalSpace(32),
+          CustomButton(
+            buttonText: confirmText,
+            textColor: confirmTextColor,
+            backgroundColor: ColorManager.primaryColor,
+            onTap: () {
+              NavigationService.goBack(context);
+              onConfirm();
+            },
+          ),
+          const VerticalSpace(AppSize.s14),
+          withClose
+              ? CustomButton(
+            buttonText: confirmText,
+            textColor: confirmTextColor,
+            backgroundColor: ColorManager.primaryColor,
+            onTap: () {
+              NavigationService.goBack(context);
+              onConfirm();
+            },
+          )
+              : const SizedBox(),
+        ],
+      ),
+    );
+  }
+
   @override
   AlertDialog createMaterialWidget(BuildContext context) {
     return AlertDialog(

@@ -40,6 +40,8 @@ abstract class  LocaleKeys {
   static const notifications = 'notifications';
   static const profile = 'profile';
   static const sellChangeCat = 'sell_change_car' ;
+  static const theFinance = 'the_finance' ;
+  static const financeCar = 'finance_car' ;
   static const newCars = 'new_cars' ;
   static const usedCars = 'used_cars' ;
   static const guaranteCars = 'guarantee_cars' ;
@@ -80,8 +82,10 @@ abstract class  LocaleKeys {
   static const color = 'color' ;
   static const carCylinders = 'car_cylinders' ;
   static const mileage = 'mileage' ;
+  static const grossSalary = 'gross_salary' ;
   static const price = 'price' ;
   static const carDescription = 'car_description' ;
+  static const carDescription2 = 'car_description2' ;
   static const done = 'done' ;
   static const chooseFeatures = 'chooseFeatures' ;
   static const photosMax = 'photos_max' ;
@@ -107,6 +111,7 @@ abstract class  LocaleKeys {
   static const skip = "skip";
   static const carFeatures = "car_features";
   static const carReports = "carReports";
+  static const cancel = "cancel";
   static const startPrice = "startPrice";
   static const endPrice = "endPrice";
   static const startYear = "startYear";
@@ -117,6 +122,10 @@ abstract class  LocaleKeys {
   static const km = "km";
   static const manual = "manual";
   static const automatic = "automatic";
+  static const cvt = "cvt";
+  static const hybrid = "hybrid";
+  static const electric = "electric";
+
   static const gas = "gas";
   static const diesel = "diesel";
   static const naturalGas = "naturalGas";

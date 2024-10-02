@@ -71,24 +71,30 @@ class CarTypesTap extends StatelessWidget {
             width: deviceWidth * 0.31,
             child: Padding(
               padding:  EdgeInsets.symmetric(vertical: 3.w),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CustomSvgImage(
-                      color: ColorManager.white,
-                      image: index == 2
-                          ? AssetsManager.hatchbackIcon
-                          : AssetsManager.wheelIcon,
-                    ),
-                    CustomText(
-                      text: carStatus[index],
-                      textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: ColorManager.white,
-                          fontSize: 16.h,
-                          fontWeight: FontWeightManager.semiBold),
-                    )
-                  ]),
+              child:
+              Center(
+                child:  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomSvgImage(
+                        color: ColorManager.white,
+                        image: index == 2
+                            ? AssetsManager.hatchbackIcon
+                            : AssetsManager.wheelIcon,
+                      ),
+                      Center(
+                        child: CustomText(
+                          text: carStatus[index],
+                          textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              color: ColorManager.white,
+                              fontSize: 16.h,
+                              fontWeight: FontWeightManager.semiBold),
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    ]),
+              )
             ),
           ),
         ),
