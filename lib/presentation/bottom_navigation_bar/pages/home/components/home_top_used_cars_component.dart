@@ -7,6 +7,7 @@ import 'package:automobile_project/translations/local_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../../../config/app_linkes/share_button.dart';
 import '../../../../../config/navigation/navigation.dart';
 import '../../../../../core/resources/resources.dart';
 import '../../../../component/components.dart';
@@ -240,6 +241,21 @@ class _HomeTopUsedCarsComponentState extends State<HomeTopUsedCarsComponent> {
                           ) ;
                         }),
                       ),
+                      Positioned(
+                          top: 11.h,
+                          left:  shared!.getString("lang") == "en" ?  15.w:null,
+                          right:  shared!.getString("lang") == "ar" ?  15.w:null,
+                          child:
+                          Container(
+                            padding:  const EdgeInsets.all(7),
+                            decoration: const BoxDecoration(
+                                color: ColorManager.white ,
+                                shape: BoxShape.circle
+                            ),
+                            child: ShareCarButton2(
+                              id: data.carList[index].id!.toString(),
+                            ),
+                          ))
                     ],
                   ),
                 ),

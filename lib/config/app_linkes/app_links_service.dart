@@ -20,10 +20,10 @@ class AppLinkingService {
       if (uri.path.isEmpty) return;
       try {
         String id = uri.path.split('/').last;
-        print('appLinks route id path $id');
-        await  Navigator.push(context, MaterialPageRoute(builder: (context) => CarDetailsPage(
-          id: int.parse(id),
-        )));
+        print('appLinks route id path555 $id');
+        NavigationService.navigationKey.currentState?.push(
+          MaterialPageRoute(builder: (context) => CarDetailsPage(id: int.parse(id))),
+        );
 
       } on Exception catch (e) {
         NavigationService.navigationKey.currentState?.pushNamed(
@@ -33,16 +33,17 @@ class AppLinkingService {
     });
   }
   //
-  static goToRoute(BuildContext context) async {
+  static goToRoute(BuildContext context2) async {
     try {
       final uri = await _appLinks.getInitialAppLink();
       if (uri == null) return;
       String id = uri.path.split('/').last;
-      print('appLinks route id path $id');
-      await  Navigator.push(context, MaterialPageRoute(builder: (context) => CarDetailsPage(
+      print('appLinks route id path dsfdsf$id');
+      BuildContext appContext = NavigationService.navigationKey.currentContext!;
+      await  Navigator.push(appContext, MaterialPageRoute(builder: (appContext) => CarDetailsPage(
         id: int.parse(id),
       )));
-
+//car feature
     } on Exception catch (e) {
       print('appLinks goToRoute error $e');
     }

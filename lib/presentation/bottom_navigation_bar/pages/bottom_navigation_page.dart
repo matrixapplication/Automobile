@@ -84,7 +84,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                     if(userProvider.user != null  ){
                       widget.selectedIndex = index ;
                     }else{
-                      showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
+                      loginDialog(context) ;
+                      // showCustomSnackBar(message: translate(LocaleKeys.pleaseLogin), context: context) ;
                     }
                   }else{
                     if(userProvider.endUser != null){
@@ -92,7 +93,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                       widget.selectedIndex = index ;
                     }else{
                       print("un auth") ;
-                      showCustomSnackBar(message: LocaleKeys.pleaseLogin.tr(), context: context) ;
+                      loginDialog(context) ;
+
+                      // showCustomSnackBar(message: LocaleKeys.pleaseLogin.tr(), context: context) ;
                     }
                   }
                 }) ;

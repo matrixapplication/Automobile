@@ -21,3 +21,21 @@ class ShareCarButton extends StatelessWidget {
     );
   }
 }
+class ShareCarButton2 extends StatelessWidget {
+  final String id;
+  const ShareCarButton2({super.key, required this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      InkWell(
+        onTap: (){
+          Share.share(
+            AppLinkingService.createDynamicLink(id),
+            subject: 'Check out this car!',
+          );
+        },
+      child: const Icon(Icons.share, color: ColorManager.primaryColor,size: 22,),
+    );
+  }
+}

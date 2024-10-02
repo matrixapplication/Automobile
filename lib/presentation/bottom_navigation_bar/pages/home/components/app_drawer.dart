@@ -33,7 +33,7 @@ class AppDrawer extends StatefulWidget {
   @override
   State<AppDrawer> createState() => _AppDrawerState();
 }
-//ggfhgfhfgh
+///gg
 class _AppDrawerState extends State<AppDrawer> {
 
   final List<DropDownItem> items = [
@@ -58,26 +58,225 @@ class _AppDrawerState extends State<AppDrawer> {
               // Important: Remove any padding from the ListView.
               padding: EdgeInsets.zero,
               children: [
-                Card(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
-                    child: Row(children: [
-                      Expanded(
-                        child: Row(
-                          children:  [
-                            const Icon(Icons.language),
-                            const HorizontalSpace(10),
-                            TapEffect(onClick: ()async{
-                              if(shared!.getString("lang") == "ar" ){
-                                shared!.setString("lang", "en") ;
-                                context.setLocale(Locale("en")) ;
-                                lang = Locale("en");
-                              }else{
-                                shared!.setString("lang", "ar") ;
-                                context.setLocale(Locale("ar")) ;
-                                lang = Locale("ar");
-                              }
+                const SizedBox(height: 15,),
+
+                Row(
+                  children: [
+                    const SizedBox(width: 10,),
+                    // Expanded(
+                    //   child: CustomButton(
+                    //     fontSize: 12.sp,
+                    //
+                    //     onTap: () {
+                    //       NavigationService.push(context, Routes.purchaseOrderScreen);
+                    //     },
+                    //     buttonText: translate(LocaleKeys.purchaseOrder),
+                    //     width: deviceWidth * 0.20,
+                    //     height: 40.h,
+                    //     backgroundColor: ColorManager.white,
+                    //     borderColor: ColorManager.primaryColor,
+                    //     textColor: ColorManager.primaryColor,
+                    //     radius: 10.r,
+                    //   ),
+                    // ),
+                    Expanded(child:   InkWell(
+                      onTap: (){
+                        NavigationService.push(context, Routes.purchaseOrderScreen);
+                      },
+                      child:
+                      Container(
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow:  [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                            border: Border.all(color: Colors.white, width: 1),
+                          ),
+                          child: Center(
+                            child:Text(
+                              translate(LocaleKeys.purchaseOrder),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                      ),
+                    ),),
+                    const SizedBox(width: 10,),
+                    Expanded(child:   InkWell(
+                      onTap: (){
+                        NavigationService.push(context, Routes.selCarFormPage);
+                      },
+                      child:
+                      Container(
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow:  [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                            border: Border.all(color: Colors.white, width: 1),
+                          ),
+                          child: Center(
+                            child:Text(
+                              translate(LocaleKeys.sellChangeCat),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          )
+                      ),
+                    ),),
+                    // Expanded(
+                    //   child: CustomButton(
+                    //     fontSize: 12.sp,
+                    //
+                    //     onTap: () {
+                    //       NavigationService.push(
+                    //           context, Routes.selCarFormPage);
+                    //     },
+                    //     buttonText: translate(LocaleKeys.sellChangeCat) ,
+                    //     width: deviceWidth * 0.20,
+                    //     height: 40.h,
+                    //     backgroundColor: ColorManager.white,
+                    //     borderColor: ColorManager.primaryColor,
+                    //     textColor: ColorManager.primaryColor,
+                    //     radius: 10.r,
+                    //   ),
+                    // ),
+
+                    const SizedBox(width: 10,),
+                    Expanded(child:   InkWell(
+                      onTap: (){
+                        NavigationService.push(context, Routes.financeCarPage);
+                      },
+                      child:
+                      Container(
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow:  [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 1,
+                                spreadRadius: 1,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                            border: Border.all(color: Colors.white, width: 1),
+                          ),
+                          child: Center(
+                            child:Text(
+                              translate(LocaleKeys.financeCar),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          )
+                      ),
+                    ),),
+                    // Expanded(
+                    //   child: CustomButton(
+                    //     onTap: () {
+                    //       NavigationService.push(
+                    //           context, Routes.financeCarPage);
+                    //     },
+                    //     fontSize: 12.sp,
+                    //     buttonText: translate(LocaleKeys.financeCar) ,
+                    //     width: deviceWidth * 0.20,
+                    //     height: 40.h,
+                    //
+                    //     backgroundColor: ColorManager.white,
+                    //     borderColor: ColorManager.primaryColor,
+                    //     textColor: ColorManager.primaryColor,
+                    //     radius: 10.r,
+                    //   ),
+                    // ),
+
+                    SizedBox(width: 10,),
+                  ],
+                ),
+                const SizedBox(height: 15,),
+                Padding(
+                  padding:
+                  EdgeInsets.symmetric(vertical: 0.h, horizontal: 10.w),
+                  child: Row(children: [
+                    Expanded(
+                      child: Row(
+                        children:  [
+                          const Icon(Icons.language),
+                          const HorizontalSpace(10),
+                          TapEffect(onClick: ()async{
+                            if(shared!.getString("lang") == "ar" ){
+                              shared!.setString("lang", "en") ;
+                              context.setLocale(Locale("en")) ;
+                              lang = Locale("en");
+                            }else{
+                              shared!.setString("lang", "ar") ;
+                              context.setLocale(Locale("ar")) ;
+                              lang = Locale("ar");
+                            }
+                            final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
+                            await userProider.getEndUserData();
+
+                            await userProider.getUserData();
+
+                            Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
+                            Provider.of<SlidersViewModel>(context, listen: false)
+                                .showSliders(context: context);
+                            Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
+                            getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
+                            Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
+                            Provider.of<CarMechanicalViewModel>(context, listen: false)
+                                .getMechanicalFun(context: context);
+                            Provider.of<CarFeaturesViewModel>(context, listen: false)
+                                .getCarFeatures(context: context);
+                          }, child: CustomText(
+                            text: shared!.getString("lang") == "ar" ? "English" : "عربي",
+                          )),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: DropDownField(
+                          backgroundColor: Colors.transparent,
+                          // prefixIcon: Icons.flag_circle_outlined,
+                          // prefixIconColor: ColorManager.primaryColor,
+                          height: 20,
+                          value:
+                          res=='eg'?
+                          items[0]:
+                          res=='sa'?
+                          items[1]:null,
+                          hint: LocaleKeys.country.tr(),
+                          items:items,
+                          onChanged: (item) {
+                            GetStorage().write('countryId', item!.id);
+                            showDialog(context: context, builder: (context){
+                              return const Center(child: SizedBox(
+                                  height: 35,
+                                  width: 35,
+                                  child: CircularProgressIndicator()),);
+                            });
+                            WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
                               final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
                               await userProider.getEndUserData();
 
@@ -91,109 +290,24 @@ class _AppDrawerState extends State<AppDrawer> {
                               Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
                               Provider.of<CarMechanicalViewModel>(context, listen: false)
                                   .getMechanicalFun(context: context);
-                               Provider.of<CarFeaturesViewModel>(context, listen: false)
+                              Provider.of<CarFeaturesViewModel>(context, listen: false)
                                   .getCarFeatures(context: context);
-                            }, child: CustomText(
-                              text: shared!.getString("lang") == "ar" ? "English" : "عربي",
-                            )),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                          child: DropDownField(
-                              backgroundColor: Colors.transparent,
-                              // prefixIcon: Icons.flag_circle_outlined,
-                              // prefixIconColor: ColorManager.primaryColor,
-                              height: 20,
-                              value:
-                              res=='eg'?
-                              items[0]:
-                              res=='sa'?
-                              items[1]:null,
-                              hint: LocaleKeys.country.tr(),
-                              items:items,
-                              onChanged: (item) {
-                                GetStorage().write('countryId', item!.id);
-                                showDialog(context: context, builder: (context){
-
-
-                                  return const Center(child: SizedBox(
-                                      height: 35,
-                                      width: 35,
-                                      child: CircularProgressIndicator()),);
-                                });
-                                WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
-                                  final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
-                                  await userProider.getEndUserData();
-
-                                  await userProider.getUserData();
-
-                                  Provider.of<NewCarsShowRoomViewModel>(context , listen: false).getMyCars(context: context, id: null, modelRole: "", states: "new" ,isAll: true);
-                                  Provider.of<SlidersViewModel>(context, listen: false)
-                                      .showSliders(context: context);
-                                  Provider.of<UsedCarsShowRoomViewModel>(context , listen: false).
-                                  getMyCars(context: context, id: null, modelRole: null, states: "used" ,isAll: true);
-                                  Provider.of<CarStatusViewModel>(context , listen: false).getCarStatus(context: context);
-                                  Provider.of<CarMechanicalViewModel>(context, listen: false)
-                                      .getMechanicalFun(context: context);
-                                  Provider.of<CarFeaturesViewModel>(context, listen: false)
-                                      .getCarFeatures(context: context);
-                                });
-                                Future.delayed(const Duration(seconds: 2)).then((value){
-                                  Navigator.pop(context);
-                                });
-                                // Navigator.pushAndRemoveUntil(
-                                //   context,
-                                //   MaterialPageRoute(builder: (context) => const SplashScreen()),
-                                //       (Route<dynamic> route) => false,
-                                // );
-                              }
-                          ),
-                        ),
-
-                    ]),
-                  ),
-                ),
-               ! userProvider.isAuth ? const SizedBox(): VerticalSpace(10.h)   ,
-                userProvider.isAuth ?  const SizedBox()
-                    : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: CustomButton(
-                        onTap: () {
-                          NavigationService.push(context, Routes.loginScreen);
-                        },
-                        buttonText: translate(LocaleKeys.signInUser),
-                        width: deviceWidth * 0.30,
-                        height: 40.h,
-                        backgroundColor: ColorManager.white,
-                        borderColor: ColorManager.primaryColor,
-                        textColor: ColorManager.primaryColor,
-                        radius: 10.r,
-                      ),
-                    ) ,
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: CustomButton(
-                        onTap: () {
-                          NavigationService.push(
-                              context, Routes.showRoomLoginPage);
-                        },
-                        buttonText: translate(LocaleKeys.signInAgency) ,
-                        width: deviceWidth * 0.38,
-                        height: 40.h,
-                        backgroundColor: ColorManager.white,
-                        borderColor: ColorManager.primaryColor,
-                        textColor: ColorManager.primaryColor,
-                        radius: 10.r,
+                            });
+                            Future.delayed(const Duration(seconds: 2)).then((value){
+                              Navigator.pop(context);
+                            });
+                            // Navigator.pushAndRemoveUntil(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => const SplashScreen()),
+                            //       (Route<dynamic> route) => false,
+                            // );
+                          }
                       ),
                     ),
-                    SizedBox(width: 10,),
-                  ],
+
+                  ]),
                 ),
-               ! userProvider.isAuth ? const SizedBox(): VerticalSpace(30.h)   ,
+
                 /*  DrawerTile(
                   svgIcon: AssetsManager.sedanIcon,
                   title: "سيارة",
@@ -201,44 +315,6 @@ class _AppDrawerState extends State<AppDrawer> {
                       NavigationService.push(context, Routes.bottomNavigationBar),
                 ),
                 */
-                SizedBox(height: 10,),
-                Row(
-                  children: [
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: CustomButton(
-                        onTap: () {
-                          NavigationService.push(context, Routes.purchaseOrderScreen);
-                        },
-                        buttonText: translate(LocaleKeys.purchaseOrder),
-                        width: deviceWidth * 0.20,
-                        height: 40.h,
-                        backgroundColor: ColorManager.white,
-                        borderColor: ColorManager.primaryColor,
-                        textColor: ColorManager.primaryColor,
-                        radius: 10.r,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: CustomButton(
-                        onTap: () {
-                          NavigationService.push(
-                              context, Routes.selCarFormPage);
-                        },
-                        buttonText: translate(LocaleKeys.sellChangeCat) ,
-                        width: deviceWidth * 0.20,
-                        height: 40.h,
-                        backgroundColor: ColorManager.white,
-                        borderColor: ColorManager.primaryColor,
-                        textColor: ColorManager.primaryColor,
-                        radius: 10.r,
-                      ),
-                    ),
-
-                    SizedBox(width: 10,),
-                  ],
-                ),
 
                 DrawerTile(
                   svgIcon: AssetsManager.sedanIcon,
@@ -259,10 +335,10 @@ class _AppDrawerState extends State<AppDrawer> {
                       NavigationService.push(context, Routes.guaranteeCarPage),
                 ),
                 DrawerTile(
-                  icon: Icons.location_on_rounded,
-                  title: translate(LocaleKeys.trackUrRequest),
+                  icon: Icons.format_indent_decrease_outlined,
+                  title: translate(LocaleKeys.theFinance),
                   onTap: () {
-                    NavigationService.push(context, Routes.trackYourRequest);
+                    NavigationService.push(context, Routes.financeScreen);
                   },
                 ),
                 // DrawerTile(
@@ -334,6 +410,124 @@ class _AppDrawerState extends State<AppDrawer> {
                     NavigationService.push(context, Routes.carReturn);
                   },
                 ),
+                /*
+                    ! userProvider.isAuth ? const SizedBox(): VerticalSpace(10.h)   ,
+                userProvider.isAuth ?  const SizedBox()
+                    : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () {
+                          NavigationService.push(context, Routes.loginScreen);
+                        },
+                        buttonText: translate(LocaleKeys.signInUser),
+                        width: deviceWidth * 0.30,
+                        height: 40.h,
+                        backgroundColor: ColorManager.white,
+                        borderColor: ColorManager.primaryColor,
+                        textColor: ColorManager.primaryColor,
+                        radius: 10.r,
+                      ),
+                    ) ,
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: CustomButton(
+                        onTap: () {
+                          NavigationService.push(
+                              context, Routes.showRoomLoginPage);
+                        },
+                        buttonText: translate(LocaleKeys.signInAgency) ,
+                        width: deviceWidth * 0.38,
+                        height: 40.h,
+                        backgroundColor: ColorManager.white,
+                        borderColor: ColorManager.primaryColor,
+                        textColor: ColorManager.primaryColor,
+                        radius: 10.r,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                  ],
+                ),   */
+          if(userProvider.isAuth)
+            VerticalSpace(30.h)
+          else
+            ...[
+
+              const Divider(color: ColorManager.greyColorCBCBCB),
+              SizedBox(height: 10.h,),
+              InkWell(
+                onTap: (){
+                  NavigationService.push(context, Routes.loginScreen);
+                },
+                child:
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30.w),
+                    width: deviceWidth * 0.30,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                      border: Border.all(color: Colors.white, width: 1),
+                    ),
+                    child: Center(
+                      child:Text(
+                        translate(LocaleKeys.signInUser),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    )
+                ),
+              ),
+              SizedBox(height: 15.h,),
+              InkWell(
+                onTap: (){
+                  NavigationService.push(context, Routes.showRoomLoginPage);
+                },
+                child:
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30.w),
+                    width: deviceWidth * 0.30,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                      border: Border.all(color: Colors.white, width: 1),
+                    ),
+                    child: Center(
+                      child:Text(
+                        translate(LocaleKeys.signInAgency),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    )
+                ),
+              ),
+
+            ],
+
+                SizedBox(height: 50.h,)
               ],
             ),
           ),

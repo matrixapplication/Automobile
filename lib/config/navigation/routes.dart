@@ -7,6 +7,8 @@ class Routes {
   static const String signupScreen = "/signupScreen";
   static const String otpPage = "/otpPage";
   static const String bottomNavigationBar = "/bottomNavigationBar";
+  static const String financeCarPage = "/financeCarPage";
+  static const String financeScreen = "/financeScreen";
   static const String homeScreen = "/homeScreen";
   //static const String homeScreen = "/";
   static const String purchaseOrderScreen = "/purchaseOrderScreen";

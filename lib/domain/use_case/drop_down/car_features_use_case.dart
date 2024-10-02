@@ -44,10 +44,11 @@ class CarFeaturesUseCase {
     } else {
 
       ErrorResponse baseModel =
-          ErrorResponse.fromJson(apiResponse.response?.data);
+          ErrorResponse.fromJson(apiResponse.response?.data??'');
       final message = baseModel.message;
       responseModel = ApiChecker.checkApi(context, message: message);
     }
     return responseModel;
   }
 }
+//used cars

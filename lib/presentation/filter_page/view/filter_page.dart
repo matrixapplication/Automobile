@@ -41,6 +41,13 @@ class _FilterPageState extends State<FilterPage> {
 
 
   List<String> years = [
+    '2030',
+    '2029',
+    '2028',
+    '2027',
+    '2026',
+    '2025',
+    '2024',
     '2023',
     '2022',
     '2021',
@@ -74,7 +81,37 @@ class _FilterPageState extends State<FilterPage> {
     '1993',
     '1992',
     '1991',
-    '1990'
+    '1990',
+    '1989',
+    '1988',
+    '1987',
+    '1986',
+    '1985',
+    '1984',
+    '1983',
+    '1982',
+    '1981',
+    '1980',
+    '1979',
+    '1978',
+    '1977',
+    '1976',
+    '1975',
+    '1974',
+    '1973',
+    '1972',
+    '1971',
+    '1970',
+    '1969',
+    '1968',
+    '1967',
+    '1966',
+    '1965',
+    '1964',
+    '1963',
+    '1962',
+    '1961',
+    '1960',
   ];
 
   int transmissionTabsIndex = 0;
@@ -86,6 +123,7 @@ class _FilterPageState extends State<FilterPage> {
     translate(LocaleKeys.all),
     translate(LocaleKeys.manual),
     translate(LocaleKeys.automatic),
+    translate(LocaleKeys.cvt),
 
   ];
   List<String> fuelTypeTabs = [
@@ -93,6 +131,9 @@ class _FilterPageState extends State<FilterPage> {
     translate(LocaleKeys.gas),
     translate(LocaleKeys.diesel),
     translate(LocaleKeys.naturalGas),
+    translate(LocaleKeys.hybrid),
+    translate(LocaleKeys.electric),
+
 
   ];
 
@@ -100,7 +141,6 @@ class _FilterPageState extends State<FilterPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     if(widget.type =="used"){
       Provider.of<BrandModelChangeViewModel>(context , listen: false).changeStatusIndex("used") ;
     }else if(widget.type == "new"){
@@ -560,7 +600,7 @@ class _FilterPageState extends State<FilterPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: DefaultTabController(
                   //  length: 3,
-                  length: 3,
+                  length: 4,
                   initialIndex: transmissionTabsIndex,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -575,8 +615,11 @@ class _FilterPageState extends State<FilterPage> {
                             }else if(transmissionTabsIndex == 1 ){
                               driverType = "manual" ;
 
-                            }else{
+                            }else if(transmissionTabsIndex == 2 ){
                               driverType = "automatic" ;
+
+                            }else{
+                              driverType = "cvt" ;
 
                             }
 
@@ -608,7 +651,7 @@ class _FilterPageState extends State<FilterPage> {
                         ),
                         tabs: <Widget>[
                           //     for (int index = 0; index < 3; index++)
-                          for (int index = 0; index < 3; index++)
+                          for (int index = 0; index < 4; index++)
                             Tab(
 
                               child: CustomText(
@@ -653,7 +696,7 @@ class _FilterPageState extends State<FilterPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: DefaultTabController(
                   //  length: 3,
-                  length: 4
+                  length: 6
                   ,
 
                   initialIndex: transmissionTabsIndex,
@@ -670,8 +713,16 @@ class _FilterPageState extends State<FilterPage> {
                               fuelType = 'gasoline' ;
                             }else if(selectedTabIndex == 2){
                               fuelType = 'diesel' ;
-                            }else{
+                            }
+
+                            else if(selectedTabIndex == 3){
                               fuelType = 'natural_gas' ;
+                            }
+                            else if(selectedTabIndex == 4){
+                              fuelType = 'hybrid' ;
+                            }
+                            else{
+                              fuelType = 'electric' ;
                             }
                           });
                         },
@@ -701,26 +752,29 @@ class _FilterPageState extends State<FilterPage> {
                         ),
                         tabs: <Widget>[
                           //     for (int index = 0; index < 3; index++)
-                          for (int index = 0; index < 4; index++)
+                          for (int index = 0; index < 6; index++)
                             Tab(
-                              child: CustomText(
-                                text: fuelTypeTabs[index],
-                                maxLines: 1,
-
-                                textStyle: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .copyWith(
-                                    color: fuelTabsIndex == index
-                                        ? ColorManager.white
-                                        : ColorManager
-                                        .blackColor1C1C1C,
-                                    fontWeight:
-                                    FontWeightManager.semiBold,
-                                    letterSpacing:
-                                    0.1 // color: ColorManager.black
+                              child:
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child:  CustomText(
+                                  text: fuelTypeTabs[index],
+                                  maxLines: 1,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                      color: fuelTabsIndex == index
+                                          ? ColorManager.white
+                                          : ColorManager
+                                          .blackColor1C1C1C,
+                                      fontWeight:
+                                      FontWeightManager.semiBold,
+                                      letterSpacing:
+                                      0.1 // color: ColorManager.black
+                                  ),
                                 ),
-                              ),
+                              )
                             ),
                         ],
                       ),

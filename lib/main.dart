@@ -26,6 +26,8 @@ import 'domain/logger.dart';
 import 'injections.dart' as di;
 import 'package:easy_localization/easy_localization.dart';
 
+//ppppppp
+
 SharedPreferences? shared ;
 Locale? lang ;
 late BuildContext appContext ;
@@ -200,6 +202,7 @@ class MyApp extends StatelessWidget {
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashScreen,
+      // home: const FinanceCarPage(),
       navigatorKey: NavigationService.navigationKey,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
     );

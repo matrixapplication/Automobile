@@ -103,7 +103,8 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
               padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 10.w),
               //height: 300.h,
               //  color: Colors.grey.withOpacity(0.4),
-              child: Column(
+              child:
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 /*
@@ -1104,6 +1105,7 @@ class _SelCarFormPageState extends State<SelCarFormPage> {
                     });
                   }
                 },
+                //sellCar
                 onStepContinue: () {
                   final isLastStep = currentStep == getSteps().length - 1;
                   if (isLastStep) {

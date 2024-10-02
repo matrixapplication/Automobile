@@ -34,6 +34,7 @@ class CarMechanicalViewModel extends ChangeNotifier {
 
     if (response.isSuccess) {
       ResponseModel<List<BasicModel>>? data = response;
+      print("Mechassssnical ${data?.data}");
       _getMechanicalResponse = data;
       log("Mechanical", _getMechanicalResponse!.data!.toString());
     } else {

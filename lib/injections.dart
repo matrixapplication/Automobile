@@ -34,6 +34,7 @@ import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/sell_car_brands_view_model/years_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/filter_view_model.dart';
 import 'package:automobile_project/presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
+import 'package:automobile_project/presentation/finance_car/view_model/finance_car_view_model.dart';
 import 'package:automobile_project/presentation/guarantee_cars/view_model/admin_view_model.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
@@ -56,8 +57,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/services/network/endpoints.dart';
 import 'data/repository_implemintation/agency_repository.dart';
 import 'data/repository_implemintation/drop_down/drop_down_repository.dart';
+import 'data/repository_implemintation/finance_car_repository_imp.dart';
 import 'data/repository_implemintation/show_rooms_repository.dart';
 import 'domain/repository/drop_down/drop_down_repository.dart';
+import 'domain/repository/finance_car/finance_car_repository.dart';
 import 'domain/repository/show_rooms/show_rooms_repository.dart';
 import 'domain/use_case/drop_down/brand_model_extensions_use_case.dart';
 import 'domain/use_case/drop_down/brand_models_use_case.dart';
@@ -67,6 +70,7 @@ import 'domain/use_case/drop_down/car_status_use_case.dart';
 import 'domain/use_case/drop_down/fuel_type_use_case.dart';
 import 'domain/use_case/drop_down/mechanical_use_case.dart';
 import 'domain/use_case/drop_down/years_use_case.dart';
+import 'domain/use_case/finance_car/finance_car_use_case.dart';
 import 'domain/use_case/local_use_cases/get_user_role_usecase.dart';
 import 'domain/use_case/local_use_cases/save_role_usecase.dart';
 import 'domain/use_case/local_use_cases/save_user_usecase.dart';
@@ -125,12 +129,14 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CarFeaturesUseCase(sl()));
   sl.registerLazySingleton(() => FavUseCase(sl()));
   sl.registerLazySingleton(() => SlidersUseCase(sl()));
+  sl.registerLazySingleton(() => FinanceCarUseCase(sl()));
   sl.registerLazySingleton(() => AdminUseCase(sl()));
   sl.registerLazySingleton(() => TrackYourRequestUseCase(sl()));
 
   ///View Model
   sl.registerLazySingleton(() => ShowRoomLoginViewModel(saveUserDataUseCase: sl(), loginUseCase: sl(), saveUserTokenUseCase: sl(), saveRoleUseCase: sl() , getUserDataUseCase: sl() , getUserRoleUseCase: sl()));
   sl.registerLazySingleton(() => EndUserViewModel(saveUserDataUseCase: sl(), loginUseCase: sl(), saveUserTokenUseCase: sl(), saveRoleUseCase: sl() , getUserDataUseCase: sl()));
+  sl.registerLazySingleton(() => FinanceCarViewModel( financeCarUseCase: sl()));
   sl.registerLazySingleton(() => ShowRoomsViewModel(showRoomsUseCase: sl()));
   sl.registerLazySingleton(() => GetCitiesViewModel(citiesUseCase: sl()));
   sl.registerLazySingleton(() => GetDistrictsViewModel(citiesUseCase: sl()));
@@ -187,6 +193,8 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GeneralRepository>(
           () => ImpGeneralRepository(dioClient: sl(), sharedPreferences: sl()));
+ sl.registerLazySingleton<FinanceCarRepository>(
+          () => ImpFinanceCarRepository(dioClient: sl(), sharedPreferences: sl()));
 
   sl.registerLazySingleton<AdminRepository>(
           () => ImpAdminRepo(dioClient: sl(), sharedPreferences: sl()));
