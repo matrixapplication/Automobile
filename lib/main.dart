@@ -26,7 +26,7 @@ import 'domain/logger.dart';
 import 'injections.dart' as di;
 import 'package:easy_localization/easy_localization.dart';
 
-//ppppppp
+//pppppppe
 
 SharedPreferences? shared ;
 Locale? lang ;
