@@ -103,16 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: deviceWidth * 0.55,
                         ),
                       ),
-                      if(kDebugMode)
-                      InkWell(
-                          onTap: (){
-                          //   var d =GetStorage().read('countryId');
-                          //   print('${d}')
-                            print('yehya test ${GetStorage().read('isLogin')}');
 
-
-                          },
-                          child: Text('yehyaaaa DropDown')),
                       const VerticalSpace(AppSize.s75),
 
                       CustomText(
@@ -148,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         // controller: _emailController,
-                        hintText: translate(LocaleKeys.email_or_mobile),
+                        hintText: translate(LocaleKeys.email),
                         textInputType: TextInputType.emailAddress,
                         maxLine: 1,
                         isValidator: true,

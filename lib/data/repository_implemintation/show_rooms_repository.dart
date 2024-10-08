@@ -109,7 +109,7 @@ class ShowRoomsRepository implements BaseShowRoomsRepository {
     queryParameters.removeWhere((key, value) => value == null || value == "");
     try {
       final response =
-          await dioClient?.get(EndPoints.getCarsApi, queryParameters: queryParameters);
+          await dioClient?.get(EndPoints.getCarsApi,);
       return ApiResponse.withSuccess(response!);
     } on DioError catch (error) {
       if (error.response == null) {
@@ -432,7 +432,7 @@ class ShowRoomsRepository implements BaseShowRoomsRepository {
     try {
 
       final response = await dioClient?.post(
-        "buy-store-request",
+        "/buy-store-request",
         body: params.toJson()
       );
       return ApiResponse.withSuccess(response!);

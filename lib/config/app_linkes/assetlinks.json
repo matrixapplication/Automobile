@@ -36,5 +36,17 @@
         "F8:59:29:3E:F0:DD:6F:DB:E3:CE:A8:DA:E5:05:BA:81:78:E2:1C:ED:A2:1E:39:CE:78:1E:E0:26:F0:23:BE:DF"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.automobile.app",
+      "sha256_cert_fingerprints": [
+        "D0:61:89:F7:43:A5:6F:73:CE:B2:D8:D9:CA:26:09:34:91:47:36:8F:20:F0:36:70:66:4A:7B:F8:76:23:5B:DF"
+      ]
+    }
   }
 ]

@@ -74,6 +74,7 @@ class GetMyCarsViewModel extends ChangeNotifier {
     if (isAll) {
       clearData();
     }
+    print("getMyCars ///////////////////");
     final responseModel = await _showRoomsBranchesUseCase.call(
         context: context,
         id: id,
@@ -89,6 +90,8 @@ class GetMyCarsViewModel extends ChangeNotifier {
         startYear:null,
         endYear:null,
         page: _page);
+    print("getMyCars ///responseModel : ${responseModel.data.toString()}////////////////");
+
     if (responseModel.isSuccess) {
       ResponseModel<List<CarModel>>? data = responseModel;
       _showRoomsBranchesResponse = data ;

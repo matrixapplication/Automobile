@@ -3,15 +3,10 @@
       "apps": [],
       "details": [
       {
-      "appIDs": [ "5L2F4NS698.com.dalalah.app" ],
+      "appIDs": [ "S2QF6L6CJZ.com.automobile.app" ],
         "paths": ["*"]
       }
     ]
   },
-  "webcredentials": {
-        "apps": [ "5L2F4NS698.com.dalalah.app" ]
-  },
-  "appclips": {
-      "apps": ["5L2F4NS698.com.dalalah.app"]
-  }
+
 }

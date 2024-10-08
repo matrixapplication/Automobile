@@ -100,43 +100,44 @@ class _SelCarFormPageState extends State<FinanceCarPage> {
 
     final financeCarProvider =
         Provider.of<FinanceCarViewModel>(context, listen: false);
-    if (kDebugMode) {
-      ResponseModel responseModel = await financeCarProvider.financeCar(
-          context: context, formData: formData);
-      print('responseModel.data ${responseModel.message}');
-      if (responseModel.isSuccess) {
-        showCustomSnackBar(
-            isError: false,
-            message: responseModel.message ?? "",
-            context: context);
-        //NavigationService.pushReplacement(context, Routes.homeScreen)
-        NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
-      } else {
-        showCustomSnackBar(
-            message: "${responseModel.message}", context: context);
-      }
-    } else {
+    // if (kDebugMode) {
+    //   ResponseModel responseModel = await financeCarProvider.financeCar(
+    //       context: context, formData: formData);
+    //   print('responseModel.data ${responseModel.message}');
+    //   if (responseModel.isSuccess) {
+    //     showCustomSnackBar(
+    //         isError: false,
+    //         message: responseModel.message ?? "",
+    //         context: context);
+    //     //NavigationService.pushReplacement(context, Routes.homeScreen)
+    //     NavigationService.pushReplacement(context, Routes.bottomNavigationBar);
+    //   } else {
+    //     showCustomSnackBar(
+    //         message: "${responseModel.message}", context: context);
+    //   }
+    // } else {
+    print("formDsfddsfffffffata ${formData}");
       FocusScope.of(context).unfocus();
-      if (_key.currentState!.validate()) {
-          _key.currentState!.save();
-          if (isSwitched1) {
-            setState(() {
-              terms =false ;
-            });
+      if (_keyStep1.currentState!.validate()) {
+          // _key.currentState!.save();
+          // if (isSwitched1) {
+          //   setState(() {
+          //     terms =false ;
+          //   });
             ResponseModel responseModel = await financeCarProvider.financeCar(
                 context: context, formData: formData);
             if (responseModel.isSuccess) {
-             // NavigationService.goBack(context) ;
-              final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
+             NavigationService.goBack(context) ;
+             //  final userProvider = Provider.of<LocalAuthProvider>(context , listen: false);
               showCustomSnackBar(
-                  message: "You have booked examination successfully",
+                  message: "Successfully",
                   context: context);
-              if(await userProvider.isLogin()){
-                NavigationService.pushReplacement(
-                    context, Routes.bottomNavigationBar);
-              } else {
-                // _autoRegister(context, Provider.of<EndUserViewModel>(context , listen: false));
-              }
+             //  if(await userProvider.isLogin()){
+             //    NavigationService.pushReplacement(
+             //        context, Routes.bottomNavigationBar);
+             //  } else {
+             //    // _autoRegister(context, Provider.of<EndUserViewModel>(context , listen: false));
+             //  }
             } else {
               showCustomSnackBar(
                   message: "${responseModel.message}", context: context);
@@ -146,8 +147,8 @@ class _SelCarFormPageState extends State<FinanceCarPage> {
               terms =true ;
             });
 
-        }
-      }
+        // }
+      // }
     }
     financeCarProvider.offLoading();
   }
@@ -748,6 +749,9 @@ class _SelCarFormPageState extends State<FinanceCarPage> {
                   : const SizedBox(),
 
               const VerticalSpace(40),
+
+              const VerticalSpace(40),
+
               CustomButton(
                   buttonText: translate(LocaleKeys.next),
                   onTap: () {
@@ -755,7 +759,8 @@ class _SelCarFormPageState extends State<FinanceCarPage> {
                         _selectedModel != null &&
                         _selectedYear != null &&
                         _selectedCity != null) {
-                      _submit(context);
+                      print("formData ${formData}");
+                       _submit(context);
 
                     } else {
                       // setState(() {

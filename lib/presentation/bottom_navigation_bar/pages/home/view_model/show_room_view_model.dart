@@ -68,6 +68,7 @@ class ShowRoomsViewModel extends ChangeNotifier {
       log("getShowRooms", _getShowRoomsResponse!.data!.toString());
 
       _showRoomsList.addAll(response.data!.map<ShowRoomModel>((e) {
+
         return e;
       }).toList());
 

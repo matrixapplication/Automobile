@@ -109,7 +109,7 @@ class _LatestNewCarsDetailsState extends State<LatestNewCarsDetails> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    images.add(widget.carModel.mainImage!) ;
+    images.add(widget.carModel.mainImage??"");
     for(Images item in widget.carModel.images!){
       images.add(item.image!);
     }

@@ -4,11 +4,13 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/services/local/shared_preferences_keys.dart';
 import '../../../../domain/logger.dart';
 import '../../../../main.dart';
+import 'logging_interceptor.dart';
 import 'logging_interceptor.dart';
 
 class DioClient {
@@ -45,6 +47,13 @@ class DioClient {
        'Authorization': 'Bearer $token',
       };
     dio!.interceptors.add(loggingInterceptor);
+    dio!.interceptors.add(
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
+      ),
+    );
   }
 
   Future<Response> get(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../data/models/car_model/car_model.dart';
 import '../../../injections.dart';
 import '../../../presentation/bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import '../../../presentation/latest_new_cars/view/new_car_details.dart';
@@ -24,7 +25,7 @@ class CarDetailsPage extends StatelessWidget {
               child: Center(child: CircularProgressIndicator()))
               :
             LatestNewCarsDetails(
-            carModel: provider.carDetails!,
+            carModel: provider.carDetails?? CarModel(),
             isShowRoom: false,
           );
         },

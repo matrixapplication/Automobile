@@ -45,12 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
         final userProider =  Provider.of<LocalAuthProvider>(context,listen: false) ;
         await userProider.getEndUserData();
-        print("end user ==> ${userProider.endUser}");
         if(shared!.getString("lang") == null ){
           await shared!.setString("lang", "en") ;
         }
         await userProider.getUserData();
-        print(" user ==> ${userProider.user}");
         Provider.of<GetMyCarsViewModel>(context, listen: false).getMyCars(context: context , states: null  , id: null ,  modelRole:  null  , isAll: false) ;
         Provider.of<SlidersViewModel>(context, listen: false)
             .showSliders(context: context);
@@ -230,7 +228,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ]),
                     ),
                   ),
-
+                  // InkWell(
+                  //   onTap: (){
+                  //     Provider.of<GetMyCarsViewModel>(context, listen: false).getMyCars(context: context , states: null  , id: null ,  modelRole:  null  , isAll: false) ;
+                  //
+                  //   },
+                  //     child: Text('dfdfdsfdsfdsfdsf'),),
                   //Latest New Cars
                   const VerticalSpace(10),
                   Card(
@@ -291,6 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   Consumer<ShowRoomsViewModel>(
                     builder: (context, viewModel, child) {
+                      print("viewModel.showRoomsList.isEmpty ${viewModel.showRoomsList[0].isBlocked}");
                        if (viewModel.showRoomsList.isEmpty) {
                         return const SizedBox();
                       } else {
