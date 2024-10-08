@@ -101,7 +101,7 @@ Future<void> handleBackGroundMessage(RemoteMessage message) async {
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp()  ;
+  await Firebase.initializeApp();
   await GetStorage.init();
   await CountryCodes.init();
   FirebaseMessaging.onBackgroundMessage(handleBackGroundMessage);

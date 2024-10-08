@@ -23,6 +23,7 @@ import '../../../../config/app_linkes/app_links_service.dart';
 import '../../../../config/navigation/navigation.dart';
 import '../../../../core/resources/resources.dart';
 import '../../../../data/provider/local_auth_provider.dart';
+import '../../../../src/cars/pages/car_details_page.dart';
 import '../../../bottom_navigation_bar/pages/sell_cars/view_model/show_room_sell_car_view_model.dart';
 import '../../../component/components.dart';
 
@@ -49,12 +50,13 @@ class _SplashScreenState extends State<SplashScreen> {
         // final showCarViewModel = Provider.of<ShowRoomSellCarViewModel>(context , listen: false);
         // final result  = await showCarViewModel.showCarDetails(context: context,   id: int.parse(id)) ;
         print('appLinks route id path ');
-        await  NavigationService.push(context, Routes.latestNewCarsDetails,
-            arguments: {"carModel": {}, "isShowRoom": true});
+        await  Navigator.push(context, MaterialPageRoute(builder: (context) => CarDetailsPage(
+          id: int.parse(id),
+        )));
 
       } on Exception catch (e) {
-        NavigationService.navigationKey.currentState?.pushNamed(
-          Routes.splashScreen,);
+        // NavigationService.navigationKey.currentState?.pushNamed(
+        //   Routes.splashScreen,);
         print('appLinks error $e');
       }
     });
